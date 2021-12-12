@@ -13,60 +13,18 @@ import axios from 'axios';
 // Create the rootSaga generator function
 function* rootSaga() {
   // yield takeEvery('ACTION_TYPE', functionToCall);
-  yield takeEvery('FETCH_ITEMS', fetchAllItems);
-  yield takeEvery('FETCH_BOXES', fetchAllBoxes);
-  yield takeEvery('FETCH_EVENTS', fetchAllEvents);
-  yield takeEvery('FETCH_EVENT_ACCOUNTS', fetchAllEventAccounts);
+  
+
+ 
+ 
 }
 
 // CREATE SAGAS
-  function* fetchAllItems() {
-    // get all movies from the DB
-    try {
-          const items = yield axios.get('/api/item');
-          console.log('get all:', items.data);
-          yield put({ type: 'SET_ITEMS', payload: items.data });
-          } 
-          catch {
-          console.log('fetchAllItems error');
-          }     
-    };
 
-  function* fetchAllBoxes() {
-    // get all movies from the DB
-    try {
-          const boxes = yield axios.get('/api/box');
-          console.log('get all:', boxes.data);
-          yield put({ type: 'SET_BOXES', payload: boxes.data });
-          } 
-          catch {
-          console.log('fetchAllBoxes error');
-          }     
-    };
 
-  function* fetchAllEvents() {
-    // get all movies from the DB
-    try {
-          const events = yield axios.get('/api/event');
-          console.log('get all:', events.data);
-          yield put({ type: 'SET_EVENTS', payload: events.data });
-          } 
-          catch {
-          console.log('fetchAllEvents error');
-          }     
-    };
 
-  function* fetchAllEventAccounts() {
-    // get all movies from the DB
-    try {
-          const eventAccount = yield axios.get('/api/event_account');
-          console.log('get all:', eventAccount.data);
-          yield put({ type: 'SET_EVENT_ACCOUNTS', payload: eventAccount.data });
-          } 
-          catch {
-          console.log('fetchAllEventAccounts error');
-          }     
-    };
+
+ 
 
 // Create sagaMiddleware
   const sagaMiddleware = createSagaMiddleware();
