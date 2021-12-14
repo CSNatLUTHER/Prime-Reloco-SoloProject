@@ -7,10 +7,10 @@ const router = express.Router();
  */
 router.get('/', (req, res) => {
   // GET route code here
-    const query = `SELECT first_name, last_name FROM account
-                   JOIN account_event ON account.id=account_event.account_id
-                   WHERE account_event.event_id=1
-                   ORDER BY account.first_name ASC;`;
+    const query = `SELECT first_name, last_name FROM "user"
+                   JOIN user_event ON user.id=user_event.user_id
+                   WHERE user_event.event_id=1
+                   ORDER BY user.first_name ASC;`;
     pool.query(query)
       .then( result => {
         res.send(result.rows);

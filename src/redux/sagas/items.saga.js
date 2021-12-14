@@ -1,8 +1,8 @@
 import { put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
-//FUNCTION TO GET ALL ITEMS FOR ACCOUNT
-function* fetchAllItems(account) {
+//FUNCTION TO GET ALL ITEMS FOR user
+function* fetchAllItems(user) {
   // get all movies from the DB
   try {
         const items = yield axios.get('/api/item');
