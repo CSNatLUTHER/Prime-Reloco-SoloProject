@@ -4,7 +4,7 @@ import user from './users.reducer';
 import boxes from './boxes.reducer';
 import active_box from './active_box.reducer';
 import items from './items.reducer';
-import active_item from './acctive_item.reducer';
+import active_item from './active_item.reducer';
 import events from './events.reducer';
 import active_event from './active_event.reducer';
 

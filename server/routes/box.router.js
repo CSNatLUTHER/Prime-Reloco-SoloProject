@@ -18,6 +18,20 @@ router.get('/', (req, res) => {
     })
 });
 
+// GET route - items in a box
+router.get('/items', (req, res) => {
+  const query = `SELECT * FROM box_item
+                ORDER BY "id" ASC`;
+  pool.query(query)
+    .then( result => {
+      res.send(result.rows);
+    })
+    .catch(err => {
+      console.log('ERROR: Get all boxes', err);
+      res.sendStatus(500)
+    })
+});
+
 router.get('/search', (req, res) => {
   // GET route code here
 });
