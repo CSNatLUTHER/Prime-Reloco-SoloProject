@@ -1,6 +1,6 @@
-const eventsReducer = (state = [], action) => {
+const qrCodeReducer = (state = {}, action) => {
   switch (action.type) {
-    case 'SET_EVENTS':
+    case 'SET_QRCODE':
       return action.payload;
     default:
       return state;
@@ -9,4 +9,4 @@ const eventsReducer = (state = [], action) => {
 
 // user will be on the redux state at:
 // state.user
-export default eventsReducer;
+export default qrCodeReducer;

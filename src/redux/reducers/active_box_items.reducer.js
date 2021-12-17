@@ -1,4 +1,4 @@
-const activeBoxItemsReducer = (state = {}, action) => {
+const activeBoxItemsReducer = (state = [], action) => {
   switch (action.type) {
     case 'SET_ACTIVE_BOX_ITEMS':
       return action.payload;

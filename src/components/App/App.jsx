@@ -19,6 +19,21 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import CreateMoveEvent from '../CreateMoveEvent/CreateMoveEvent';
+import ManageEvent from '../ManageMoveEvent/ManageMoveEvent';
+import MoveEventHome from '../MoveEventHome/MoveEventHome';
+import CreateNewItem from '../CreateNewItem/CreateNewItem';
+import NewItemConfirmation from '../NewItemConfirmation/NewItemConfirmation';
+import ItemSearchResults from '../ItemSearchResults/ItemSearchResults'
+import ItemInfo from '../ItemInfo/ItemInfo';
+import ItemEdit from '../ItemEdit/ItemEdit';
+import CreateNewBox from '../CreateNewBox/CreateNewBox';
+import NewBoxConfirmation from '../NewBoxConfirmation/NewBoxConfirmation';
+import BoxSearchResults from '../BoxSearchResults/BoxSearchResults';
+import BoxInfo from '../BoxInfo/BoxInfo';
+import BoxContents from '../BoxContents/BoxContents';
+import BoxEdit from '../BoxEdit/BoxEdit';
+
 
 import './App.css';
 
@@ -60,6 +75,7 @@ function App() {
             <UserPage />
           </ProtectedRoute>
 
+            {/* INFO ROUTE */}
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
@@ -68,6 +84,133 @@ function App() {
             <InfoPage />
           </ProtectedRoute>
 
+          {/* CREATE MOVE EVENT ROUTE */}
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/create_move_event"
+          >
+            <CreateMoveEvent />
+          </ProtectedRoute>
+
+          {/* MANAGE EVENT ROUTE */}
+          <ProtectedRoute
+          // logged in shows InfoPage else shows LoginPage
+          exact
+          path="/manage_event"
+          >
+          <ManageEvent />
+          </ProtectedRoute>
+
+          {/* MOVE EVENT HOME ROUTE */}
+          <ProtectedRoute
+          // logged in shows InfoPage else shows LoginPage
+          exact
+          path="/move_event_home"
+          >
+          <MoveEventHome />
+          </ProtectedRoute>
+
+          {/* CREATE NEW ITEM ROUTE */}
+          <ProtectedRoute
+          // logged in shows InfoPage else shows LoginPage
+          exact
+          path="/create_new_item"
+          >
+          <CreateNewItem />
+          </ProtectedRoute>
+
+          {/* NEW ITEM CONFIRMATION ROUTE */}
+          <ProtectedRoute
+          // logged in shows InfoPage else shows LoginPage
+          exact
+          path="/new_item_confirmation"
+          >
+          <NewItemConfirmation />
+          </ProtectedRoute>
+
+          {/* ITEM SEARCH RESULTS ROUTE */}
+          <ProtectedRoute
+          // logged in shows InfoPage else shows LoginPage
+          exact
+          path="/item_search_results"
+          >
+          <ItemSearchResults />
+          </ProtectedRoute>
+
+          {/* ITEM INFO ROUTE */}
+          <ProtectedRoute
+          // logged in shows InfoPage else shows LoginPage
+          exact
+          path="/item_info"
+          >
+          <ItemInfo />
+          </ProtectedRoute>
+
+          {/* ITEM EDIT ROUTE */}
+          <ProtectedRoute
+          // logged in shows InfoPage else shows LoginPage
+          exact
+          path="/item_edit"
+          >
+          <ItemEdit />
+          </ProtectedRoute>
+
+          {/* CREATE NEW BOX ROUTE */}
+          <ProtectedRoute
+          // logged in shows InfoPage else shows LoginPage
+          exact
+          path="/create_new_box"
+          >
+          <CreateNewBox />
+          </ProtectedRoute>
+
+          {/* NEW BOX CONFIRMATION ROUTE */}
+          <ProtectedRoute
+          // logged in shows InfoPage else shows LoginPage
+          exact
+          path="/new_box_confirmation"
+          >
+          <NewBoxConfirmation />
+          </ProtectedRoute>
+
+          {/* BOX SEARCH RESULTS ROUTE */}
+          <ProtectedRoute
+          // logged in shows InfoPage else shows LoginPage
+          exact
+          path="/box_search_results"
+          >
+          <BoxSearchResults />
+          </ProtectedRoute>
+
+          {/* BOX INFO ROUTE */}
+          <ProtectedRoute
+          // logged in shows InfoPage else shows LoginPage
+          exact
+          path="/box_info"
+          >
+          <BoxInfo />
+          </ProtectedRoute>
+
+          {/* BOX EDIT ROUTE */}
+          <ProtectedRoute
+          // logged in shows InfoPage else shows LoginPage
+          exact
+          path="/box_edit"
+          >
+          <BoxEdit />
+          </ProtectedRoute>
+
+          {/* BOX CONTENTS ROUTE */}
+          <ProtectedRoute
+          // logged in shows InfoPage else shows LoginPage
+          exact
+          path="/box_contents"
+          >
+          <BoxContents />
+          </ProtectedRoute>
+
+          {/* LOGIN ROUTE */}
           <Route
             exact
             path="/login"
@@ -82,6 +225,7 @@ function App() {
             }
           </Route>
 
+            {/* REGISTRATION ROUTE */}
           <Route
             exact
             path="/registration"
@@ -96,6 +240,7 @@ function App() {
             }
           </Route>
 
+            {/* HOME ROUTE */}
           <Route
             exact
             path="/home"
@@ -109,7 +254,6 @@ function App() {
               <LandingPage />
             }
           </Route>
-
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
             <h1>404</h1>
