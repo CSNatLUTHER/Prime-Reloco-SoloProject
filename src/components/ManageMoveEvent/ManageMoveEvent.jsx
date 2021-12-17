@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import {useSelector} from 'react-redux';
+import EventMemberList from './EventMemberList/EventMemberList';
+import LeaveMoveEvent from './LeaveMoveEvent/LeaveMoveEvent';
+import ShareMoveEvent from './ShareMoveEvent/ShareMoveEvent';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -13,6 +16,11 @@ function ManageMoveEvent(props) {
   return (
     <div>
       <h2>{heading}</h2>
+      <EventMemberList />
+
+      {/* If event.owner.id === user.id, show ShareMoveEvent, otherwise show LeaveMoveEvent Write ternary operator below*/}
+      <LeaveMoveEvent />
+      <ShareMoveEvent />
     </div>
   );
 }

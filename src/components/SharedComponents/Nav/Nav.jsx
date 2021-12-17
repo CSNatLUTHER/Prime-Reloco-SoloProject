@@ -96,6 +96,10 @@ function Nav() {
         <Link className="navLink" to="/contact_us">
         Contact Us
         </Link>
+
+        <Link className="navLink" to="/contact_thank_you">
+        Contact Thank You
+        </Link>
       </div>
     </div>
   );

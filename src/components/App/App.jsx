@@ -33,7 +33,8 @@ import BoxSearchResults from '../BoxSearchResults/BoxSearchResults';
 import BoxInfo from '../BoxInfo/BoxInfo';
 import BoxContents from '../BoxContents/BoxContents';
 import BoxEdit from '../BoxEdit/BoxEdit';
-import Contact from '../Contact/Contact';
+import ContactUs from '../Contact/ContactUs/ContactUs';
+import ContactThankYou from '../Contact/ContactThankYou/ContactThankYou';
 
 
 
@@ -248,7 +249,16 @@ function App() {
             path="/contact_us"
             >
             
-            <Contact/>
+            <ContactUs/>
+          </Route>
+
+          {/* CONTACT THANK YOU ROUTE */}
+          <Route
+            exact
+            path="/contact_thank_you"
+            >
+            
+            <ContactThankYou/>
           </Route>
 
           {/* HOME ROUTE */}

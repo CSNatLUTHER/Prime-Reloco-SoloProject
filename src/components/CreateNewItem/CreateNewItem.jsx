@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {useSelector} from 'react-redux';
+import NewItemForm from '../CreateNewItem/NewItemForm/NewItemForm';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -13,6 +14,7 @@ function createNewItem(props) {
   return (
     <div>
       <h2>{heading}</h2>
+      <NewItemForm />
     </div>
   );
 }

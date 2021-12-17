@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {useSelector} from 'react-redux';
+import EventMember from './EventMember/EventMember'
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -8,11 +9,15 @@ function EventMemberList(props) {
   // Using hooks we're creating local state for a "heading" variable with
   // a default value of 'Functional Component'
   const store = useSelector((store) => store);
+  const memberList = useSelector((store) => store.active_event_users);
   const [heading, setHeading] = useState('Event Member List');
 
   return (
     <div>
       <h2>{heading}</h2>
+      {/* {memberList.map(member => (<EventMember className="eventMember" member={member} key={member.id} />))} */}
+      <h4>Member List: {JSON.stringify(memberList)}</h4>
+      <EventMember />
     </div>
   );
 }

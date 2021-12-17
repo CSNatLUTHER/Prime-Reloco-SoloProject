@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import {useSelector} from 'react-redux';
+import ItemDetails from '../ItemInfo/ItemDetails/ItemDetails';
+import AddItemToBox from '../NewItemConfirmation/AddItemToBox/AddItemToBox'
+import CreateNewBox from '../CreateNewBox/CreateNewBox';
+
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -13,6 +17,9 @@ function itemInfo(props) {
   return (
     <div>
       <h2>{heading}</h2>
+      <ItemDetails />
+      <AddItemToBox />
+      <CreateNewBox />
     </div>
   );
 }

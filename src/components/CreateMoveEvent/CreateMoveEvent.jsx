@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import {useSelector} from 'react-redux';
+import NewMoveEvent from '../CreateMoveEvent/NewMoveEvent/NewMoveEvent';
+import JoinMoveEvent from '../CreateMoveEvent/JoinMoveEvent/JoinMoveEvent';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -13,6 +15,8 @@ function CreateMoveEvent(props) {
   return (
     <div>
       <h2>{heading}</h2>
+      <NewMoveEvent />
+      <JoinMoveEvent />
     </div>
   );
 }
