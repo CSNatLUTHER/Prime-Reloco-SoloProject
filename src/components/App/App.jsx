@@ -8,13 +8,13 @@ import {
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import Nav from '../Nav/Nav';
-import Footer from '../Footer/Footer';
+import Nav from '../SharedComponents/Nav/Nav';
+import Footer from '../SharedComponents/Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import AboutPage from '../AboutPage/AboutPage';
-import UserPage from '../UserPage/UserPage';
+import UserPage from '../UserHome/UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
@@ -33,6 +33,8 @@ import BoxSearchResults from '../BoxSearchResults/BoxSearchResults';
 import BoxInfo from '../BoxInfo/BoxInfo';
 import BoxContents from '../BoxContents/BoxContents';
 import BoxEdit from '../BoxEdit/BoxEdit';
+import Contact from '../Contact/Contact';
+
 
 
 import './App.css';
@@ -240,7 +242,16 @@ function App() {
             }
           </Route>
 
-            {/* HOME ROUTE */}
+          {/* CONTACT US ROUTE */}
+          <Route
+            exact
+            path="/contact_us"
+            >
+            
+            <Contact/>
+          </Route>
+
+          {/* HOME ROUTE */}
           <Route
             exact
             path="/home"
