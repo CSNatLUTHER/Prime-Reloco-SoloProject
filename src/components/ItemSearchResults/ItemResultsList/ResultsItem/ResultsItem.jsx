@@ -11,7 +11,7 @@ function resultsItem(props) {
   const [heading, setHeading] = useState('Results Item');
 
   return (
-    <div>
+    <div className='component'>
       <h2>{heading}</h2>
     </div>
   );

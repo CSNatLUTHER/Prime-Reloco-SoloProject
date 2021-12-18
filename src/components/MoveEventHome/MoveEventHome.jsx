@@ -20,7 +20,7 @@ function MoveEventHome(props) {
   
 
   return (
-    <div>
+    <div className='component'>
       <h2>{heading}</h2>
       <h4>{JSON.stringify(event)}</h4>
       <ItemSearch />

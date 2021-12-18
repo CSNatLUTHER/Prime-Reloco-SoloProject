@@ -13,7 +13,7 @@ function boxResultsList(props) {
   const searchResults = useSelector((store) => store.search_results);
 
   return (
-    <div>
+    <div className='component'>
       <h2>{heading}</h2>
       <h4>Search Results: {JSON.stringify(searchResults)}</h4>
       {/* {searchResults.map(item => (<ResultsBox className="resultsBox" item={item} key={item.id} />))} */}

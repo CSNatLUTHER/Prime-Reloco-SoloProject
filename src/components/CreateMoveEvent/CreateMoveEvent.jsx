@@ -13,7 +13,7 @@ function CreateMoveEvent(props) {
   const [heading, setHeading] = useState('Create Move Event');
 
   return (
-    <div>
+    <div className='component'>
       <h2>{heading}</h2>
       <NewMoveEvent />
       <JoinMoveEvent />

@@ -15,7 +15,7 @@ function itemInfo(props) {
   const [heading, setHeading] = useState('Item Info');
 
   return (
-    <div>
+    <div className='component'>
       <h2>{heading}</h2>
       <ItemDetails />
       <AddItemToBox />

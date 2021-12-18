@@ -13,7 +13,7 @@ function boxEdit(props) {
   const [heading, setHeading] = useState('Box Edit');
 
   return (
-    <div>
+    <div className='component'>
       <h2>{heading}</h2>
       <BoxEditForm />
       <button>Update Box</button>

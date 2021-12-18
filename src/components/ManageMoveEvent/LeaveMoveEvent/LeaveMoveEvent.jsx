@@ -11,7 +11,7 @@ function LeaveMoveEvent(props) {
   const [heading, setHeading] = useState('Leave Move Event');
 
   return (
-    <div>
+    <div className='component'>
       <h2>{heading}</h2>
     </div>
   );

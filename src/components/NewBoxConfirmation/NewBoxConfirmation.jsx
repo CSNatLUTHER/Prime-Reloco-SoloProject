@@ -12,7 +12,7 @@ function newBoxConfirmation(props) {
   const [heading, setHeading] = useState('New Box Confirmation');
 
   return (
-    <div>
+    <div className='component'>
       <h2>{heading}</h2>
       <PutItemInBox />
     </div>

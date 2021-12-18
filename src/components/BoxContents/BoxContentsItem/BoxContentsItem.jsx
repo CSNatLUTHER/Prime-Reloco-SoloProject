@@ -11,7 +11,7 @@ function boxContentsItem(props) {
   const [heading, setHeading] = useState('Box Contents Item');
 
   return (
-    <div>
+    <div className='component'>
       <h2>{heading}</h2>
     </div>
   );

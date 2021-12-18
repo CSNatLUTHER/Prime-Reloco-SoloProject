@@ -27,7 +27,7 @@ function addItemToBox(props) {
   } 
 
   return (
-    <div>
+    <div className='component'>
       <h2>{heading}</h2>
       <p>QR Code ID:</p><input type="text" placeholder='enter code or use QR scan' value={box.qr} onChange={handleQrChange} /><QRCodeScan />
       <br />

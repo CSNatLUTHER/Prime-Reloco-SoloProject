@@ -11,7 +11,7 @@ function ContactThankYou(props) {
   const [heading, setHeading] = useState('Contact Thank You Message');
 
   return (
-    <div>
+    <div className='component'>
       <h2>{heading}</h2>
     </div>
   );

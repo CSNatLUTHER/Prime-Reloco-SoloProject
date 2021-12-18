@@ -13,7 +13,7 @@ function itemResultsList(props) {
   const [heading, setHeading] = useState('Item Results List');
 
   return (
-    <div>
+    <div className='component'>
       <h2>{heading}</h2>
       <h4>Search Results: {JSON.stringify(itemList)}</h4>
       {/* {itemList.map(item => (<ResultsItem className="ResultsItem" item={item} key={item.id} />))} */}

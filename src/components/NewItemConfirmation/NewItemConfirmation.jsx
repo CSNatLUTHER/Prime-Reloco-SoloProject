@@ -15,7 +15,7 @@ function newItemConfirmation(props) {
   const [heading, setHeading] = useState('New Item Confirmation');
 
   return (
-    <div>
+    <div className='component'>
       <h2>{heading}</h2>
       <h3>Your Item Created Successfully!</h3>
       <ItemDetails />

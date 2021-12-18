@@ -11,7 +11,7 @@ function NewMoveEvent(props) {
   const [heading, setHeading] = useState('New Move Event Form');
 
   return (
-    <div>
+    <div className='component'>
       <h2>{heading}</h2>
     </div>
   );

@@ -19,7 +19,7 @@ function eventListItem(props) {
   }
 
   return (
-    <div>
+    <div className='component'>
       <h2>{heading}</h2>
       <h4>{JSON.stringify(props)}</h4>
       <Link to="/move_event_home">

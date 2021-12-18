@@ -11,7 +11,7 @@ function JoinMoveEvent(props) {
   const [heading, setHeading] = useState('Join Move Event');
 
   return (
-    <div>
+    <div className='component'>
       <h2>{heading}</h2>
     </div>
   );

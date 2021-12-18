@@ -11,7 +11,7 @@ function ShareMoveEvent(props) {
   const [heading, setHeading] = useState('Share Move Event');
 
   return (
-    <div>
+    <div className='component'>
       <h2>{heading}</h2>
     </div>
   );

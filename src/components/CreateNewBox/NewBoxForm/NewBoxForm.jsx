@@ -12,7 +12,7 @@ function newBoxForm(props) {
   const [heading, setHeading] = useState('New Box Form');
 
   return (
-    <div>
+    <div className='component'>
       <h2>{heading}</h2>
       <p>QR Code ID:</p><input type="text" placeholder='enter or use QR scan' /><QRCodeScan />
     </div>

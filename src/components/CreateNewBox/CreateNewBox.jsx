@@ -13,7 +13,7 @@ function createNewBox(props) {
   const [heading, setHeading] = useState('Create New Box');
 
   return (
-    <div>
+    <div className='component'>
       <h2>{heading}</h2>
       <NewBoxForm />
     </div>

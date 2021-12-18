@@ -11,7 +11,7 @@ function boxDetails(props) {
   const [heading, setHeading] = useState('Box Details');
 
   return (
-    <div>
+    <div className='component'>
       <h2>{heading}</h2>
     </div>
   );

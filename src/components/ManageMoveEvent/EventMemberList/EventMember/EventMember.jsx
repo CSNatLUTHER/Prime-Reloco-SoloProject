@@ -11,7 +11,7 @@ function EventMember(props) {
   const [heading, setHeading] = useState('Event Member');
 
   return (
-    <div>
+    <div className='component'>
       <h2>{heading}</h2>
     </div>
   );

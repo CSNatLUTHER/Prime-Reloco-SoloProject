@@ -11,7 +11,7 @@ function contactUs(props) {
   const [heading, setHeading] = useState('Contact Us Form');
 
   return (
-    <div>
+    <div className='component'>
       <h2>{heading}</h2>
     </div>
   );

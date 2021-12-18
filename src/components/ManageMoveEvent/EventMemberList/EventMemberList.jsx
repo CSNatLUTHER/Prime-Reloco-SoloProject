@@ -13,7 +13,7 @@ function EventMemberList(props) {
   const [heading, setHeading] = useState('Event Member List');
 
   return (
-    <div>
+    <div className='component'>
       <h2>{heading}</h2>
       {/* {memberList.map(member => (<EventMember className="eventMember" member={member} key={member.id} />))} */}
       <h4>Member List: {JSON.stringify(memberList)}</h4>

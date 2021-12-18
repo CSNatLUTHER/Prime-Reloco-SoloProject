@@ -13,7 +13,7 @@ function itemEdit(props) {
   const [heading, setHeading] = useState('Item Edit');
 
   return (
-    <div>
+    <div className='component'>
       <h2>{heading}</h2>
       <ItemEditForm />
     </div>

@@ -12,7 +12,7 @@ function itemSearchResults(props) {
   const [heading, setHeading] = useState('Item Search Results');
 
   return (
-    <div>
+    <div className='component'>
       <h2>{heading}</h2>
       <ItemResultsList />
     </div>

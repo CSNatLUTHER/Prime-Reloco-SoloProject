@@ -12,7 +12,7 @@ function boxSearchResults(props) {
   const [heading, setHeading] = useState('Box Search Results');
 
   return (
-    <div>
+    <div className='component'>
       <h2>{heading}</h2>
       <BoxResultsList />
     </div>

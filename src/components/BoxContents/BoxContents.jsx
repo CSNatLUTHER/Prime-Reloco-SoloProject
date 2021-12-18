@@ -3,6 +3,8 @@ import {useSelector} from 'react-redux';
 import BoxContentsList from '../BoxContents/BoxContentsList/BoxContentsList'
 import BoxDetails from '../BoxInfo/BoxDetails/BoxDetails'
 
+
+
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
 // component name TemplateFunction with the name for the new component.
@@ -13,7 +15,7 @@ function boxContents(props) {
   const [heading, setHeading] = useState('Box Contents');
 
   return (
-    <div>
+    <div className='component'>
       <h2>{heading}</h2>
       <BoxDetails />
       <BoxContentsList />

@@ -12,7 +12,7 @@ function putItemInBox(props) {
   const [heading, setHeading] = useState('Put Item To Box');
 
   return (
-    <div>
+    <div className='component'>
       <h2>{heading}</h2>
       <QRCodeScan />
     </div>

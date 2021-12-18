@@ -12,7 +12,7 @@ function itemEditForm(props) {
   const [heading, setHeading] = useState('Item Edit Form');
 
   return (
-    <div>
+    <div className='component'>
       <h2>{heading}</h2>
       <QRCodeScan />
     </div>

@@ -11,7 +11,7 @@ function resultsBox(props) {
   const [heading, setHeading] = useState('Results Box');
 
   return (
-    <div>
+    <div className='component'>
       <h2>{heading}</h2>
     </div>
   );

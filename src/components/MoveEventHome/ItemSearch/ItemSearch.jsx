@@ -14,7 +14,7 @@ function ItemSearch(props) {
   const [heading, setHeading] = useState('Item Search');
 
   return (
-    <div>
+    <div className='component'>
       <h2>{heading}</h2>
       <input type='text' placeholder='ex. item name or QR'></input>
       <QRCodeScan />

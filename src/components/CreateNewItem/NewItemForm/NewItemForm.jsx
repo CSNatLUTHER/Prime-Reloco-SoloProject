@@ -20,7 +20,7 @@ function newItemForm(props) {
                                   qr: '', 
                                   item_name: '', 
                                   put_in_box: goingInBox, 
-                                  value: 0, 
+                                  value: '', 
                                   destination: 1 , 
                                   creator_user_id:store.user.id,
                                   event:store.active_event.event.id,
@@ -64,7 +64,7 @@ function newItemForm(props) {
   }
 
   return (
-    <div>
+    <div className='component'>
       <h2>{heading}</h2>
       <h6>Will Item Go in a Box</h6>
       <p>Going In Box: {JSON.stringify(goingInBox)}</p>

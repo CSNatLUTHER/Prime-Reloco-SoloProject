@@ -13,7 +13,7 @@ function boxContentsList(props) {
   const [heading, setHeading] = useState('Box Contents List');
 
   return (
-    <div>
+    <div className='component'>
       <h2>{heading}</h2>
       <div>
         <h4>Box Contents: {JSON.stringify(boxContents)}</h4>

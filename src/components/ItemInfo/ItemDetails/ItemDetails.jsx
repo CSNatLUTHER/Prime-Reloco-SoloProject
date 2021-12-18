@@ -13,7 +13,7 @@ function itemDetails(props) {
   const [heading, setHeading] = useState('Item Details');
 
   return (
-    <div>
+    <div className='component'>
       <h2>{heading}</h2>
       <h4>{JSON.stringify(item)}</h4>
     </div>

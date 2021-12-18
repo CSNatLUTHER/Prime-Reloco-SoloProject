@@ -14,7 +14,7 @@ function ManageMoveEvent(props) {
   const [heading, setHeading] = useState('Manage Move Event');
 
   return (
-    <div>
+    <div className='component'>
       <h2>{heading}</h2>
       <EventMemberList />
 
