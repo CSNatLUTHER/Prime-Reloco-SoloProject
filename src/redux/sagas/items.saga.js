@@ -1,9 +1,9 @@
 import { put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
+
 //FUNCTION TO GET ALL ITEMS FOR user
 function* fetchAllItems(user) {
-  // get all movies from the DB
   try {
         const items = yield axios.get('/api/item');
         console.log('get all:', items.data);
@@ -13,6 +13,19 @@ function* fetchAllItems(user) {
         console.log('fetchAllItems error');
         }     
   };
+
+  // FUNCTION TO GET ITEM SEARCH RESULTS
+  function* searchItems(info) {
+    console.log('In searchItems', info.payload);
+    try {  
+      const search = yield axios.get('/api/item/search',{params:info.payload})
+      console.log('searched items, found:', search.data);
+      yield put({ type: 'SET_ITEMS', payload: search.data});
+      } 
+      catch {
+      console.log('searchItem error');
+      }     
+    };
 
   //FUNCTION TO GET ALL ITEMS FOR user
   function* addItem(data) {
@@ -34,6 +47,7 @@ function* fetchAllItems(user) {
 function* itemsSaga() {
   yield takeEvery('FETCH_ITEMS', fetchAllItems);
   yield takeEvery('ADD_ITEM', addItem);
+  yield takeEvery('SEARCH_FOR_ITEM', searchItems);
 }
 
 export default itemsSaga;

@@ -20,6 +20,23 @@ router.get('/', (req, res) => {
 });
 
 router.get('/search', (req, res) => {
+  console.log('in search with:', req.query);
+  // GET route code here
+    const query = `SELECT * FROM item
+                   WHERE (item.name ILIKE '%${req.query.searchText}%' AND item.event_id=${req.query.event})
+                   OR (item.qr_id ILIKE '%${req.query.searchText}%' AND item.event_id=${req.query.event})
+                   ORDER BY "create_date" DESC`;
+    pool.query(query)
+    .then( result => {
+    res.send(result.rows);
+    })
+    .catch(err => {
+    console.log('ERROR: Get all item', err);
+    res.sendStatus(500)
+    })
+});
+
+router.get('/search', (req, res) => {
   // GET route code here
 });
 
