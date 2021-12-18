@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import QRCodeScan from '../../SharedComponents/QRCodeScan/QRCodeScan';
 import { Link } from 'react-router-dom';
+import { user } from 'pg/lib/defaults';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -12,9 +13,19 @@ function newItemForm(props) {
   // Using hooks we're creating local state for a "heading" variable with
   // a default value of 'Functional Component'
   const store = useSelector((store) => store);
+  console.log('This is what is in the store:', store);
   const [heading, setHeading] = useState('New Item Form');
   const [goingInBox, setGoingInBox] = useState(false);
-  const [newItem, setNewItem] = useState({ qr: '', item_name: '', value: '', destination: 1 , image_url: ''});
+  const [newItem, setNewItem] = useState({ 
+                                  qr: '', 
+                                  item_name: '', 
+                                  put_in_box: goingInBox, 
+                                  value: 0, 
+                                  destination: 1 , 
+                                  creator_user_id:store.user.id,
+                                  event:store.active_event.event.id,
+                                  last_modified_user_id: store.user.id,
+                                  image_url: 'https://i1.wp.com/lanecdr.org/wp-content/uploads/2019/08/placeholder.png?w=1200&ssl=1'});
 
   const handleQrChange = (event) => {
       console.log('event happened');
