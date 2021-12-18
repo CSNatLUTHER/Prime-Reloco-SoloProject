@@ -34,11 +34,20 @@ router.get('/search', (req, res) => {
                 RETURNING "id";`
   pool.query(query, [req.body.qr, req.body.item_name, req.body.put_in_box, req.body.value, req.body.creator_user_id, req.body.event, 1, req.body.destination, req.body.image_url ])
   .then(result => {
-        res.sendStatus(201);
+        console.log(result.rows[0].id);
+        const newItemId = result.rows[0].id
+
+        // Now handle the genre reference
+        const getItemQuery = `SELECT * FROM item
+                              WHERE id=${newItemId}`
+          // SECOND QUERY ADDS GENRE FOR THAT NEW MOVIE
+          pool.query(getItemQuery).then(result => {
+            //Now that both are done, send back success!
+            console.log('newItemQuery Result:', result.rows);
+            res.send(result.rows);
     }).catch(err => {
       console.log(err);
       res.sendStatus(500)
-    })
-  })
+  })})})
 
 module.exports = router;

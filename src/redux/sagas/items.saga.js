@@ -23,8 +23,8 @@ function* fetchAllItems(user) {
                               method: 'POST',
                               url: '/api/item',
                               data: data.payload});
-        console.log('posting newItem:', newItem);
-        yield put({ type: 'SET_ACTIVE_ITEM', payload: data.payload});
+        console.log('posting newItem, returned ID:', newItem.data);
+        yield put({ type: 'SET_ACTIVE_ITEM', payload: newItem.data[0]});
         } 
         catch {
         console.log('addItem error');
