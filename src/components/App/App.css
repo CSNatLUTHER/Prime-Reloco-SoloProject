@@ -5,6 +5,10 @@ body,
 }
 .base{
   text-align: center;
+  width: 100%;
+  word-wrap:break-word;
+  margin-left: auto;
+  margin-right: auto;
 }
 .component{
   background-color: rgb(176, 175, 175);
@@ -16,6 +20,7 @@ body,
   margin-right: auto;
   margin-top: 5px;
   margin-bottom: 5px;
+  padding: 5px;
 }
 
 

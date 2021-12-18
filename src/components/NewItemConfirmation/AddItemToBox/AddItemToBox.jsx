@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import QRCodeScan from '../../SharedComponents/QRCodeScan/QRCodeScan';
 import { Link } from 'react-router-dom';
 
@@ -7,22 +7,23 @@ import { Link } from 'react-router-dom';
 // value setup. When making a new component be sure to replace the
 // component name TemplateFunction with the name for the new component.
 function addItemToBox(props) {
+  const dispatch = useDispatch()
   // Using hooks we're creating local state for a "heading" variable with
   // a default value of 'Functional Component'
   const store = useSelector((store) => store);
+  console.log('Active Item:', store.active_item.id);
   const [heading, setHeading] = useState('Add Item To Box');
   const [box, setBox] = useState({
-                          item_id:store.active_item.item,
-                          boxQr:''});
+                          item_id:store.active_item.id,
+                          boxQr:'',
+                          user: store.user.id});
 
   const handleQrChange = (event) => {
-    console.log('event happened');
-    //Similar to in redux -- we dont want to get rid of the id field when we update name
-    setBox({ ...box, qr: event.target.value })
+    setBox({ ...box, item_id:store.active_item.id, boxQr: event.target.value })
   }
 
   const putItemInBox = () => {
-    dispatch({ type: 'ADD_ITEM', payload: newItem });
+    dispatch({ type: 'PUT_ITEM_IN_BOX', payload: box });
     //updates the next plant to have a new id
   } 
 

@@ -43,8 +43,24 @@ router.get('/box-items', (req, res) => {
 /**
  * POST route template
  */
-router.post('/', (req, res) => {
-  // POST route code here
-});
+router.post('/add_to_box', (req, res) => {
+  console.log('POST req.body:',req.body);
+  // RETURNING "id" will give us back the id of the created movie
+  const query = `SELECT * FROM box
+	                WHERE qr_id = '${req.body.boxQr}';`
+  pool.query(query)
+  .then(result => {
+      console.log("Returned Rows", result.rows);
+      const boxId = result.rows[0].id
+
+      // // Now create box_item record
+      const box_item = `INSERT INTO box_item ("item_id", "box_id", "creator_user_id")
+                        VALUES ($1, $2, $3 );` 
+      pool.query(box_item, [req.body.item_id, boxId, req.body.user])
+      res.send(result.rows[0]);
+    }).catch(err => {
+      console.log(err);
+      res.sendStatus(500)
+  })});
 
 module.exports = router;

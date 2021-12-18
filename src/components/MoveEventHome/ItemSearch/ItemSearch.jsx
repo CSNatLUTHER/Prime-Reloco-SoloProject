@@ -16,6 +16,11 @@ function ItemSearch(props) {
   return (
     <div className='component'>
       <h2>{heading}</h2>
+      <Link to="/create_new_item">
+      <button>Create New Item</button>
+      </Link>
+      <br />
+      <br />
       <input type='text' placeholder='ex. item name or QR'></input>
       <QRCodeScan />
       <br />

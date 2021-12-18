@@ -15,6 +15,11 @@ function BoxSearch(props) {
   return (
     <div className='component'>
       <h2>{heading}</h2>
+      <Link to="/create_new_box">
+      <button>Create New Box</button>
+      </Link>
+      <br />
+      <br />
       <input type='text' placeholder='ex. box name or QR'></input>
       <QRCodeScan />
       <br />

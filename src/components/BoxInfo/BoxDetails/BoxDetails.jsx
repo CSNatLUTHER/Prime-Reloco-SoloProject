@@ -13,6 +13,7 @@ function boxDetails(props) {
   return (
     <div className='component'>
       <h2>{heading}</h2>
+      <p>{JSON.stringify(store.active_box)}</p>
     </div>
   );
 }
