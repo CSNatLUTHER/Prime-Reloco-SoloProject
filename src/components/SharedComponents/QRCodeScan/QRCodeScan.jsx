@@ -11,9 +11,7 @@ function QRCodeScan(props) {
   const [heading, setHeading] = useState('QR Code Scan');
 
   return (
-    <div>
-      <h2>{heading}</h2>
-    </div>
+      <button>QR</button>
   );
 }
 

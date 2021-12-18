@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import LogOutButton from '../../SharedComponents/LogOutButton/LogOutButton';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch } from 'react-redux';
 import MoveEventList from '../MoveEventList/MoveEventList';
 import CreateMoveEvent from '../../CreateMoveEvent/CreateMoveEvent'
 
 function UserPage() {
+  // define dispatch
+  const dispatch = useDispatch();
+  // kick-off many of the FETCH actions needed to set initial reducers
+  useEffect( () => {
+    dispatch({ type: 'FETCH_EVENTS', payload: {userid: user.id} });
+  }, []);
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
   return (

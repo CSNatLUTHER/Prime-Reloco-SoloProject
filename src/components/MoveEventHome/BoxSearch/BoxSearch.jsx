@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import {useSelector} from 'react-redux';
+import QRCodeScan from '../../SharedComponents/QRCodeScan/QRCodeScan';
+import { Link } from 'react-router-dom';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -13,6 +15,12 @@ function BoxSearch(props) {
   return (
     <div>
       <h2>{heading}</h2>
+      <input type='text' placeholder='ex. box name or QR'></input>
+      <QRCodeScan />
+      <br />
+      <Link to="/box_search_results">
+      <button>Search</button>
+      </Link>
     </div>
   );
 }

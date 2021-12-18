@@ -14,7 +14,7 @@ function newBoxForm(props) {
   return (
     <div>
       <h2>{heading}</h2>
-      <QRCodeScan />
+      <p>QR Code ID:</p><input type="text" placeholder='enter or use QR scan' /><QRCodeScan />
     </div>
   );
 }
