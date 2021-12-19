@@ -7,7 +7,9 @@ const router = express.Router();
  */
 router.get('/', (req, res) => {
   // GET route code here
+    console.log(req.query);
     const query = `SELECT * FROM item
+                   WHERE event_id=${req.query.event}
                     ORDER BY "id" ASC`;
     pool.query(query)
     .then( result => {

@@ -14,8 +14,26 @@ function* fetchAllEvents(user) {
         }     
   };
 
+// CREATES NEW MOVE EVENT
+function* createEvent(data) {
+  // get all movies from the DB
+  console.log('In createEvent Saga', data);
+  try {  
+        const newEvent = yield axios({
+                              method: 'POST',
+                              url: '/api/event',
+                              data: data.payload});
+        console.log('posting newItem, returned ID:', newEvent.data);
+        yield put({ type: 'SET_ACTIVE_EVENT', payload: newEvent.data[0]} );
+        } 
+        catch {
+        console.log('addItem error');
+        }     
+  };
+
 function* eventsSaga() {
   yield takeEvery('FETCH_EVENTS', fetchAllEvents);
+  yield takeEvery('CREATE_EVENT', createEvent);
 }
 
 export default eventsSaga;

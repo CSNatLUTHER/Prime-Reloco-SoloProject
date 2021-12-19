@@ -3,9 +3,9 @@ import axios from 'axios';
 
 
 //FUNCTION TO GET ALL ITEMS FOR user
-function* fetchAllItems(user) {
+function* fetchAllItems(event) {
   try {
-        const items = yield axios.get('/api/item');
+        const items = yield axios.get('/api/item', {params: event.payload});
         console.log('get all:', items.data);
         yield put({ type: 'SET_ITEMS', payload: items.data });
         } 
@@ -27,7 +27,7 @@ function* fetchAllItems(user) {
       }     
     };
 
-  //FUNCTION TO GET ALL ITEMS FOR user
+  // CREATES NEW ITEM FOR A MOVE EVENT
   function* addItem(data) {
   // get all movies from the DB
   console.log('In addItem Saga', data);
