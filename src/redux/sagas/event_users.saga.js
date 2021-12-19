@@ -13,6 +13,17 @@ function* fetchAllEventUsers(event) {
         }     
   };
 
+function* leaveEvent(event) {
+  try {
+        const eventUser = yield axios.delete('/api/event_user', {params: event.payload});
+        console.log('get all:', eventUser.data);
+        yield put({ type: 'FETCH_EVENTS', payload:{userid: user.id} });
+        } 
+        catch {
+        console.log('leaveEvent error');
+        }     
+  };
+
 function* joinEvent(event) {
   try {
         const eventUser = yield axios({
@@ -30,6 +41,7 @@ function* joinEvent(event) {
 function* eventUsersSaga() {
   yield takeEvery('FETCH_EVENT_USERS', fetchAllEventUsers);
   yield takeEvery('JOIN_EVENT', joinEvent);
+  yield takeEvery('LEAVE_EVENT', leaveEvent);
 }
 
 export default eventUsersSaga;

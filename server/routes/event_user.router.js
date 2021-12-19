@@ -6,7 +6,7 @@ const router = express.Router();
  * GET route template
  */
 router.get('/', (req, res) => {
-  console.log('In event_user get with:', req.query);
+  console.log('In GET event_user get with:', req.query);
   // GET route code here
     const query = `SELECT "user".id, first_name, last_name, event.creator_user_id FROM "user"
                    JOIN user_event ON "user".id=user_event.user_id
@@ -49,6 +49,21 @@ router.post('/join', (req, res) => {
  */
 router.post('/', (req, res) => {
   // POST route code here
+});
+
+router.delete('/', (req, res) => {
+ //DELETE USER FROM EVENT_USER Table
+ console.log('In event_user DELETE', req.query);
+ const query = `DELETE FROM  user_event
+                WHERE (user_event.event_id=${req.query.event_id} AND user_event.user_id=${req.query.user_id});`;
+ pool.query(query)
+ .then( result => {
+ res.sendStatus(200);
+ })
+ .catch(err => {
+ console.log('ERROR: Get all item', err);
+ res.sendStatus(500)
+ })
 });
 
 module.exports = router;

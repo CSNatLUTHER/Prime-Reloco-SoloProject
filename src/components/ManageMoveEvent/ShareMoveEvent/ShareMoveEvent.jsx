@@ -13,6 +13,7 @@ function ShareMoveEvent(props) {
   return (
     <div className='component'>
       <h2>{heading}</h2>
+      <p>ShareCode:{JSON.stringify(store.active_event.share_code)}</p>
     </div>
   );
 }

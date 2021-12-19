@@ -22,8 +22,11 @@ function ManageMoveEvent(props) {
       <EventMemberList />
 
       {/* If event.owner.id === user.id, show ShareMoveEvent, otherwise show LeaveMoveEvent Write ternary operator below*/}
-      <LeaveMoveEvent />
-      <ShareMoveEvent />
+      {(store.user.id === store.active_event.creator_user_id)?
+            <ShareMoveEvent />:
+            <LeaveMoveEvent />}
+      <p>User ID:{JSON.stringify(store.user.id)}</p>
+      <p>Creator ID:{JSON.stringify(store.active_event.creator_user_id)}</p>
     </div>
   );
 }
