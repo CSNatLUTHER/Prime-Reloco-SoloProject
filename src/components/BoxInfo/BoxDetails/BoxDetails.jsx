@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {useSelector} from 'react-redux';
+import '../BoxDetails/BoxDetails.css'
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -12,6 +13,7 @@ function boxDetails(props) {
 
   return (
     <div className='component'>
+      <img className='boxImage' src="/images/transparent_box.png" />
       <h2>{heading}</h2>
       <p>{JSON.stringify(store.active_box)}</p>
     </div>

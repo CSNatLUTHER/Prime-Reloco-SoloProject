@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import {useSelector} from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import BoxContentsItem from '../BoxContentsItem/BoxContentsItem';
 
 // Basic functional component structure for React with default state
@@ -12,13 +12,19 @@ function boxContentsList(props) {
   const boxContents = useSelector(store => store.active_box_items);
   const [heading, setHeading] = useState('Box Contents List');
 
+  // define dispatch
+  const dispatch = useDispatch();
+  // kick-off many of the FETCH actions needed to set initial reducers
+  useEffect( () => {
+    dispatch({ type: 'FETCH_BOX_ITEMS', payload: {id: store.active_box.id} });
+  }, []);
+
   return (
     <div className='component'>
       <h2>{heading}</h2>
       <div>
-        <h4>Box Contents: {JSON.stringify(boxContents)}</h4>
-        <BoxContentsItem />
-        {/* {boxContents.map(boxContentsItem => (<BoxContentsItem className="boxContentsItem" boxContenstItem={boxContentsItem} key={boxContentsItem.id} />))} */}
+        {/* <BoxContentsItem /> */}
+        {boxContents.map(boxContentsItem => (<BoxContentsItem className="boxContentsItem" boxContenstItem={boxContentsItem} key={boxContentsItem.id} />))}
       </div>
     </div>
   );

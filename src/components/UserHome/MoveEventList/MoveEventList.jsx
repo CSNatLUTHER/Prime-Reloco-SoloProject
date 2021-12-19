@@ -15,7 +15,6 @@ function moveEventList(props) {
   return (
     <div className='component'>
       <h2>{heading}</h2>
-      <h4>User Events: {JSON.stringify(events)}</h4>
         {events.map(event => (<EventListItem className="eventListItem" event={event} key={event.id} />))}
       {/* <EventListItem /> */}
     </div>

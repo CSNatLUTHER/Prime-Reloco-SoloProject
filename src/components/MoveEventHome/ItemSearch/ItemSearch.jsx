@@ -16,7 +16,7 @@ function ItemSearch(props) {
   const [heading, setHeading] = useState('Item Search');
   const [searchItem, setSearchItem] = useState({
     searchText:'',
-    event:store.active_event.event.id,
+    event:store.active_event.id,
     user: store.user.id});
 
   const handleSearchChange = (event) => {

@@ -37,6 +37,19 @@ router.get('/search', (req, res) => {
 });
 
 router.get('/box-items', (req, res) => {
+  console.log('In GET box-items', req.query);
+  const query = `SELECT *  FROM box_item
+	              JOIN item ON box_item.item_id=item.id
+	              WHERE box_item.box_id=${req.query.id}
+                ORDER BY item.create_date DESC;`;
+  pool.query(query)
+    .then( result => {
+      res.send(result.rows);
+    })
+    .catch(err => {
+      console.log('ERROR: GET active_box_contents', err);
+      res.sendStatus(500)
+    })
   // GET route code here
 });
 
@@ -47,7 +60,7 @@ router.post('/add_to_box', (req, res) => {
   console.log('POST req.body:',req.body);
   // RETURNING "id" will give us back the id of the created movie
   const query = `SELECT * FROM box
-	                WHERE qr_id = '${req.body.boxQr}';`
+	                WHERE qr_id = '${req.body.boxQr}' AND event_id=${req.body.event};`
   pool.query(query)
   .then(result => {
       console.log("Returned Rows", result.rows);

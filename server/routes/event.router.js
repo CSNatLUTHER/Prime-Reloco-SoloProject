@@ -6,9 +6,13 @@ const router = express.Router();
  * GET route template
  */
 router.get('/', (req, res) => {
+  console.log('fetching all events for user', req.query);
   // GET route code here
-    const query = `SELECT * FROM event
-                  ORDER BY "id" ASC`;
+    const query = `SELECT event.id, name, move_date, create_date, creator_user_id, share_code FROM user_event
+                  JOIN event ON user_event.event_id=event.id
+                  WHERE user_event.user_id = ${req.query.userid}
+                  GROUP BY event.id
+                  ORDER BY event.create_date DESC`;
     pool.query(query)
       .then( result => {
         res.send(result.rows);

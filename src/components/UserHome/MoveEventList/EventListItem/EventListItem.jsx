@@ -14,14 +14,14 @@ function eventListItem(props) {
   const [heading, setHeading] = useState('Event List Item');
 
   const setActiveEvent = () => {
-    console.log('In setActiveEvent', props);
-    dispatch({type: 'SET_ACTIVE_EVENT', payload: props})
+    console.log('In setActiveEvent', props.event);
+    dispatch({type: 'SET_ACTIVE_EVENT', payload: props.event})
   }
 
   return (
     <div className='component'>
       <h2>{heading}</h2>
-      <h4>{JSON.stringify(props)}</h4>
+      <h4>{JSON.stringify(props.event)}</h4>
       <Link to="/move_event_home">
       <button onClick={setActiveEvent}>Select Event</button>
       </Link>

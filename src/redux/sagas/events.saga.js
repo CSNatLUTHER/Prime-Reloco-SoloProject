@@ -5,8 +5,8 @@ import axios from 'axios';
 function* fetchAllEvents(user) {
   // get all movies from the DB
   try {
-        const events = yield axios.get('/api/event');
-        console.log('get all:', events.data);
+        const events = yield axios.get('/api/event', {params: user.payload });
+        console.log('get all event for user:', events.data);
         yield put({ type: 'SET_EVENTS', payload: events.data });
         } 
         catch {

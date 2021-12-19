@@ -2,11 +2,11 @@ import { put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
 //FUNCTION TO GET ALL ITEMS FOR user
-function* fetchBoxItems(user) {
+function* fetchBoxItems(box) {
   try {
-        const boxes = yield axios.get('/api/box/items');
+        const boxes = yield axios.get('/api/box/box-items',{params:box.payload});
         console.log('get all:', boxes.data);
-        yield put({ type: 'SET_BOX_ITEMS', payload: boxes.data });
+        yield put({ type: 'SET_ACTIVE_BOX_ITEMS', payload: boxes.data });
         } 
         catch {
         console.log('fetchBoxItems error');

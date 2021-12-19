@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { Link } from 'react-router-dom';
+import './ResultsItem.css'
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -18,6 +19,7 @@ function resultsItem(props) {
   }
   return (
     <div className='component'>
+      <img className='itemImage' src={props.item.image_path} />
       <h2>{heading}</h2>
       <p>{JSON.stringify(props.item)}</p>
       <Link to="/item_info">

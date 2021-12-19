@@ -12,7 +12,9 @@ function boxContentsItem(props) {
 
   return (
     <div className='component'>
+      <img src="/images/image.png"/>
       <h2>{heading}</h2>
+      <p>{JSON.stringify(props)}</p>
     </div>
   );
 }

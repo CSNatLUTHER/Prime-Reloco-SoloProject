@@ -16,7 +16,8 @@ function addItemToBox(props) {
   const [box, setBox] = useState({
                           item_id:store.active_item.id,
                           boxQr:'',
-                          user: store.user.id});
+                          user: store.user.id,
+                          event: store.active_event.id});
 
   const handleQrChange = (event) => {
     setBox({ ...box, item_id:store.active_item.id, boxQr: event.target.value })
