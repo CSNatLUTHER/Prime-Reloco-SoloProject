@@ -15,10 +15,6 @@ function ManageMoveEvent(props) {
   const store = useSelector((store) => store);
   const [heading, setHeading] = useState('Manage Move Event');
 
-  useEffect( () => {
-    dispatch({ type: 'FETCH_EVENT_USERS', payload: store.active_event.id });
-  }, []);
-
   return (
     <div className='component'>
       <h2>{heading}</h2>

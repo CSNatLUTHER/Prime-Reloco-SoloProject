@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import {useSelector} from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import ItemSearch from './ItemSearch/ItemSearch';
 import BoxSearch from './BoxSearch/BoxSearch';
 
@@ -8,6 +8,7 @@ import BoxSearch from './BoxSearch/BoxSearch';
 // component name TemplateFunction with the name for the new component.
 function MoveEventHome(props) {
   //define dispatch
+  const dispatch = useDispatch()
 
   // Using hooks we're creating local state for a "heading" variable with
   // a default value of 'Functional Component'
@@ -16,7 +17,9 @@ function MoveEventHome(props) {
   const [heading, setHeading] = useState('Move Event Home');
 
   // useEffect to call sagas and reducers and set Event Items and Boxes
-
+  useEffect( () => {
+    dispatch({ type: 'FETCH_EVENT_USERS', payload: store.active_event.id });
+  }, []);
   
 
   return (

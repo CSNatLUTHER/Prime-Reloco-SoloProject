@@ -15,9 +15,9 @@ function EventMemberList(props) {
   return (
     <div className='component'>
       <h2>{heading}</h2>
-      {/* {memberList.map(member => (<EventMember className="eventMember" member={member} key={member.id} />))} */}
-      <h4>Member List: {JSON.stringify(memberList)}</h4>
-      <EventMember />
+      {/* <h4>Member List: {JSON.stringify(memberList)}</h4> */}
+      {memberList.map(member => (<EventMember className="eventMember" member={member} key={member.id} />))}
+      {/* <EventMember /> */}
     </div>
   );
 }
