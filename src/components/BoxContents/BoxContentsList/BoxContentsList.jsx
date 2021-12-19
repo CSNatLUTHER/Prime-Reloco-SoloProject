@@ -24,7 +24,7 @@ function boxContentsList(props) {
       <h2>{heading}</h2>
       <div>
         {/* <BoxContentsItem /> */}
-        {boxContents.map(boxContentsItem => (<BoxContentsItem className="boxContentsItem" boxContenstItem={boxContentsItem} key={boxContentsItem.id} />))}
+        {boxContents.map(boxContentsItem => (<BoxContentsItem className="boxContentsItem" boxContentsItem={boxContentsItem} key={boxContentsItem.id} />))}
       </div>
     </div>
   );

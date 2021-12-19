@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {useSelector} from 'react-redux';
+import '../BoxContentsItem/BoxContentsItem.css'
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -12,7 +13,7 @@ function boxContentsItem(props) {
 
   return (
     <div className='component'>
-      <img src="/images/image.png"/>
+      <img className='contentsItemImage' src={props.boxContentsItem.image_path}/>
       <h2>{heading}</h2>
       <p>{JSON.stringify(props)}</p>
     </div>

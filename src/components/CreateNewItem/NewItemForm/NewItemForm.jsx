@@ -23,9 +23,9 @@ function newItemForm(props) {
                                   value: '', 
                                   destination: 6, 
                                   creator_user_id:store.user.id,
-                                  event:store.active_event.event.id,
+                                  event:store.active_event.id,
                                   last_modified_user_id: store.user.id,
-                                  image_url: 'https://i1.wp.com/lanecdr.org/wp-content/uploads/2019/08/placeholder.png?w=1200&ssl=1'});
+                                  image_url: '/images/image.png'});
 
   const handleQrChange = (event) => {
       setNewItem({ ...newItem, qr: event.target.value })
@@ -56,9 +56,9 @@ function newItemForm(props) {
     <div className='component'>
       <h2>{heading}</h2>
       <p>Item going in box: </p>
-      <label class="switch">
+      <label className="switch">
         <input type="checkbox" onClick={() => {setGoingInBox(!goingInBox), setNewItem({...newItem, put_in_box: !newItem.put_in_box })}}/>
-        <span class="slider round"></span>
+        <span className="slider round"></span>
       </label>
       <br />
       <p>QR Code ID:</p><input type="text" placeholder='enter or use QR scan' value={newItem.qr} onChange={handleQrChange} /><QRCodeScan />
