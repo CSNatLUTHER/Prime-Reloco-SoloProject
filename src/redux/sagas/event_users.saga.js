@@ -2,11 +2,11 @@ import { put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
 //FUNCTION TO GET ALL ITEMS FOR user
-function* fetchAllEventUsers() {
+function* fetchAllEventUsers(event) {
   try {
-        const eventUser = yield axios.get('/api/event_user');
+        const eventUser = yield axios.get('/api/event_user', {params: {id: event.payload}});
         console.log('get all:', eventUser.data);
-        yield put({ type: 'SET_EVENT_USERS', payload: eventUser.data });
+        yield put({ type: 'SET_ACTIVE_EVENT_USERS', payload: eventUser.data });
         } 
         catch {
         console.log('fetchAllEventUsers error');

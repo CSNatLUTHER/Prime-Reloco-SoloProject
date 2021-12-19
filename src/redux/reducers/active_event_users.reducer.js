@@ -1,6 +1,6 @@
 const activeEventUsersReducer = (state = {}, action) => {
   switch (action.type) {
-    case 'SET_EVENT_USERS':
+    case 'SET_ACTIVE_EVENT_USERS':
       return action.payload;
     default:
       return state;
