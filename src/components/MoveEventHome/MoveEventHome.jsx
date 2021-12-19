@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import ItemSearch from './ItemSearch/ItemSearch';
 import BoxSearch from './BoxSearch/BoxSearch';
+import { Link } from 'react-router-dom';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -25,6 +26,7 @@ function MoveEventHome(props) {
   return (
     <div className='component'>
       <h2>{heading}</h2>
+      <Link to='manage_event'><button>Manage Event</button></Link>
       <h4>{JSON.stringify(event)}</h4>
       <ItemSearch />
       <BoxSearch />

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {useSelector} from 'react-redux';
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -10,10 +11,17 @@ function ShareMoveEvent(props) {
   const store = useSelector((store) => store);
   const [heading, setHeading] = useState('Share Move Event');
 
+  const shareCode = () => {
+    alert('Event data has been copied to clipboard!')
+  }
+
   return (
     <div className='component'>
       <h2>{heading}</h2>
-      <p>ShareCode:{JSON.stringify(store.active_event.share_code)}</p>
+      <CopyToClipboard text={`Please join: ${store.active_event.name} with event code: ${store.active_event.share_code}`}>
+      <button onClick={shareCode} >Share Move Event Code</button>
+      </CopyToClipboard>
+      <p>Move Event Code:{JSON.stringify(store.active_event.share_code)}</p>
     </div>
   );
 }
