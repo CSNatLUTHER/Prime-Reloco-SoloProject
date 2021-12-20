@@ -18,23 +18,19 @@ router.get('/', (req, res) => {
     })
 });
 
-// GET route - items in a box
-router.get('/items', (req, res) => {
-  const query = `SELECT * FROM box_item
-                ORDER BY "id" ASC`;
-  pool.query(query)
-    .then( result => {
-      res.send(result.rows);
-    })
-    .catch(err => {
-      console.log('ERROR: Get all boxes', err);
-      res.sendStatus(500)
-    })
-});
-
-router.get('/search', (req, res) => {
-  // GET route code here
-});
+// // GET route - items in a box
+// router.get('/items', (req, res) => {
+//   const query = `SELECT * FROM box_item
+//                 ORDER BY "id" ASC`;
+//   pool.query(query)
+//     .then( result => {
+//       res.send(result.rows);
+//     })
+//     .catch(err => {
+//       console.log('ERROR: Get all boxes', err);
+//       res.sendStatus(500)
+//     })
+// });
 
 router.get('/box-items', (req, res) => {
   console.log('In GET box-items', req.query);
@@ -53,6 +49,22 @@ router.get('/box-items', (req, res) => {
   // GET route code here
 });
 
+router.get('/search', (req, res) => {
+  console.log('in search with:', req.query);
+  // GET route code here
+    const query = `SELECT * FROM box
+                   WHERE (box.name ILIKE '%${req.query.searchText}%' AND box.event_id=${req.query.event})
+                   OR (box.qr_id ILIKE '%${req.query.searchText}%' AND box.event_id=${req.query.event})
+                   ORDER BY "create_date" DESC;`
+    pool.query(query)
+    .then( result => {
+    res.send(result.rows);
+    })
+    .catch(err => {
+    console.log('ERROR: Get all item', err);
+    res.sendStatus(500)
+    })
+});
 /**
  * POST route template
  */

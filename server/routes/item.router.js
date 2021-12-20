@@ -27,7 +27,7 @@ router.get('/search', (req, res) => {
     const query = `SELECT * FROM item
                    WHERE (item.name ILIKE '%${req.query.searchText}%' AND item.event_id=${req.query.event})
                    OR (item.qr_id ILIKE '%${req.query.searchText}%' AND item.event_id=${req.query.event})
-                   ORDER BY "create_date" DESC`;
+                   ORDER BY "create_date" DESC;`
     pool.query(query)
     .then( result => {
     res.send(result.rows);
@@ -38,9 +38,6 @@ router.get('/search', (req, res) => {
     })
 });
 
-router.get('/search', (req, res) => {
-  // GET route code here
-});
 
 /**
  * POST route template

@@ -10,14 +10,14 @@ function boxResultsList(props) {
   // a default value of 'Functional Component'
   const store = useSelector((store) => store);
   const [heading, setHeading] = useState('Box Results List');
-  const searchResults = useSelector((store) => store.search_results);
+  const boxResults = useSelector((store) => store.boxes);
 
   return (
     <div className='component'>
       <h2>{heading}</h2>
-      <h4>Search Results: {JSON.stringify(searchResults)}</h4>
-      {/* {searchResults.map(item => (<ResultsBox className="resultsBox" item={item} key={item.id} />))} */}
-      <ResultsBox />
+      {/* <h4>Search Results: {JSON.stringify(boxResults)}</h4> */}
+      {boxResults.map(box => (<ResultsBox className="resultsBox" box={box} key={box.id} />))}
+      {/* <ResultsBox /> */}
     </div>
   );
 }
