@@ -22,7 +22,7 @@ function QRCodeScan(props) {
   const handleScan = (data) => {
     if (data) {
       setCodeFound({
-        result: data
+        id: data
       })
       setScanning(false)
       dispatch({type:'SET_QR_CODE', payload:{id:data}})

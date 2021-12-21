@@ -39,7 +39,7 @@ function ItemSearch(props) {
     else{
       dispatch({ type: 'FETCH_ITEMS', payload: searchItem }); 
     }
-    dispatch({ type: 'UNSET_QR_CODE', payload: searchItem })
+    dispatch({ type: 'UNSET_QR_CODE' })
   } 
 
   return (

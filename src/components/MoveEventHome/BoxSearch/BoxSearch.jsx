@@ -13,9 +13,10 @@ function BoxSearch(props) {
   const store = useSelector((store) => store);
   const [heading, setHeading] = useState('Box Search');
   const [searchBox, setSearchbox] = useState({
-    searchText:'',
-    event:store.active_event.id,
-    user: store.user.id});
+                                          searchText:'',
+                                          event:store.active_event.id,
+                                          user: store.user.id
+                                        });
 
   const handleSearchChange = (event) => {
     setSearchbox({ ...searchBox, searchText: event.target.value })
@@ -26,9 +27,18 @@ function BoxSearch(props) {
     if(searchBox.searchText != ''){
       dispatch({ type: 'SEARCH_FOR_BOX', payload: searchBox });
     }
+    else if(store.qr_code.id != ''){
+      dispatch({ type: 'SEARCH_FOR_BOX',
+                 payload: {
+                    searchText:store.qr_code.id,
+                    event:store.active_event.id,
+                    user: store.user.id}
+                });
+    }
     else{
       dispatch({ type: 'FETCH_BOXES', payload: searchBox }); 
     }
+    dispatch({ type: 'UNSET_QR_CODE' })
   } 
 
 
@@ -40,7 +50,7 @@ function BoxSearch(props) {
       </Link>
       <br />
       <br />
-      <input type='text' placeholder='ex. box name or QR' onChange={handleSearchChange}></input>
+      <input type='text' placeholder='ex. box name or QR' onChange={handleSearchChange} value={store.qr_code.id}></input>
       <QRCodeScan />
       <br />
       <Link to="/box_search_results">

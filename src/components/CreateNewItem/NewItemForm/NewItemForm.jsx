@@ -48,8 +48,21 @@ function newItemForm(props) {
   }
 
   const addNewItem = () => {
-    dispatch({ type: 'ADD_ITEM', payload: newItem });
-    setNewItem({ qr: '', item_name: '', value: '', destination: '', image_url: ''});
+    if(store.qr_code.id != ''){
+      dispatch({ type: 'ADD_ITEM', payload: { 
+                                        qr: store.qr_code.id, 
+                                        item_name: newItem.item_name, 
+                                        put_in_box: newItem.put_in_box, 
+                                        value: newItem.value, 
+                                        destination: newItem.destination, 
+                                        creator_user_id:store.user.id,
+                                        event:store.active_event.id,
+                                        last_modified_user_id: store.user.id,
+                                        image_url: newItem.image_url} 
+                                      });
+    }
+    else{dispatch({ type: 'ADD_ITEM', payload: newItem });}
+    dispatch({ type: 'UNSET_QR_CODE' })
   }
 
   return (
@@ -61,7 +74,7 @@ function newItemForm(props) {
         <span className="slider round"></span>
       </label>
       <br />
-      <p>QR Code ID:</p><input type="text" placeholder='enter or use QR scan' value={newItem.qr} onChange={handleQrChange} /><QRCodeScan />
+      <p>QR Code ID:</p><input type="text" placeholder='enter or use QR scan' value={store.qr_code.id} onChange={handleQrChange} /><QRCodeScan />
       <p>Item Name:</p><input type="text" placeholder='ex. speaker' value={newItem.item_name} onChange={handleNameChange}  />
       <p>Item Value: $</p><input type="number" placeholder='150' value={newItem.value} onChange={handleValueChange}  />
       {/* Create a conditional statement that renders destination only when "going in box" is 'false' */}
