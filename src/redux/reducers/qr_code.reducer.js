@@ -1,7 +1,9 @@
-const qrCodeReducer = (state = {}, action) => {
+const qrCodeReducer = (state = {id: ''}, action) => {
   switch (action.type) {
-    case 'SET_QRCODE':
+    case 'SET_QR_CODE':
       return action.payload;
+    case 'UNSET_QR_CODE':
+      return ({...state, id: ''})
     default:
       return state;
   }

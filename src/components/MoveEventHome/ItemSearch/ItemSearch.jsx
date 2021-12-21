@@ -28,9 +28,18 @@ function ItemSearch(props) {
     if(searchItem.searchText != ''){
       dispatch({ type: 'SEARCH_FOR_ITEM', payload: searchItem });
     }
+    else if(store.qr_code.id != ''){
+      dispatch({ type: 'SEARCH_FOR_ITEM',
+                 payload: {
+                    searchText:store.qr_code.id,
+                    event:store.active_event.id,
+                    user: store.user.id}
+                });
+    }
     else{
       dispatch({ type: 'FETCH_ITEMS', payload: searchItem }); 
     }
+    dispatch({ type: 'UNSET_QR_CODE', payload: searchItem })
   } 
 
   return (
@@ -41,7 +50,7 @@ function ItemSearch(props) {
       </Link>
       <br />
       <br />
-      <input type='text' placeholder='ex. item name or QR' onChange={handleSearchChange}></input>
+      <input type='text' placeholder='ex. item name or QR' onChange={handleSearchChange} value={store.qr_code.id} ></input>
       <QRCodeScan />
       <br />
       <Link to="/item_search_results">

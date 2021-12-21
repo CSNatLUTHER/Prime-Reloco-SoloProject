@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {useSelector} from 'react-redux';
 import QRCodeScan from '../../SharedComponents/QRCodeScan/QRCodeScan';
+import QRClass from '../../QRClass/QRClass';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -10,11 +11,13 @@ function newBoxForm(props) {
   // a default value of 'Functional Component'
   const store = useSelector((store) => store);
   const [heading, setHeading] = useState('New Box Form');
+  const [code, setCode] = useState('');
 
   return (
     <div className='component'>
       <h2>{heading}</h2>
-      <p>QR Code ID:</p><input type="text" placeholder='enter or use QR scan' /><QRCodeScan />
+      <p>QR Code ID:</p><input type="text" placeholder='enter or use QR scan' />
+      {/* <QRCodeScan /> */}
     </div>
   );
 }
