@@ -24,19 +24,29 @@ function addItemToBox(props) {
   }
 
   const putItemInBox = () => {
-    dispatch({ type: 'PUT_ITEM_IN_BOX', payload: box });
+    if(store.qr_code.id != ''){
+      dispatch({ type: 'PUT_ITEM_IN_BOX', payload: {
+                                                item_id:store.active_item.id,
+                                                boxQr: store.qr_code.id,
+                                                user: store.user.id,
+                                                event: store.active_event.id} 
+                                              });
+    }
+    else{
+      dispatch({ type: 'PUT_ITEM_IN_BOX', payload: box });
+    }
     //updates the next plant to have a new id
   } 
 
   return (
     <div className='component'>
       <h2>{heading}</h2>
-      <p>QR Code ID:</p><input type="text" placeholder='enter code or use QR scan' value={box.qr} onChange={handleQrChange} /><QRCodeScan />
+      <p>QR Code ID:</p><input type="text" placeholder='enter code or use QR scan' value={store.qr_code.id} onChange={handleQrChange} /><QRCodeScan />
       <br />
       <br />
       <Link to="/box_info">
         <button onClick={putItemInBox}>Add To Box</button>
-        </Link>
+      </Link>
       <p>{JSON.stringify(box)}</p>
     </div>
   );

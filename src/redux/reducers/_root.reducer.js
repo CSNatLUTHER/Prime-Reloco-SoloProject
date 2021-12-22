@@ -11,6 +11,7 @@ import qr_code from './qr_code.reducer';
 import search_results from './search_results.reducer';
 import active_box_items from './active_box_items.reducer';
 import active_event_users from './active_event_users.reducer';
+import photo_capture from './photo_capture.reducer';
 
 
 // rootReducer is the primary reducer for our entire project
@@ -31,7 +32,9 @@ const rootReducer = combineReducers({
   qr_code, // will have details of active QR code just captured
   active_box_items, // will have details of all items in active_box reducer
   search_results, // will have all details of item or boxed search for
-  active_event_users // will have list of all user details associated with an event
+  active_event_users, // will have list of all user details associated with an event
+  photo_capture // will have data of the last captured image
+
 });
 
 export default rootReducer;

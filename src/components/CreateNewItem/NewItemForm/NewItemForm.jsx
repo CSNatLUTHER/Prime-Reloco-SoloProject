@@ -4,6 +4,7 @@ import QRCodeScan from '../../SharedComponents/QRCodeScan/QRCodeScan';
 import { Link } from 'react-router-dom';
 import { user } from 'pg/lib/defaults';
 import '../NewItemForm/NewItemForm.css'
+import PhotoCapture from '../../SharedComponents/PhotoCapture/PhotoCapture';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -74,7 +75,7 @@ function newItemForm(props) {
         <span className="slider round"></span>
       </label>
       <br />
-      <p>QR Code ID:</p><input type="text" placeholder='enter or use QR scan' value={store.qr_code.id} onChange={handleQrChange} /><QRCodeScan />
+      <p>QR Code ID:</p><input type="text" placeholder='enter or use QR scan' value={store.qr_code.id} onChange={handleQrChange} /><QRCodeScan/>
       <p>Item Name:</p><input type="text" placeholder='ex. speaker' value={newItem.item_name} onChange={handleNameChange}  />
       <p>Item Value: $</p><input type="number" placeholder='150' value={newItem.value} onChange={handleValueChange}  />
       {/* Create a conditional statement that renders destination only when "going in box" is 'false' */}
@@ -93,6 +94,7 @@ function newItemForm(props) {
         }
         {/* Need to Handle Adding Image and Setting URL to newItem */}
         <p>Image:</p><button>Add Image</button>
+        <PhotoCapture/>
         <br />
         <br />
         <Link to="/new_item_confirmation">
