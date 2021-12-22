@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import Webcam from "react-webcam";
 import './PhotoCapture.css'
 
@@ -7,6 +7,8 @@ import './PhotoCapture.css'
 // value setup. When making a new component be sure to replace the
 // component name TemplateFunction with the name for the new component.
 function PhotoCapture(props) {
+  //define dispatch
+  const dispatch = useDispatch();
   // Using hooks we're creating local state for a "heading" variable with
   // a default value of 'Functional Component'
   const store = useSelector((store) => store);
@@ -24,27 +26,34 @@ function PhotoCapture(props) {
   const capture = React.useCallback(() => {
     const imageSrc = webcamRef.current.getScreenshot();
     setImgSrc(imageSrc);
-    setShowCamera(false)
+    setShowCamera(false);
+    dispatch({type: 'SET_PHOTO_CAPTURE', payload:{data:imageSrc}})
   }, [webcamRef, setImgSrc]);
 
   return (
     <div>
-      <h2>{heading}</h2>
       {showCamera?
         <>
-          <Webcam
-            audio={false}
-            ref={webcamRef}
-            screenshotFormat="image/jpeg"
-            videoConstraints={videoConstraints}
-          />
+        <div className = 'screenShot'>
+            <Webcam
+              audio={false}
+              ref={webcamRef}
+              className = 'screenShot'
+              screenshotFormat="image/jpeg"
+              videoConstraints={videoConstraints}
+            />
+          </div>
           <br />
           <button onClick={capture}>Capture photo</button>
         </>:
-          <img
-            className = 'screenShot'
-            src={imgSrc}
-          />
+          <>
+            <img
+              className = 'screenShot'
+              src={imgSrc}
+            />
+            <p className='imageData'>Image Data:{JSON.stringify(imgSrc)}</p>
+            <button onClick={() => {setShowCamera(true)}}>Retake Image</button>
+          </>
       } 
     </div>
   );

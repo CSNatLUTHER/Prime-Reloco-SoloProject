@@ -1,3 +1,13 @@
 .screenShot{
     max-height: 300px;
+    max-width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.imageData{
+    max-height: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

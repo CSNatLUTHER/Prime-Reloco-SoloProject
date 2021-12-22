@@ -17,6 +17,7 @@ function newItemForm(props) {
   const store = useSelector((store) => store);
   const [heading, setHeading] = useState('New Item Form');
   const [goingInBox, setGoingInBox] = useState(false);
+  const [capturePhoto, setCapturePhoto] = useState(false);
   const [newItem, setNewItem] = useState({ 
                                   qr: '', 
                                   item_name: '', 
@@ -93,8 +94,13 @@ function newItemForm(props) {
           <div></div>
         }
         {/* Need to Handle Adding Image and Setting URL to newItem */}
-        <p>Image:</p><button>Add Image</button>
-        <PhotoCapture/>
+        <p>Image:</p><button onClick={ () => {setCapturePhoto(true)}}>Add Image</button>
+        <br />
+        <br />
+        {capturePhoto?
+          <PhotoCapture/>:
+          <></>
+        }
         <br />
         <br />
         <Link to="/new_item_confirmation">
