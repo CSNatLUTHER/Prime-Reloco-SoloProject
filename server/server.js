@@ -14,6 +14,7 @@ const itemRouter = require('./routes/item.router');
 const boxRouter = require('./routes/box.router');
 const messageRouter = require('./routes/message.router');
 const eventUserRouter = require('./routes/event_user.router');
+const photoUploadRouter = require('./routes/photo_upload.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -33,6 +34,7 @@ app.use('/api/item', itemRouter);
 app.use('/api/box', boxRouter);
 app.use('/api/message', messageRouter);
 app.use('/api/event_user', eventUserRouter);
+app.use('/api/photo', photoUploadRouter);
 
 // Serve static files
 app.use(express.static('build'));

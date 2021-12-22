@@ -50,6 +50,7 @@ function newItemForm(props) {
   }
 
   const addNewItem = () => {
+
     if(store.qr_code.id != ''){
       dispatch({ type: 'ADD_ITEM', payload: { 
                                         qr: store.qr_code.id, 

@@ -4,10 +4,11 @@
   "private": true,
   "proxy": "http://localhost:5005",
   "dependencies": {
+    "aws-sdk": "^2.1048.0",
     "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
     "cookie-session": "^2.0.0-rc.1",
-    "dotenv": "^8.2.0",
+    "dotenv": "^8.6.0",
     "express": "^4.17.1",
     "jsqr": "^1.4.0",
     "passport": "^0.4.1",

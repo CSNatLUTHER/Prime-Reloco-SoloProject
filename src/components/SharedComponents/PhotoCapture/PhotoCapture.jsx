@@ -28,6 +28,7 @@ function PhotoCapture(props) {
     setImgSrc(imageSrc);
     setShowCamera(false);
     dispatch({type: 'SET_PHOTO_CAPTURE', payload:{data:imageSrc}})
+    dispatch({type:'FETCH_PHOTO_URL'})
   }, [webcamRef, setImgSrc]);
 
   return (

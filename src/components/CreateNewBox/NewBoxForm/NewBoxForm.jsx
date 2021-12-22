@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {useSelector} from 'react-redux';
 import QRCodeScan from '../../SharedComponents/QRCodeScan/QRCodeScan';
-import QRClass from '../../QRClass/QRClass';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
