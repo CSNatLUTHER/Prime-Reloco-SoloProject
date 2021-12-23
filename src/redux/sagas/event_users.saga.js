@@ -17,7 +17,7 @@ function* leaveEvent(event) {
   try {
         const eventUser = yield axios.delete('/api/event_user', {params: event.payload});
         console.log('get all:', eventUser.data);
-        yield put({ type: 'FETCH_EVENTS', payload:{userid: user.id} });
+        yield put({ type: 'FETCH_EVENT_USERS', payload: event.payload.event_id });
         } 
         catch {
         console.log('leaveEvent error');
