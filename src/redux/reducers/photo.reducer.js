@@ -1,7 +1,7 @@
-const photoUrlReducer = (state = {}, action) => {
+const photoReducer = (state = {}, action) => {
   switch (action.type) {
     case 'SET_PHOTO_URL':
-      return action.payload;
+      return {...state, url:action.payload.url};
     default:
       return state;
   }
@@ -9,4 +9,4 @@ const photoUrlReducer = (state = {}, action) => {
 
 // user will be on the redux state at:
 // state.user
-export default photoUrlReducer;
+export default photoReducer;

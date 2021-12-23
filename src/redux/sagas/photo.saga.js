@@ -17,12 +17,11 @@ function* fetchPhotoUrl() {
       console.log('fetchPhotoUrl error', err);
       } 
 
-  };
+};
 
 
-
-function* photoUrlSaga() {
+function* photoSaga() {
   yield takeEvery('FETCH_PHOTO_URL', fetchPhotoUrl);
 }
 
-export default photoUrlSaga;
+export default photoSaga;

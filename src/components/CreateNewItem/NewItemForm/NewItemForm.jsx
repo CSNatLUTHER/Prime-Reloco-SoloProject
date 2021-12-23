@@ -51,6 +51,19 @@ function newItemForm(props) {
 
   const addNewItem = () => {
 
+    const url = store.photo.url
+
+    fetch(url,{
+      method: 'PUT',
+      headers: {
+        'Content-Type' : 'multipart'
+      },
+      body: store.photo_capture.data
+    })
+
+    const imageUrl = url.split('?')[0]
+    console.log(imageUrl);
+
     if(store.qr_code.id != ''){
       dispatch({ type: 'ADD_ITEM', payload: { 
                                         qr: store.qr_code.id, 
@@ -61,7 +74,7 @@ function newItemForm(props) {
                                         creator_user_id:store.user.id,
                                         event:store.active_event.id,
                                         last_modified_user_id: store.user.id,
-                                        image_url: newItem.image_url} 
+                                        image_url: imageUrl} 
                                       });
     }
     else{dispatch({ type: 'ADD_ITEM', payload: newItem });}
