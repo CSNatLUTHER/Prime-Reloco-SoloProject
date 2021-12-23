@@ -3,7 +3,7 @@ import axios from 'axios';
 
 
 //FUNCTION TO GET ALL ITEMS FOR user
-function* fetchPhotoUrl() {
+function* imageUpload() {
   console.log('In fetchPhotoUrl');
 
   try {
@@ -21,8 +21,8 @@ function* fetchPhotoUrl() {
 
 
 
-function* photoUrlSaga() {
-  yield takeEvery('FETCH_PHOTO_URL', fetchPhotoUrl);
+function* imageUploadSaga() {
+  yield takeEvery('UPLOAD_PHOTO', imageUpload);
 }
 
-export default photoUrlSaga;
+export default imageUploadSaga;
