@@ -12,16 +12,7 @@ function ShareMoveEvent(props) {
   const [heading, setHeading] = useState('Share Move Event');
 
   const shareCode = () => {
-    if (navigator.canShare) {
-      navigator.share({
-        title: 'Lee Martin',
-        text: 'Netmaker. Playing the Internet in your favorite band for nearly two decades.',
-        url: 'https://leemartin.dev'
-      })
-      .then(() => console.log('Share was successful.'))
-      .catch((error) => console.log('Sharing failed', error));
-    } else{console.log('I cannot share!')}
-    // alert('Event data has been copied to clipboard!')
+    alert('Event data has been copied to clipboard!')
   }
 
   return (
