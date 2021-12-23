@@ -4,14 +4,15 @@ import axios from 'axios';
 //FUNCTION TO GET ALL ITEMS FOR user
 function* fetchAllBoxes(user) {
   // get all movies from the DB
+  console.log('In get all boxes', user.payload);
   try {
-        const boxes = yield axios.get('/api/box');
-        console.log('get all:', boxes.data);
-        yield put({ type: 'SET_BOXES', payload: boxes.data });
-        } 
-        catch {
-        console.log('fetchAllBoxes error');
-        }     
+    const boxes = yield axios.get('/api/box', {params: user.payload } );
+    console.log('get all:', boxes.data);
+    yield put({ type: 'SET_BOXES', payload: boxes.data });
+    } 
+    catch {
+    console.log('fetchAllBoxes error');
+    }     
   };
 
 function* searchBoxes(info) {
