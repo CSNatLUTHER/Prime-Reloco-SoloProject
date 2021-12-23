@@ -43,7 +43,7 @@ function QRCodeScan(props) {
 
   return (
     <div>
-        <button onClick={scanClick}>QR</button>
+        <button onClick={scanClick}>Scan QR Code</button>
         {scanning==true && codeFound.id ===''?
         <>
         <QrReader
@@ -55,7 +55,7 @@ function QRCodeScan(props) {
           <button onClick={cancelScan}>Cancel</button></>:
           <></>}
         {/* <QRClass /> */}
-        <p>Code Found:{JSON.stringify(codeFound)}</p>
+        <p>Code Found: {codeFound.id}</p>
 
     </div>
   );

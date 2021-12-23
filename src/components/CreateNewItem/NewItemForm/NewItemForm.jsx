@@ -19,7 +19,7 @@ function newItemForm(props) {
   const [goingInBox, setGoingInBox] = useState(false);
   const [capturePhoto, setCapturePhoto] = useState(false);
   const [newItem, setNewItem] = useState({ 
-                                  qr: '', 
+                                  qr: store.qr_code.id, 
                                   item_name: '', 
                                   put_in_box: false, 
                                   value: '', 
@@ -56,7 +56,7 @@ function newItemForm(props) {
     fetch(url,{
       method: 'PUT',
       headers: {
-        'Content-Type' : 'multipart'
+        'Content-Type' : 'jpeg'
       },
       body: store.photo_capture.data
     })
@@ -90,7 +90,9 @@ function newItemForm(props) {
         <span className="slider round"></span>
       </label>
       <br />
-      <p>QR Code ID:</p><input type="text" placeholder='enter or use QR scan' value={store.qr_code.id} onChange={handleQrChange} /><QRCodeScan/>
+      <p>QR Code ID:</p>
+      {/* <input type="text" placeholder='enter or use QR scan' value={store.qr_code.id} onChange={handleQrChange} /> */}
+      <QRCodeScan/>
       <p>Item Name:</p><input type="text" placeholder='ex. speaker' value={newItem.item_name} onChange={handleNameChange}  />
       <p>Item Value: $</p><input type="number" placeholder='150' value={newItem.value} onChange={handleValueChange}  />
       {/* Create a conditional statement that renders destination only when "going in box" is 'false' */}

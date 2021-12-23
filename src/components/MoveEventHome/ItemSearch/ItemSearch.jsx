@@ -50,7 +50,7 @@ function ItemSearch(props) {
       </Link>
       <br />
       <br />
-      <input type='text' placeholder='ex. item name or QR' onChange={handleSearchChange} value={store.qr_code.id} ></input>
+      <input type='text' placeholder='ex. item name or QR' onChange={handleSearchChange}></input>
       <QRCodeScan />
       <br />
       <Link to="/item_search_results">

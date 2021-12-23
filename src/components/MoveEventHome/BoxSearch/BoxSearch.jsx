@@ -50,9 +50,8 @@ function BoxSearch(props) {
       </Link>
       <br />
       <br />
-      <input type='text' placeholder='ex. box name or QR' onChange={handleSearchChange} value={store.qr_code.id}></input>
+      <input type='text' placeholder='ex. box name or QR' onChange={handleSearchChange} ></input>
       <QRCodeScan />
-      <br />
       <Link to="/box_search_results">
       <button onClick={searchForBox}>Search</button>
       </Link>
