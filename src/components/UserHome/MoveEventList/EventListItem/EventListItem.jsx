@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { Link } from 'react-router-dom';
+import './EventListItem.css'
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -21,6 +22,7 @@ function eventListItem(props) {
   return (
     <div className='component'>
       <h2>{heading}</h2>
+      <img className='moveEventImage' src="/images/move_event.png" alt="" />
       <h4>{JSON.stringify(props.event)}</h4>
       <Link to="/move_event_home">
       <button onClick={setActiveEvent}>Select Event</button>
