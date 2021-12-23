@@ -10,13 +10,15 @@ function resultsItem(props) {
   //set dispatch
   const dispatch = useDispatch()
   useEffect( () => {
-    getImage()
+    if (props.item.image_path != '/images/image.png'){
+      getImage()
+    }
   }, []);
   // Using hooks we're creating local state for a "heading" variable with
   // a default value of 'Functional Component'
   const store = useSelector((store) => store);
   const [heading, setHeading] = useState('Results Item');
-  const [imageToDisplay, setImageToDisplay] = useState('')
+  const [imageToDisplay, setImageToDisplay] = useState('/images/image.png')
 
   const selectItem = () => {
     dispatch({type:'SET_ACTIVE_ITEM', payload:props.item})
@@ -65,7 +67,10 @@ function resultsItem(props) {
 
   return (
     <div className='component'>
+      {imageToDisplay === '/images/image.png'?
+      <img className='iconImage' src={imageToDisplay}/>:
       <img className='itemImage' src={imageToDisplay}/>
+      }
       <h2>{heading}</h2>
       <p>{JSON.stringify(props.item)}</p>
       <Link to="/item_info">

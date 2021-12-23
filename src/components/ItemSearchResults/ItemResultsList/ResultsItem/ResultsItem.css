@@ -1,3 +1,10 @@
 .itemImage{
-    width:60%
+    width:85%;
+    max-width: 500px;
+    border-radius: 5px;
+}
+.iconImage{
+    width:50%;
+    max-width: 200px;
+    border-radius: 5px;
 }
