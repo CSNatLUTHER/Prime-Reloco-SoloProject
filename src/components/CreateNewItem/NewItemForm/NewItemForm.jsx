@@ -77,6 +77,7 @@ function newItemForm(props) {
                                       image_url: url} 
               }),
     dispatch({ type: 'UNSET_QR_CODE' })
+    dispatch({ type: 'UNSET_PHOTO_URL'})
     
     // if(store.qr_code.id != ''){
   }
