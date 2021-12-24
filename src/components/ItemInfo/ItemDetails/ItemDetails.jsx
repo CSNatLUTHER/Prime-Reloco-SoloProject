@@ -12,59 +12,79 @@ function itemDetails(props) {
   const item = useSelector((store) => store.active_item);
   const [heading, setHeading] = useState('Item Details');
   const [imageToDisplay, setImageToDisplay] = useState('/images/image.png')
+  const [showImage, setShowImage] = useState(false)
 
   useEffect( () => {
-    if (item.image_path != '/images/image.png'){
-      getImage()
-    }
+    // const myTimeout = setTimeout(getImage, 500)
+    // getImage()
 }, []);
 
+  // const checkImagePath = () => {
+  //   if (store.active_item.image_path != '/images/image.png'){
+  //     getImage()
+  //   }
+  // }
+
   const getImage = () =>{
-    fetch(item.image_path)
-    .then(response => response.body)
-    .then(rb => {
-      const reader = rb.getReader();
+    const url = store.active_item.image_path
+    console.log("----------->Image Path Being Used:", url );
+    if (store.active_item.image_path != '/images/image.png'){
+      fetch(url)
+      .then(response => response.body)
+      .then(rb => {
+        const reader = rb.getReader();
 
-      return new ReadableStream({
-        start(controller) {
-          // The following function handles each data chunk
-          function push() {
-            // "done" is a Boolean and value a "Uint8Array"
-            reader.read().then( ({done, value}) => {
-              // If there is no more data to read
-              if (done) {
-                // console.log('done', done);
-                controller.close();
-                return;
-              }
-              // Get the data and send it to the browser via the controller
-              controller.enqueue(value);
-              // Check chunks by logging to the console
-              // console.log(done, value);
-              push();
-            })
-          }
+        return new ReadableStream({
+          start(controller) {
+            // The following function handles each data chunk
+            function push() {
+              // "done" is a Boolean and value a "Uint8Array"
+              reader.read().then( ({done, value}) => {
+                // If there is no more data to read
+                if (done) {
+                  // console.log('done', done);
+                  controller.close();
+                  return;
+                }
+                // Get the data and send it to the browser via the controller
+                controller.enqueue(value);
+                // Check chunks by logging to the console
+                // console.log(done, value);
+                push();
+              })
+            }
 
-        push();
-      }
-    });
-    })
-    .then(stream => {
-    // Respond with our stream
-    return new Response(stream, { headers: { "Content-Type": "text/html" } }).text();
-    })
-    .then(result => {
-    // Do things with result
-    setImageToDisplay(result)
-    // console.log(result);
-    });
+          push();
+        }
+      });
+      })
+      .then(stream => {
+      // Respond with our stream
+      return new Response(stream, { headers: { "Content-Type": "text/html" } }).text();
+      })
+      .then(result => {
+      // Do things with result
+        setImageToDisplay(result)
+      // console.log(result);
+      });
+    }
+  }
+
+  const previewImage = () => {
+    getImage()
+    setShowImage(true)
   }
 
   return (
     <div className='component'>
-      {imageToDisplay === '/images/image.png'?
-        <img className='iconImage' src={imageToDisplay}/>:
-        <img className='itemImage' src={imageToDisplay}/>
+      {showImage === false?
+        <button onClick={previewImage}>Preview Image</button>:
+        <>
+          {imageToDisplay === '/images/image.png'?
+            <img className='iconImage' src={imageToDisplay} alt={JSON.stringify(imageToDisplay)}/>:
+            <img className='itemImage' src={imageToDisplay} alt={JSON.stringify(imageToDisplay)}/>
+          }
+        </>
       }
       <h2>{heading}</h2>
       <h4>{JSON.stringify(item)}</h4>
