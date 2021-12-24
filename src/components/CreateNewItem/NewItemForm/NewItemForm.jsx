@@ -29,9 +29,6 @@ function newItemForm(props) {
                                   last_modified_user_id: store.user.id,
                                   image_url: '/images/image.png'});
 
-  const handleQrChange = (event) => {
-      setNewItem({ ...newItem, qr: event.target.value })
-  }
 
   const handleNameChange = (event) => {
       setNewItem({ ...newItem, item_name: event.target.value })
@@ -49,9 +46,11 @@ function newItemForm(props) {
     setNewItem({ ...newItem, image_url: event.target.value })
   }
 
-  const setImageUrl = () => {
-    if(store.photo.url != ''){
-      const url = store.photo.url
+  const postImageData = () => {
+    if(store.photo.url != '/images/image.png'){
+      // console.log('store.photo.url was not default', store.photo.url);
+      const url = store.photo.url;
+      // setNewItem({ ...newItem, image_url: url.split('?')[0] })
       fetch(url,{
         method: 'PUT',
         headers: {
@@ -59,36 +58,27 @@ function newItemForm(props) {
         },
         body: store.photo_capture.data
       })
-      setNewItem({ ...newItem, image_url: url.split('?')[0] })
     }
   }
 
-  const setQrCode = () => {
-    setNewItem({ ...newItem, qr: store.qr_code.id })
-}
 
-  const addNewItem =  async() => {
-
-    setImageUrl()
-    await (setQrCode())
-    await(dispatch({ type: 'ADD_ITEM', payload: newItem }))
-    await(dispatch({ type: 'UNSET_QR_CODE' }))
+  const addNewItem = () => {
+    const url = store.photo.url.split('?')[0]
+    postImageData();
+    dispatch({ type: 'ADD_ITEM', payload: { 
+                                      qr: store.qr_code.id, 
+                                      item_name: newItem.item_name, 
+                                      put_in_box: newItem.put_in_box, 
+                                      value: newItem.value, 
+                                      destination: newItem.destination, 
+                                      creator_user_id:store.user.id,
+                                      event:store.active_event.id,
+                                      last_modified_user_id: store.user.id,
+                                      image_url: url} 
+              }),
+    dispatch({ type: 'UNSET_QR_CODE' })
     
     // if(store.qr_code.id != ''){
-    //   dispatch({ type: 'ADD_ITEM', payload: { 
-    //                                     qr: store.qr_code.id, 
-    //                                     item_name: newItem.item_name, 
-    //                                     put_in_box: newItem.put_in_box, 
-    //                                     value: newItem.value, 
-    //                                     destination: newItem.destination, 
-    //                                     creator_user_id:store.user.id,
-    //                                     event:store.active_event.id,
-    //                                     last_modified_user_id: store.user.id,
-    //                                     image_url: imageUrl} 
-    //                                   });
-    // }
-    // else{dispatch({ type: 'ADD_ITEM', payload: newItem });}
-    // dispatch({ type: 'UNSET_QR_CODE' })
   }
 
   return (

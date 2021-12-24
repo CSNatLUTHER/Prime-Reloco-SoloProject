@@ -1,4 +1,4 @@
-const photoReducer = (state = {url:''}, action) => {
+const photoReducer = (state = {url:'/images/image.png'}, action) => {
   switch (action.type) {
     case 'SET_PHOTO_URL':
       return {...state, url:action.payload.url};
