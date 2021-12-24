@@ -63,7 +63,7 @@ function newItemForm(props) {
   }
 
 
-  const addNewItem = () => {
+  const addNewItem =  () => {
     const url = store.photo.url.split('?')[0]
     postImageData();
     dispatch({ type: 'ADD_ITEM', payload: { 
@@ -78,7 +78,7 @@ function newItemForm(props) {
                                       image_url: url,
                                       photo_data: store.photo_capture.data
                                       } 
-              }),
+              }),         
     dispatch({ type: 'UNSET_QR_CODE' })
     dispatch({ type: 'UNSET_PHOTO_URL'})
     dispatch({ type: 'UNSET_PHOTO_CAPTURE'})
@@ -105,6 +105,7 @@ function newItemForm(props) {
           <div>
             <p>Destination:</p><select name="destination" value={newItem.destination} onChange={handleDestinationChange} >
                               {/* Consider replacing this with a map of the options for the destinations table */}
+                              <option value={6} disabled>CHOOSE DESTINATION</option>
                               <option value={1}>MOVE</option>
                               <option value={2}>STORE</option>
                               <option value={3}>SELL</option>
@@ -124,7 +125,7 @@ function newItemForm(props) {
         }
         <br />
         <br />
-        <DelayLink delay={500} to="/new_item_confirmation">
+        <DelayLink delay={750} to="/new_item_confirmation">
         <button onClick={addNewItem}>Create New Item</button>
         </DelayLink>
         <p>newItem: {JSON.stringify(newItem)}</p>
