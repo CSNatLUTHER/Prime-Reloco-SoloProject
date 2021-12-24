@@ -8,6 +8,7 @@ import './ItemDetails.css'
 function itemDetails(props) {
   // Using hooks we're creating local state for a "heading" variable with
   // a default value of 'Functional Component'
+  const dispatch = useDispatch()
   const store = useSelector((store) => store);
   const item = useSelector((store) => store.active_item);
   const [heading, setHeading] = useState('Item Details');
@@ -15,15 +16,9 @@ function itemDetails(props) {
   const [showImage, setShowImage] = useState(false)
 
   useEffect( () => {
-    // const myTimeout = setTimeout(getImage, 500)
-    // getImage()
+    const myTimeout = setTimeout(getImage, 500)
 }, []);
 
-  // const checkImagePath = () => {
-  //   if (store.active_item.image_path != '/images/image.png'){
-  //     getImage()
-  //   }
-  // }
 
   const getImage = () =>{
     const url = store.active_item.image_path
@@ -70,22 +65,14 @@ function itemDetails(props) {
     }
   }
 
-  const previewImage = () => {
-    getImage()
-    setShowImage(true)
-  }
+
 
   return (
     <div className='component'>
-      {showImage === false?
-        <button onClick={previewImage}>Preview Image</button>:
-        <>
           {imageToDisplay === '/images/image.png'?
             <img className='iconImage' src={imageToDisplay} alt={JSON.stringify(imageToDisplay)}/>:
             <img className='itemImage' src={imageToDisplay} alt={JSON.stringify(imageToDisplay)}/>
           }
-        </>
-      }
       <h2>{heading}</h2>
       <h4>{JSON.stringify(item)}</h4>
     </div>

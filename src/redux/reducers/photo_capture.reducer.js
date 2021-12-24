@@ -1,7 +1,9 @@
-const photoCaptureReducer = (state = [], action) => {
+const photoCaptureReducer = (state = {data:'/images/image.png'}, action) => {
   switch (action.type) {
     case 'SET_PHOTO_CAPTURE':
       return action.payload;
+    case 'UNSET_PHOTO_CAPTURE':
+      return {data:'/images/image.png'}
     default:
       return state;
   }

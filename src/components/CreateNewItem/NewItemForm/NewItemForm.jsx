@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { user } from 'pg/lib/defaults';
 import '../NewItemForm/NewItemForm.css'
 import PhotoCapture from '../../SharedComponents/PhotoCapture/PhotoCapture';
+import DelayLink from 'react-delay-link';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -74,10 +75,13 @@ function newItemForm(props) {
                                       creator_user_id:store.user.id,
                                       event:store.active_event.id,
                                       last_modified_user_id: store.user.id,
-                                      image_url: url} 
+                                      image_url: url,
+                                      photo_data: store.photo_capture.data
+                                      } 
               }),
     dispatch({ type: 'UNSET_QR_CODE' })
     dispatch({ type: 'UNSET_PHOTO_URL'})
+    dispatch({ type: 'UNSET_PHOTO_CAPTURE'})
     
     // if(store.qr_code.id != ''){
   }
@@ -120,9 +124,9 @@ function newItemForm(props) {
         }
         <br />
         <br />
-        <Link to="/new_item_confirmation">
+        <DelayLink delay={500} to="/new_item_confirmation">
         <button onClick={addNewItem}>Create New Item</button>
-        </Link>
+        </DelayLink>
         <p>newItem: {JSON.stringify(newItem)}</p>
     </div>
   );
