@@ -25,6 +25,7 @@ function QRCodeScan(props) {
         id: data
       })
       setScanning(false)
+      props.qr(data)
       dispatch({type:'SET_QR_CODE', payload:{id:data}})
     }
   }

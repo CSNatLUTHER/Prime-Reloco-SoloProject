@@ -40,18 +40,12 @@ function newBoxForm(props) {
     setNewBox({ ...newBox, destination: event.target.value })
   }
 
+  const handleQrChange = (event) => {
+    setNewBox({ ...newBox, qr: event })
+  }
+
   const addNewBox =  () => {
-    dispatch({ type: 'CREATE_BOX', payload: { 
-                                        qr: store.qr_code.id, 
-                                        box_name: newBox.box_name, 
-                                        box_size: newBox.box_size, 
-                                        box_weight: newBox.box_weight, 
-                                        destination: newBox.destination, 
-                                        creator_user_id:store.user.id,
-                                        event:store.active_event.id,
-                                        last_modified_user_id: store.user.id,
-                                        } 
-    })         
+    dispatch({ type: 'CREATE_BOX', payload: newBox })         
     dispatch({ type: 'UNSET_QR_CODE' })
     
     // if(store.qr_code.id != ''){
@@ -60,7 +54,7 @@ function newBoxForm(props) {
   return (
     <div className='component'>
       <h2>{heading}</h2>
-      <QRCodeScan />
+      <QRCodeScan qr={handleQrChange}/>
       <p>Box Name:</p><input type="text" placeholder='ex. Dishes' value={newBox.box_name} onChange={handleNameChange}  /> 
       <div>
         <p>Box Size:</p><select name="boxSize" value={newBox.box_size} onChange={handleBoxSizeChange} >
