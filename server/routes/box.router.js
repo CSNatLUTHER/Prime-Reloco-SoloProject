@@ -20,20 +20,6 @@ router.get('/', (req, res) => {
     })
 });
 
-// // GET route - items in a box
-// router.get('/items', (req, res) => {
-//   const query = `SELECT * FROM box_item
-//                 ORDER BY "id" ASC`;
-//   pool.query(query)
-//     .then( result => {
-//       res.send(result.rows);
-//     })
-//     .catch(err => {
-//       console.log('ERROR: Get all boxes', err);
-//       res.sendStatus(500)
-//     })
-// });
-
 router.get('/box-items', (req, res) => {
   console.log('In GET box-items', req.query);
   const query = `SELECT *  FROM box_item
@@ -70,9 +56,30 @@ router.get('/search', (req, res) => {
 /**
  * POST route template
  */
+
+router.post('/', (req, res) => {
+console.log('POST req.body:',req.body);
+
+const query = `INSERT INTO "box" ("qr_id", "name", "creator_user_id", "last_modified_user_id", "event_id", "size", "weight", "destination_id")
+              VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+              RETURNING "id";`
+pool.query(query, [req.body.qr, req.body.box_name, req.body.creator_user_id, req.body.last_modified_user_id, req.body.event, req.body.box_size, req.body.box_weight, req.body.destination])
+.then(result => {
+      console.log(result.rows[0].id);
+      const newItemId = result.rows[0].id
+      const getItemQuery = `SELECT * FROM box
+                            WHERE id=${newItemId}`
+        pool.query(getItemQuery).then(result => {
+          console.log('newItemQuery Result:', result.rows);
+          res.send(result.rows);
+  }).catch(err => {
+    console.log(err);
+    res.sendStatus(500)
+})})})
+
 router.post('/add_to_box', (req, res) => {
   console.log('POST req.body:',req.body);
-  // RETURNING "id" will give us back the id of the created movie
+
   const query = `SELECT * FROM box
 	                WHERE qr_id = '${req.body.boxQr}' AND event_id=${req.body.event};`
   pool.query(query)

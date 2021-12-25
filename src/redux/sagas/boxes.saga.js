@@ -27,9 +27,26 @@ function* searchBoxes(info) {
     }     
   };
 
+function* createBox(data) {
+  // get all movies from the DB
+  console.log('In addBox Saga', data);
+        try {  
+        const newBox = yield axios({
+                              method: 'POST',
+                              url: '/api/box',
+                              data: data.payload});
+        console.log('posting newBox, returned data:', newBox.data);
+        yield put({ type: 'SET_ACTIVE_BOX', payload: newBox.data[0]});
+        } 
+        catch (err) {
+        console.log('addBox error', err);
+        }     
+  };
+
 function* boxesSaga() {
   yield takeEvery('FETCH_BOXES', fetchAllBoxes);
   yield takeEvery('SEARCH_FOR_BOX', searchBoxes);
+  yield takeEvery('CREATE_BOX', createBox);
 }
 
 export default boxesSaga;

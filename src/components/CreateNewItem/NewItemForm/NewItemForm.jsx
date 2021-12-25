@@ -64,7 +64,7 @@ function newItemForm(props) {
 
 
   const addNewItem =  () => {
-    const url = store.photo.url.split('?')[0]
+    const url = store.photo.url.split('?')[0]        
     postImageData();
     dispatch({ type: 'ADD_ITEM', payload: { 
                                       qr: store.qr_code.id, 
