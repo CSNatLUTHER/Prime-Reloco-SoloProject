@@ -97,4 +97,25 @@ router.post('/add_to_box', (req, res) => {
       res.sendStatus(500)
   })});
 
+router.put('/', (req, res) => {
+  console.log('In PUT BOX with req.body:',req.body);
+  
+  const query = `	UPDATE "box"
+	                SET "qr_id" = $1, "name" = $2, "creator_user_id" = $3, "last_modified_user_id" = $4, "event_id" = $5, "size" = $6, "weight" = $7, "destination_id" = $8, "last_update_date" = CURRENT_DATE
+	                WHERE "id"=${req.body.id}
+	                RETURNING "id";`
+  pool.query(query, [req.body.qr, req.body.box_name, req.body.creator_user_id, req.body.last_modified_user_id, req.body.event, req.body.box_size, req.body.box_weight, req.body.destination])
+  .then(result => {
+        console.log(result.rows[0].id);
+        const newItemId = result.rows[0].id
+        const getItemQuery = `SELECT * FROM box
+                              WHERE id=${newItemId}`
+          pool.query(getItemQuery).then(result => {
+            console.log('newItemQuery Result:', result.rows);
+            res.send(result.rows);
+    }).catch(err => {
+      console.log(err);
+      res.sendStatus(500)
+  })})})
+
 module.exports = router;

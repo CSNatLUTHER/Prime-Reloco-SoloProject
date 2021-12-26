@@ -15,6 +15,7 @@ function boxEditForm(props) {
   const store = useSelector((store) => store);
   const [heading, setHeading] = useState('Box Edit Form');
   const [editBox, setEditBox] = useState({ 
+    id: store.active_box.id,
     qr: store.active_box.qr_id, 
     box_name: store.active_box.name, 
     box_size: store.active_box.size, 
@@ -48,13 +49,17 @@ const handleQrChange = (event) => {
 const updateQrChange = (event) => {
   setEditBox({...editBox, qr: event.target.value})
 }
-const addNewBox =  () => {
-dispatch({ type: 'CREATE_BOX', payload: newBox })         
-dispatch({ type: 'UNSET_QR_CODE' })
-}
+
 const updateBox = () => {
   props.editBox()
+  dispatch({ type: 'UPDATE_BOX', payload: editBox })         
+  dispatch({ type: 'UNSET_QR_CODE' })
 }
+
+const cancelUpdateBox = () => {
+  props.editBox()
+}
+
 
 return (
 <div className='component'>
@@ -98,8 +103,10 @@ return (
         <br />
         <br />
         <Link to="/new_box_confirmation">
-        <button onClick={updateBox}>Create New Item</button>
+        <button onClick={updateBox}>Update Item</button>
         </Link>
+        <button onClick={cancelUpdateBox}>Cancel</button>
+        <br />
         <p>editBox:{JSON.stringify(editBox)}</p>
     </div>
   );
