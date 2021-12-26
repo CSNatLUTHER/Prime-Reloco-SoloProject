@@ -12,10 +12,15 @@ function boxEditForm(props) {
   const store = useSelector((store) => store);
   const [heading, setHeading] = useState('Box Edit Form');
 
+  const updateBox = () => {
+    props.editBox()
+  }
+
   return (
     <div>
       <h2>{heading}</h2>
       <QRCodeScan />
+      <button onClick={updateBox}>Save</button>
     </div>
   );
 }

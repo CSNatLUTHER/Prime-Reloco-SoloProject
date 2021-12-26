@@ -11,10 +11,15 @@ function itemEditForm(props) {
   const store = useSelector((store) => store);
   const [heading, setHeading] = useState('Item Edit Form');
 
+  const updateItem = () => {
+    props.editItem()
+  }
+
   return (
     <div className='component'>
       <h2>{heading}</h2>
       <QRCodeScan />
+      <button onClick={updateItem}>Save Item</button>
     </div>
   );
 }

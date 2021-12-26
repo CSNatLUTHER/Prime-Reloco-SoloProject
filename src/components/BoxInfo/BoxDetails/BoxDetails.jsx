@@ -15,6 +15,7 @@ function boxDetails(props) {
     <div className='component'>
       <img className='boxImage' src="/images/transparent_box.png" />
       <h2>{heading}</h2>
+      <button onClick={props.editBox}>Edit Box</button>
       <p>{JSON.stringify(store.active_box)}</p>
     </div>
   );

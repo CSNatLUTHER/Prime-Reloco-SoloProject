@@ -9,7 +9,11 @@ function putItemInBox(props) {
   // Using hooks we're creating local state for a "heading" variable with
   // a default value of 'Functional Component'
   const store = useSelector((store) => store);
-  const [heading, setHeading] = useState('Put Item To Box');
+  const [heading, setHeading] = useState('Put Existing Item To Box');
+  const [searchData, setSearchData] = useState({
+                                        qr:'',
+                                        item_name: ''
+                                    });
 
   return (
     <div className='component'>

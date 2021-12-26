@@ -74,6 +74,7 @@ function itemDetails(props) {
             <img className='itemImage' src={imageToDisplay} alt={JSON.stringify(imageToDisplay)}/>
           }
       <h2>{heading}</h2>
+      <button onClick={props.editItem}>Edit Item</button>
       <h4>{JSON.stringify(item)}</h4>
     </div>
   );

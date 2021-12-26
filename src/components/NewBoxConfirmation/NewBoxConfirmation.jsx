@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {useSelector} from 'react-redux';
 import PutItemInBox from './PutItemInBox/PutItemInBox';
+import BoxInfo from '../BoxInfo/BoxInfo'
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -14,7 +15,9 @@ function newBoxConfirmation(props) {
   return (
     <div className='component'>
       <h2>{heading}</h2>
-      <PutItemInBox />
+      <p>The box,'{store.active_box.name}' was added!</p>
+      {/* <PutItemInBox /> */}
+      <BoxInfo />
     </div>
   );
 }

@@ -3,6 +3,7 @@ import {useSelector} from 'react-redux';
 import ItemDetails from '../ItemInfo/ItemDetails/ItemDetails';
 import AddItemToBox from '../NewItemConfirmation/AddItemToBox/AddItemToBox'
 import CreateNewBox from '../CreateNewBox/CreateNewBox';
+import ItemEditForm from '../ItemEdit/ItemEditForm/ItemEditForm'
 
 
 // Basic functional component structure for React with default state
@@ -13,11 +14,20 @@ function itemInfo(props) {
   // a default value of 'Functional Component'
   const store = useSelector((store) => store);
   const [heading, setHeading] = useState('Item Info');
+  const [itemEdit, setItemEdit] = useState(false);
+
+  const editItem = () => {
+    setItemEdit(!itemEdit)
+  }
 
   return (
     <div className='component'>
       <h2>{heading}</h2>
-      <ItemDetails />
+      {itemEdit?
+      <ItemEditForm editItem={editItem}/>:
+      <ItemDetails  editItem={editItem}/>
+      }
+
       <AddItemToBox />
       <CreateNewBox />
     </div>

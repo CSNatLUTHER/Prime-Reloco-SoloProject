@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import BoxContentsItem from '../BoxContentsItem/BoxContentsItem';
+import { Link } from 'react-router-dom';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -23,8 +24,17 @@ function boxContentsList(props) {
     <div className='component'>
       <h2>{heading}</h2>
       <div>
-        {/* <BoxContentsItem /> */}
-        {boxContents.map(boxContentsItem => (<BoxContentsItem className="boxContentsItem" boxContentsItem={boxContentsItem} key={boxContentsItem.id} />))}
+        {boxContents.length === 0?
+          <>
+            <p>No Items In Box</p>
+            <Link to='/move_event_home'>
+              <button>Find Items To Add To Box</button>
+            </Link>
+          </>:
+          <div>
+            {boxContents.map(boxContentsItem => (<BoxContentsItem className="boxContentsItem" boxContentsItem={boxContentsItem} key={boxContentsItem.id} />))}
+          </div>
+        }
       </div>
     </div>
   );

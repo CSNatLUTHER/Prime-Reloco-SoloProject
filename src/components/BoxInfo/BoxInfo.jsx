@@ -3,6 +3,8 @@ import {useSelector} from 'react-redux';
 import BoxDetails from '../BoxInfo/BoxDetails/BoxDetails';
 import PutItemInBox from '../NewBoxConfirmation/PutItemInBox/PutItemInBox';
 import { Link } from 'react-router-dom';
+import BoxContentsList from '../BoxContents/BoxContentsList/BoxContentsList'
+import BoxEditForm from '../BoxEdit/BoxEditForm/BoxEditForm'
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -12,15 +14,20 @@ function boxInfo(props) {
   // a default value of 'Functional Component'
   const store = useSelector((store) => store);
   const [heading, setHeading] = useState('Box Info');
+  const [boxEdit, setBoxEdit] = useState(false);
+
+  const editBox = () => {
+    setBoxEdit(!boxEdit)
+  }
 
   return (
     <div  className='component'>
       <h2>{heading}</h2>
-      <BoxDetails />
-      <Link to="/box_contents">
-      <button>See Box Contents</button>
-      </Link>
-      <PutItemInBox />
+      {boxEdit?
+      <BoxEditForm editBox={editBox}/>:
+      <BoxDetails editBox={editBox} />
+      }
+      <BoxContentsList />
     </div>
   );
 }
