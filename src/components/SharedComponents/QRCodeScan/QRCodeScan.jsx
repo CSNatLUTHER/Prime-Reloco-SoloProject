@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import QrReader from 'react-qr-reader';
 
@@ -18,7 +18,6 @@ function QRCodeScan(props) {
                                         id: ''
                                       })
 
-
   const handleScan = (data) => {
     if (data) {
       setCodeFound({
@@ -35,6 +34,7 @@ function QRCodeScan(props) {
   }
 
   const scanClick = () => {
+    setCodeFound({id:''})
     setScanning(true)
   }
 
