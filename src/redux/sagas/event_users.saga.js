@@ -31,7 +31,7 @@ function* joinEvent(event) {
                                   url: '/api/event_user/join',
                                   data: event.payload});
         console.log('get all:', eventUser.data);
-        yield put({ type: 'SET_ACTIVE_EVENT', payload: eventUser.data });
+        yield put({ type: 'SET_ACTIVE_EVENT_USERS', payload: eventUser.data });
         } 
         catch {
         console.log('fetchAllEventUsers error');

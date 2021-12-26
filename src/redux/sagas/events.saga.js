@@ -1,7 +1,7 @@
 import { put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
-//FUNCTION TO GET ALL ITEMS FOR user
+//FUNCTION TO GET ALL EVENTS FOR user
 function* fetchAllEvents(user) {
   // get all movies from the DB
   try {
@@ -31,9 +31,24 @@ function* createEvent(data) {
         }     
   };
 
+//FUNCTION TO DELETE EVENT
+function* deleteEvent(event) {
+  // get all movies from the DB
+  try {
+        const events = yield axios.delete('/api/event', {params: event.payload });
+        console.log('Deleting Event', events.data);
+        yield put({ type: 'FETCH_EVENTS', payload: {userid:event.payload.user_id} });
+        } 
+        catch {
+        console.log('fetchAllEvents error');
+        }     
+  };
+
 function* eventsSaga() {
   yield takeEvery('FETCH_EVENTS', fetchAllEvents);
   yield takeEvery('CREATE_EVENT', createEvent);
+  yield takeEvery('DELETE_EVENT', deleteEvent);
+
 }
 
 export default eventsSaga;

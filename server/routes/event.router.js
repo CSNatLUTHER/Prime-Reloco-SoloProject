@@ -59,4 +59,35 @@ router.get('/', (req, res) => {
       res.sendStatus(500)
   })})})})
 
+
+  router.delete('/', (req, res) => {
+    console.log('EVENT DELETE req.query:',req.query);
+    const query = `	DELETE FROM box_item
+                    WHERE event_id = ${req.query.event_id};`
+    pool.query(query)
+    .then(result => {
+    const query = `DELETE FROM item
+                   WHERE event_id = ${req.query.event_id};;`
+    pool.query(query)
+    .then(result => {
+    const query = `DELETE FROM box
+                   WHERE event_id = ${req.query.event_id};;`
+    pool.query(query)
+    .then(result => {
+      const query = `DELETE FROM user_event
+                     WHERE event_id = ${req.query.event_id};;`
+      pool.query(query)
+    .then(result => {
+    const query = `DELETE FROM event
+                   WHERE id = ${req.query.event_id};;`
+    pool.query(query)
+    res.sendStatus(200)
+    }).catch(err => {
+    console.log(err);
+    res.sendStatus(500)
+    })
+    })
+    })
+    })
+  })
 module.exports = router;
