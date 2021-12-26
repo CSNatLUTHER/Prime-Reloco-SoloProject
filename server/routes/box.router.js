@@ -88,9 +88,9 @@ router.post('/add_to_box', (req, res) => {
       const boxId = result.rows[0].id
 
       // // Now create box_item record
-      const box_item = `INSERT INTO box_item ("item_id", "box_id", "creator_user_id")
-                        VALUES ($1, $2, $3 );` 
-      pool.query(box_item, [req.body.item_id, boxId, req.body.user])
+      const box_item = `INSERT INTO box_item ("item_id", "box_id", "event_id","creator_user_id")
+                        VALUES ($1, $2, $3, $4 );` 
+      pool.query(box_item, [req.body.item_id, boxId, req.body.event, req.body.user])
       res.send(result.rows[0]);
     }).catch(err => {
       console.log(err);

@@ -20,17 +20,16 @@ function addItemToBox(props) {
                           event: store.active_event.id});
 
   const handleQrChange = (event) => {
-    setBox({ ...box, item_id:store.active_item.id, boxQr: event.target.value })
+    setBox({ ...box, boxQr: event.target.value })
+  }
+
+  const receiveQrCode = (event) => {
+    setBox({...box, boxQr: event})
   }
 
   const putItemInBox = () => {
     if(store.qr_code.id != ''){
-      dispatch({ type: 'PUT_ITEM_IN_BOX', payload: {
-                                                item_id:store.active_item.id,
-                                                boxQr: store.qr_code.id,
-                                                user: store.user.id,
-                                                event: store.active_event.id} 
-                                              });
+      dispatch({ type: 'PUT_ITEM_IN_BOX', payload: box });
     }
     else{
       dispatch({ type: 'PUT_ITEM_IN_BOX', payload: box });
@@ -41,7 +40,7 @@ function addItemToBox(props) {
   return (
     <div className='component'>
       <h2>{heading}</h2>
-      <p>QR Code ID:</p><input type="text" placeholder='enter code or use QR scan' value={store.qr_code.id} onChange={handleQrChange} /><QRCodeScan />
+      <p>QR Code ID:</p><input type="text" placeholder='enter code or use QR scan' value={box.boxQr} onChange={handleQrChange} /><QRCodeScan qr={receiveQrCode} />
       <br />
       <br />
       <Link to="/box_info">
