@@ -42,6 +42,7 @@ router.get('/box_item', (req, res) => {
   console.log('in GET box_item search with:', req.query);
   // GET route code here
     const query = `SELECT * FROM box_item
+                   JOIN box ON box.id=box_item.box_id
                    WHERE box_item.item_id=${req.query.item_id};`
     pool.query(query)
     .then( result => {
