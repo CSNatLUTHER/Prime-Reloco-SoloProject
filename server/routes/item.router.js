@@ -8,9 +8,14 @@ const router = express.Router();
 router.get('/', (req, res) => {
   // GET route code here
     console.log(req.query);
-    const query = `SELECT * FROM item
-                   WHERE event_id=${req.query.event}
-                   ORDER BY "id" ASC`;
+    const query = `SELECT item.id, item.qr_id, item.name, item.put_in_box, item.value, 
+                   item.create_date, item.creator_user_id, item.last_update_date, 
+                   item.last_modified_user_id, item.event_id, item.destination_id, 
+                   item.image_path, destination.destination 
+                   FROM item
+                   JOIN destination ON item.destination_id=destination.id
+                   WHERE item.event_id=${req.query.event}
+                   ORDER BY item.id ASC`;
     pool.query(query)
     .then( result => {
     res.send(result.rows);

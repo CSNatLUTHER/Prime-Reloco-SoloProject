@@ -79,7 +79,7 @@ function boxContentsItem(props) {
       }
       <p>{JSON.stringify(props)}</p>
       <Link to='/item_info'>
-      <button onClick={selectItem}>Select Item</button>
+      <button onClick={selectItem}>Item Details</button>
       </Link>
     </div>
   );
