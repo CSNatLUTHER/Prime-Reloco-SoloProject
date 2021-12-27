@@ -118,4 +118,19 @@ router.put('/', (req, res) => {
       res.sendStatus(500)
   })})})
 
+router.delete('/remove_from_box', (req, res) => {
+  console.log('In DELETE "remove_from_box" req.body:',req.body);
+  const query = `DELETE FROM box_item
+                  WHERE item_id = '${req.body.item_id}' AND box_id=${req.body.box_id};`
+  pool.query(query)
+  .then(result => {
+      res.sendStatus(200);
+    }).catch(err => {
+      console.log(err);
+      res.sendStatus(500)
+  })});
+  
+
+
+
 module.exports = router;

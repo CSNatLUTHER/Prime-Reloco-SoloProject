@@ -28,9 +28,26 @@ console.log('In putItemInBox', item.payload );
     }    
   };
 
+function* removeFromBox(item) {
+  console.log('In removeFromBox', item.payload );
+    try {  
+      const putInBox = yield axios({
+                            method: 'DELETE',
+                            url: '/api/box/remove_from_box',
+                            data: item.payload});
+      console.log('back from put Item in Box with:', putInBox.data);
+      yield put({ type: 'UNSET_ACTIVE_ITEM_BOX'});
+      } 
+      catch {
+      console.log('addItem error');
+      }    
+      };
+
 function* boxItemsSaga() {
   yield takeEvery('FETCH_BOX_ITEMS', fetchBoxItems);
   yield takeEvery('PUT_ITEM_IN_BOX', putItemInBox);
+  yield takeEvery('REMOVE_FROM_BOX', removeFromBox);
+  
 }
 
 export default boxItemsSaga;

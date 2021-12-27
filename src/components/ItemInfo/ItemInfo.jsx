@@ -26,6 +26,11 @@ function itemInfo(props) {
     setItemEdit(!itemEdit)
   }
 
+  const removeFromBox = () => {
+    console.log('In removeFromBox');
+    dispatch({ type: 'REMOVE_FROM_BOX', payload: {item_id: store.active_item.id, box_id: store.active_item_box.id} });
+  }
+
   return (
     <div className='component'>
       <h2>{heading}</h2>
@@ -33,9 +38,18 @@ function itemInfo(props) {
       <ItemEditForm editItem={editItem}/>:
       <ItemDetails  editItem={editItem}/>
       }
-
-      <AddItemToBox />
-      <CreateNewBox />
+      {store.active_item_box.id >0?
+        <>
+        <p>Item is currently being stored in Box:'{store.active_item_box.name}'</p>
+        <button onClick={removeFromBox}>Remove Item From Box</button>
+        </>:
+        <>
+          <AddItemToBox />
+          <CreateNewBox />
+        </>
+      }
+      <br />
+      <br />
     </div>
   );
 }

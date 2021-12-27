@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import QRCodeScan from '../../SharedComponents/QRCodeScan/QRCodeScan';
 import { Link } from 'react-router-dom';
+import DelayLink from 'react-delay-link';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -43,9 +44,9 @@ function addItemToBox(props) {
       <p>QR Code ID:</p><input type="text" placeholder='enter code or use QR scan' value={box.boxQr} onChange={handleQrChange} /><QRCodeScan qr={receiveQrCode} />
       <br />
       <br />
-      <Link to="/box_info">
+      <DelayLink delay={500} to="/box_info">
         <button onClick={putItemInBox}>Add To Box</button>
-      </Link>
+      </DelayLink>
       <p>{JSON.stringify(box)}</p>
     </div>
   );
