@@ -3,7 +3,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import ItemDetails from '../ItemInfo/ItemDetails/ItemDetails';
 import AddItemToBox from '../NewItemConfirmation/AddItemToBox/AddItemToBox'
 import CreateNewBox from '../CreateNewBox/CreateNewBox';
-import ItemEditForm from '../ItemEdit/ItemEditForm/ItemEditForm'
+import ItemEditForm from '../ItemEdit/ItemEditForm/ItemEditForm';
 
 
 // Basic functional component structure for React with default state
