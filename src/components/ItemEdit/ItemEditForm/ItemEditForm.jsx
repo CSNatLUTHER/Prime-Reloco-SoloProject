@@ -203,9 +203,14 @@ useEffect( () => {
         {newItem.image_url === '/images/image.png'?
           <button onClick={ () => {setCapturePhoto(true)}}>Add Image</button>:
           <>
-            <img src={imageToDisplay} alt="" />
-            <br />
-            <button onClick={ () => {setCapturePhoto(true)}}>Edit Image</button>
+            {capturePhoto?
+              <></>:
+              <>
+                <img src={imageToDisplay} alt="" />
+                <br />
+                <button onClick={ () => {setCapturePhoto(true)}}>Edit Image</button>
+              </>
+            }
           </>
         }
         <br />
