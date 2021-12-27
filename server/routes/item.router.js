@@ -87,4 +87,24 @@ router.get('/box_item', (req, res) => {
       res.sendStatus(500)
   })})})
 
+router.put('/', (req, res) => {
+  console.log('updateItem PUT req.body:',req.body);
+  const query = `UPDATE "item"
+                SET "qr_id"=$1, "name"=$2, "put_in_box"=$3, "value"=$4, "last_modified_user_id"=$5, "destination_id"=$6, "image_path"=$7, "last_update_date"= CURRENT_DATE
+                WHERE item.id=${req.body.id}
+                RETURNING "id";`
+  pool.query(query, [req.body.qr, req.body.item_name, req.body.put_in_box, req.body.value, req.body.last_modified_user_id, req.body.destination, req.body.image_url ])
+  .then(result => {
+        console.log(result.rows[0].id);
+        const newItemId = result.rows[0].id
+        const getItemQuery = `SELECT * FROM item
+                              WHERE id=${newItemId}`
+          pool.query(getItemQuery).then(result => {
+            console.log('newItemQuery Result:', result.rows);
+            res.send(result.rows);
+    }).catch(err => {
+      console.log(err);
+      res.sendStatus(500)
+  })})})
+
 module.exports = router;

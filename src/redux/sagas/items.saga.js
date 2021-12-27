@@ -60,11 +60,29 @@ function* fetchAllItems(event) {
         }     
   };
 
+    // CREATES NEW ITEM FOR A MOVE EVENT
+    function* updateItem(data) {
+      // get all movies from the DB
+      console.log('In updateItem Saga', data);
+      try {  
+            const newItem = yield axios({
+                                  method: 'PUT',
+                                  url: '/api/item',
+                                  data: data.payload});
+            console.log('posting newItem, returned ID:', newItem.data);
+            yield put({ type: 'SET_ACTIVE_ITEM', payload: newItem.data[0]});
+            } 
+            catch {
+            console.log('addItem error');
+            }     
+      };
+
 function* itemsSaga() {
   yield takeEvery('FETCH_ITEMS', fetchAllItems);
   yield takeEvery('ADD_ITEM', addItem);
   yield takeEvery('SEARCH_FOR_ITEM', searchItems);
   yield takeEvery('FETCH_ITEM_BOX', fetchItemBox);
+  yield takeEvery('UPDATE_ITEM', updateItem);
 }
 
 export default itemsSaga;

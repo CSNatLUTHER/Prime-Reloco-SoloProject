@@ -23,8 +23,8 @@ function newItemForm(props) {
                                   qr: store.qr_code.id, 
                                   item_name: '', 
                                   put_in_box: false, 
-                                  value: '', 
-                                  destination: 6, 
+                                  value: 0, 
+                                  destination: 0, 
                                   creator_user_id:store.user.id,
                                   event:store.active_event.id,
                                   last_modified_user_id: store.user.id,
@@ -48,7 +48,7 @@ function newItemForm(props) {
   }
 
   const updateQrCode = (event) => {
-    setNewItem({ ...newItem, qr: event })
+    setNewItem({ ...newItem, qr: event.target.value })
   }
   
   const handleGoingInBoxChange = (event) => {
@@ -75,8 +75,27 @@ function newItemForm(props) {
     }
   }
 
+  const validateData = () => {
+    if (newItem.put_in_box === false){
+      if(newItem.qr != '' && newItem.item_name != '' && newItem.destination != 0){
+        addNewItem()
+      }
+      else{
+        alert('Must complete all required fields')
+      }
+    }
+    else{
+      if(newItem.item_name != '' && newItem.destination != 0){
+        addNewItem()
+      }
+      else{
+        alert('Must complete all required fields')
+      }
+    }
+  }
 
   const addNewItem =  () => {
+    
     const url = store.photo.url.split('?')[0]        
     postImageData();
     dispatch({ type: 'ADD_ITEM', payload: { 
@@ -95,7 +114,6 @@ function newItemForm(props) {
     dispatch({ type: 'UNSET_PHOTO_URL'})
     dispatch({ type: 'UNSET_PHOTO_CAPTURE'})
     
-    // if(store.qr_code.id != ''){
   }
 
   return (
@@ -115,7 +133,7 @@ function newItemForm(props) {
       {/* <input type="text" placeholder='enter or use QR scan' value={store.qr_code.id} onChange={handleQrChange} /> */}
       <QRCodeScan qr={handleQrChange}/>
       <p>Item Name:</p><input type="text" placeholder='ex. speaker' value={newItem.item_name} onChange={handleNameChange}  />
-      <p>Item Value: $</p><input type="number" placeholder='150' value={newItem.value} onChange={handleValueChange}  />
+      <p>Item Value: $</p><input type="number" placeholder='150' onChange={handleValueChange}  />
       {/* Create a conditional statement that renders destination only when "going in box" is 'false' */}
         {!goingInBox?
           <div>
@@ -144,7 +162,7 @@ function newItemForm(props) {
         <br />
         <br />
         <DelayLink delay={750} to="/new_item_confirmation">
-        <button onClick={addNewItem}>Create New Item</button>
+        <button onClick={validateData}>Create New Item</button>
         </DelayLink>
         <p>newItem: {JSON.stringify(newItem)}</p>
     </div>
