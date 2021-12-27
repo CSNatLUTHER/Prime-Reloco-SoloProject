@@ -11,12 +11,23 @@ function CreateMoveEvent(props) {
   // a default value of 'Functional Component'
   const store = useSelector((store) => store);
   const [heading, setHeading] = useState('Create Move Event');
+  const [newMove, setNewMove] = useState(false);
+  const [joinMove, setJoinMove] = useState(false);
+  
 
   return (
     <div className='component'>
       <h2>{heading}</h2>
-      <NewMoveEvent />
-      <JoinMoveEvent />
+      {newMove?
+        <NewMoveEvent />:
+        <button onClick={() => setNewMove(true)}>Create New Move Event</button>
+      }
+      <br />
+      <br />
+      { joinMove?
+        <JoinMoveEvent />:
+        <button onClick={() => setJoinMove(true)}>Join a Move Event</button>
+      }
     </div>
   );
 }

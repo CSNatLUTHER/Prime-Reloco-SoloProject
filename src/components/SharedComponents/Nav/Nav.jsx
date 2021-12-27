@@ -29,62 +29,66 @@ function Nav() {
             <Link className="navLink" to="/user">
               Home
             </Link>
-
+{/* 
             <Link className="navLink" to="/create_move_event">
             New Move Event
-            </Link>
+            </Link> */}
 
-            <Link className="navLink" to="/manage_event">
+            {/* <Link className="navLink" to="/manage_event">
             Manage Event
-            </Link>
+            </Link> */}
 
             <Link className="navLink" to="/move_event_home">
             Move Event Home
             </Link>
 
-            <Link className="navLink" to="/create_new_item">
+            <Link className="navLink" to="/move_event_home">
+            Search
+            </Link>
+
+            {/* <Link className="navLink" to="/create_new_item">
             Create New Item
-            </Link>
+            </Link> */}
 
-            <Link className="navLink" to="/new_item_confirmation">
+            {/* <Link className="navLink" to="/new_item_confirmation">
             New Item Confirm
-            </Link>
+            </Link> */}
 
-            <Link className="navLink" to="/item_search_results">
+            {/* <Link className="navLink" to="/item_search_results">
             Item Search Results
-            </Link>
-
+            </Link> */}
+{/* 
             <Link className="navLink" to="/item_info">
             Item Info
-            </Link>
-
+            </Link> */}
+{/* 
             <Link className="navLink" to="/item_edit">
             Item Edit
-            </Link>
+            </Link> */}
 
-            <Link className="navLink" to="/create_new_box">
+            {/* <Link className="navLink" to="/create_new_box">
             Create New Box
-            </Link>
+            </Link> */}
 
-            <Link className="navLink" to="/new_box_confirmation">
+            {/* <Link className="navLink" to="/new_box_confirmation">
             New Box Confirmation
-            </Link>
+            </Link> */}
 
-            <Link className="navLink" to="/box_search_results">
+            {/* <Link className="navLink" to="/box_search_results">
             Box Search Results
-            </Link>
+            </Link> */}
 
-            <Link className="navLink" to="/box_info">
+            {/* <Link className="navLink" to="/box_info">
             Box Info
-            </Link>
-
+            </Link> */}
+{/* 
             <Link className="navLink" to="/box_edit">
             Box Edit
-            </Link>
+            </Link> */}
 
-            <Link className="navLink" to="/box_contents">
+            {/* <Link className="navLink" to="/box_contents">
             Box Contents
-            </Link>
+            </Link> */}
 
             <LogOutButton className="navLink" />
           </>

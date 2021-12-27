@@ -21,6 +21,7 @@ function newItemConfirmation(props) {
   const store = useSelector((store) => store);
   const [heading, setHeading] = useState('Item Confirmation');
   const [itemEdit, setItemEdit] = useState(false);
+  const [addToBox, setAddToBox] = useState(false)
 
   const editItem = () => {
     setItemEdit(!itemEdit)
@@ -44,8 +45,10 @@ function newItemConfirmation(props) {
         <button onClick={removeFromBox}>Remove Item From Box</button>
         </>:
         <>
-          <AddItemToBox />
-          <CreateNewBox />
+          {addToBox?
+            <AddItemToBox />:
+            <button onClick={() => {setAddToBox(true)}}>Add Item To Box</button>
+          }
         </>
       }
 
