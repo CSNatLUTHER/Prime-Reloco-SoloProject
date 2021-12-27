@@ -142,7 +142,11 @@ useEffect( () => {
   }
 
   const updateItem =  () => {
-    const url = store.photo.url.split('?')[0]        
+    const url = newItem.image_url
+    if(store.photo.url != '/images/image.png' )
+      {
+        url = store.photo.url.split('?')[0] 
+      }
     postImageData();
     dispatch({ type: 'UPDATE_ITEM', payload: { 
                                       qr: newItem.qr, 
