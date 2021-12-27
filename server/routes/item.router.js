@@ -29,7 +29,12 @@ router.get('/', (req, res) => {
 router.get('/search', (req, res) => {
   console.log('in search with:', req.query);
   // GET route code here
-    const query = `SELECT * FROM item
+    const query = `SELECT item.id, item.qr_id, item.name, item.put_in_box, item.value, 
+                   item.create_date, item.creator_user_id, item.last_update_date, 
+                   item.last_modified_user_id, item.event_id, item.destination_id, 
+                   item.image_path, destination.destination 
+                   FROM item
+                   JOIN destination ON item.destination_id=destination.id
                    WHERE (item.name ILIKE '%${req.query.searchText}%' AND item.event_id=${req.query.event})
                    OR (item.qr_id ILIKE '%${req.query.searchText}%' AND item.event_id=${req.query.event})
                    ORDER BY "create_date" DESC;`
