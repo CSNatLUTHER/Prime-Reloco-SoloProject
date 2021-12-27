@@ -47,6 +47,19 @@ function newItemForm(props) {
     setNewItem({ ...newItem, qr: event })
   }
 
+  const updateQrCode = (event) => {
+    setNewItem({ ...newItem, qr: event })
+  }
+  
+  const handleGoingInBoxChange = (event) => {
+    if(newItem.put_in_box === false){
+      setNewItem({ ...newItem, put_in_box: true, destination: 6 })
+    }
+    else{
+      setNewItem({ ...newItem, put_in_box: false, destination: 0 })
+    }
+  }
+  
   const postImageData = () => {
     if(store.photo.url != '/images/image.png'){
       // console.log('store.photo.url was not default', store.photo.url);
@@ -90,11 +103,15 @@ function newItemForm(props) {
       <h2>{heading}</h2>
       <p>Item going in box: </p>
       <label className="switch">
-        <input type="checkbox" onClick={() => {setGoingInBox(!goingInBox), setNewItem({...newItem, put_in_box: !newItem.put_in_box })}}/>
+        <input type="checkbox" onClick={handleGoingInBoxChange}/>
         <span className="slider round"></span>
       </label>
       <br />
-      <p>QR Code ID:</p>
+      {newItem.put_in_box?
+        <p>QR Code ID:(optional)</p>:
+        <p>QR Code ID:(required)</p>
+      }
+      <input type="text" placeholder='ex. NEL10003IRE' value={newItem.qr} onChange={updateQrCode}  />
       {/* <input type="text" placeholder='enter or use QR scan' value={store.qr_code.id} onChange={handleQrChange} /> */}
       <QRCodeScan qr={handleQrChange}/>
       <p>Item Name:</p><input type="text" placeholder='ex. speaker' value={newItem.item_name} onChange={handleNameChange}  />
@@ -104,12 +121,14 @@ function newItemForm(props) {
           <div>
             <p>Destination:</p><select name="destination" value={newItem.destination} onChange={handleDestinationChange} >
                               {/* Consider replacing this with a map of the options for the destinations table */}
-                              <option value={6} disabled>CHOOSE DESTINATION</option>
+                              <option value={0} disabled>CHOOSE DESTINATION</option>
                               <option value={1}>MOVE</option>
                               <option value={2}>STORE</option>
                               <option value={3}>SELL</option>
                               <option value={4}>DONATE</option>
                               <option value={5}>PURGE</option>
+                              <option value={6}>GOING IN BOX</option>
+
                           </select>
           </div>:
           <div></div>
