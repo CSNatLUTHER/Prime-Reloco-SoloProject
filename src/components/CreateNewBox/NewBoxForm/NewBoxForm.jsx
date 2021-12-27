@@ -44,6 +44,10 @@ function newBoxForm(props) {
     setNewBox({ ...newBox, qr: event })
   }
 
+  const updateQrCode = (event) => {
+    setNewBox({ ...newBox, qr: event.target.value })
+  }
+
   const addNewBox =  () => {
     dispatch({ type: 'CREATE_BOX', payload: newBox })         
     dispatch({ type: 'UNSET_QR_CODE' })
@@ -54,6 +58,7 @@ function newBoxForm(props) {
   return (
     <div className='component'>
       <h2>{heading}</h2>
+      <p>QR Code:</p><input type="text" placeholder='ex. NEL10001IRE' value={newBox.qr} onChange={updateQrCode}  />
       <QRCodeScan qr={handleQrChange}/>
       <p>Box Name:</p><input type="text" placeholder='ex. Dishes' value={newBox.box_name} onChange={handleNameChange}  /> 
       <div>
