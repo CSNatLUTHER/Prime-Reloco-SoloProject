@@ -28,19 +28,23 @@ function ItemSearch(props) {
     if(searchItem.searchText != ''){
       dispatch({ type: 'SEARCH_FOR_ITEM', payload: searchItem });
     }
-    else if(store.qr_code.id != ''){
-      dispatch({ type: 'SEARCH_FOR_ITEM',
-                 payload: {
-                    searchText:store.qr_code.id,
-                    event:store.active_event.id,
-                    user: store.user.id}
-                });
-    }
+    // else if(store.qr_code.id != ''){
+    //   dispatch({ type: 'SEARCH_FOR_ITEM',
+    //              payload: {
+    //                 searchText:store.qr_code.id,
+    //                 event:store.active_event.id,
+    //                 user: store.user.id}
+    //             });
+    // }
     else{
       dispatch({ type: 'FETCH_ITEMS', payload: searchItem }); 
     }
     dispatch({ type: 'UNSET_QR_CODE' })
   } 
+
+  const handleQrChange = (event) => {
+    setSearchItem({ ...searchItem, searchText: event })
+  }
 
   return (
     <div className='component'>
@@ -50,8 +54,8 @@ function ItemSearch(props) {
       </Link>
       <br />
       <br />
-      <input type='text' placeholder='ex. item name or QR' onChange={handleSearchChange}></input>
-      <QRCodeScan />
+      <input type='text' placeholder='ex. item name or QR' value={searchItem.searchText} onChange={handleSearchChange}></input>
+      <QRCodeScan qr={handleQrChange} />
       <br />
       <Link to="/item_search_results">
       <button onClick={searchForItem}>Search</button>

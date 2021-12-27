@@ -27,20 +27,23 @@ function BoxSearch(props) {
     if(searchBox.searchText != ''){
       dispatch({ type: 'SEARCH_FOR_BOX', payload: searchBox });
     }
-    else if(store.qr_code.id != ''){
-      dispatch({ type: 'SEARCH_FOR_BOX',
-                 payload: {
-                    searchText:store.qr_code.id,
-                    event:store.active_event.id,
-                    user: store.user.id}
-                });
-    }
+    // else if(store.qr_code.id != ''){
+    //   dispatch({ type: 'SEARCH_FOR_BOX',
+    //              payload: {
+    //                 searchText:store.qr_code.id,
+    //                 event:store.active_event.id,
+    //                 user: store.user.id}
+    //             });
+    // }
     else{
       dispatch({ type: 'FETCH_BOXES', payload: searchBox }); 
     }
     dispatch({ type: 'UNSET_QR_CODE' })
   } 
 
+  const handleQrChange = (event) => {
+    setSearchbox({ ...searchBox, searchText: event })
+  }
 
   return (
     <div className='component'>
@@ -50,8 +53,8 @@ function BoxSearch(props) {
       </Link>
       <br />
       <br />
-      <input type='text' placeholder='ex. box name or QR' onChange={handleSearchChange} ></input>
-      <QRCodeScan />
+      <input type='text' placeholder='ex. box name or QR' value={searchBox.searchText} onChange={handleSearchChange} ></input>
+      <QRCodeScan qr={handleQrChange}/>
       <Link to="/box_search_results">
       <button onClick={searchForBox}>Search</button>
       </Link>
