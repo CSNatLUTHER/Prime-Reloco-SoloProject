@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
     console.log(req.query);
     const query = `SELECT * FROM item
                    WHERE event_id=${req.query.event}
-                    ORDER BY "id" ASC`;
+                   ORDER BY "id" ASC`;
     pool.query(query)
     .then( result => {
     res.send(result.rows);
@@ -28,6 +28,21 @@ router.get('/search', (req, res) => {
                    WHERE (item.name ILIKE '%${req.query.searchText}%' AND item.event_id=${req.query.event})
                    OR (item.qr_id ILIKE '%${req.query.searchText}%' AND item.event_id=${req.query.event})
                    ORDER BY "create_date" DESC;`
+    pool.query(query)
+    .then( result => {
+    res.send(result.rows);
+    })
+    .catch(err => {
+    console.log('ERROR: Get all item', err);
+    res.sendStatus(500)
+    })
+});
+
+router.get('/box_item', (req, res) => {
+  console.log('in GET box_item search with:', req.query);
+  // GET route code here
+    const query = `SELECT * FROM box_item
+                   WHERE box_item.item_id=${req.query.item_id};`
     pool.query(query)
     .then( result => {
     res.send(result.rows);

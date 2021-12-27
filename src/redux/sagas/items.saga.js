@@ -27,6 +27,22 @@ function* fetchAllItems(event) {
       }     
     };
 
+  // FUNCTION TO GET ITEM SEARCH RESULTS
+  function* fetchItemBox(item) {
+    console.log('In fetchItemBox', item.payload);
+    try {  
+      const search = yield axios.get('/api/item/box_item',{params: item.payload})
+      console.log('searched box_item, found:', search.data);
+      if(search.data.length === 0){
+        yield put({ type: 'SET_ITEM_BOX', payload: {}})
+      }else {
+        yield put({ type: 'SET_ITEM_BOX', payload: search.data[0]})}
+    } 
+    catch (err) {
+    console.log('fetchItemBox error', err);
+    }     
+    };
+
   // CREATES NEW ITEM FOR A MOVE EVENT
   function* addItem(data) {
   // get all movies from the DB
@@ -48,6 +64,7 @@ function* itemsSaga() {
   yield takeEvery('FETCH_ITEMS', fetchAllItems);
   yield takeEvery('ADD_ITEM', addItem);
   yield takeEvery('SEARCH_FOR_ITEM', searchItems);
+  yield takeEvery('FETCH_ITEM_BOX', fetchItemBox);
 }
 
 export default itemsSaga;

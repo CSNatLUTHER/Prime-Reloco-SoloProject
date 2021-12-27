@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import '../BoxContentsItem/BoxContentsItem.css'
+import { Link } from 'react-router-dom';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -77,7 +78,9 @@ function boxContentsItem(props) {
       <img className='itemImage' src={imageToDisplay}/>
       }
       <p>{JSON.stringify(props)}</p>
+      <Link to='/item_info'>
       <button onClick={selectItem}>Select Item</button>
+      </Link>
     </div>
   );
 }
