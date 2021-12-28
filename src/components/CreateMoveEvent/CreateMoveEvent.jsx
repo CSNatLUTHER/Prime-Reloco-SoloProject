@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import {useSelector} from 'react-redux';
 import NewMoveEvent from '../CreateMoveEvent/NewMoveEvent/NewMoveEvent';
 import JoinMoveEvent from '../CreateMoveEvent/JoinMoveEvent/JoinMoveEvent';
+import Button from '@mui/material/Button';
+import './CreateMoveEvent.css';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -13,20 +17,17 @@ function CreateMoveEvent(props) {
   const [heading, setHeading] = useState('Create Move Event');
   const [newMove, setNewMove] = useState(false);
   const [joinMove, setJoinMove] = useState(false);
+
   
 
   return (
-    <div className='component'>
-      <h2>{heading}</h2>
+    <div>
       {newMove?
-        <NewMoveEvent />:
-        <button onClick={() => setNewMove(true)}>Create New Move Event</button>
-      }
-      <br />
-      <br />
-      { joinMove?
-        <JoinMoveEvent />:
-        <button onClick={() => setJoinMove(true)}>Join a Move Event</button>
+        <>
+          <NewMoveEvent />
+          <JoinMoveEvent />
+        </>:
+        <Button color="secondary" variant="contained" className='newMoveButton' endIcon={<ArrowForwardIosIcon />} onClick={() => setNewMove(true)}>Create or Join New Event</Button>
       }
     </div>
   );

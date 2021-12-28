@@ -3,6 +3,7 @@ import LogOutButton from '../../SharedComponents/LogOutButton/LogOutButton';
 import {useSelector, useDispatch } from 'react-redux';
 import MoveEventList from '../MoveEventList/MoveEventList';
 import CreateMoveEvent from '../../CreateMoveEvent/CreateMoveEvent'
+import './UserPage.css'
 
 function UserPage() {
   // define dispatch
@@ -15,10 +16,8 @@ function UserPage() {
   const user = useSelector((store) => store.user);
   return (
     <div className="container">
-      <img className='brand' src="/images/brand.png" alt="" />
-      <h2>Welcome, {user.first_name} {user.last_name}!</h2>
-      <p>Your ID is: {user.id}</p>
-      <LogOutButton className="btn" />
+      <img className='homeBrand' src="/images/brand.png" alt="" />
+      <h4>Welcome, {user.first_name} {user.last_name}!</h4>
       <CreateMoveEvent />
       <MoveEventList />
     </div>

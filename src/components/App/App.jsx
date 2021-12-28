@@ -7,8 +7,9 @@ import {
 } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-import Nav from '../SharedComponents/Nav/Nav';
+
 import Footer from '../SharedComponents/Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
@@ -48,18 +49,31 @@ function App() {
 
   const user = useSelector(store => store.user);
 
-  const [menuState, setMenuState]= useState(false)
-
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
   }, [dispatch]);
 
-  const showMenu = () => {
-    setMenuState(!menuState)
-  }
+
+  const theme = createTheme({
+    palette: {
+      primary: {
+        light: '#6573c3',
+        main: '#3f51b5',
+        dark: '#2c387e',
+        contrastText: '#fff',
+      },
+      secondary: {
+        light: '#ffcf33',
+        main: '#ffc400',
+        dark: '#b28900',
+        contrastText: '#696969',
+      },
+    },
+  });
 
   return (
     <div>
+      <ThemeProvider theme={theme}>
       <Router>
         <div className='base'>
           <Header />
@@ -302,6 +316,7 @@ function App() {
           <Footer />
         </div>
       </Router>
+    </ThemeProvider>
     </div>
   );
 }
