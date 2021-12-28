@@ -7,6 +7,7 @@ function LoginPage() {
 
   return (
     <div>
+      <img className='brand'src="/images/brand.png" alt="" />
       <LoginForm />
 
       <center>

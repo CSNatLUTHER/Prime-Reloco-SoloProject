@@ -15,6 +15,7 @@ function UserPage() {
   const user = useSelector((store) => store.user);
   return (
     <div className="container">
+      <img className='brand' src="/images/brand.png" alt="" />
       <h2>Welcome, {user.first_name} {user.last_name}!</h2>
       <p>Your ID is: {user.id}</p>
       <LogOutButton className="btn" />

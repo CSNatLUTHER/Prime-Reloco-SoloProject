@@ -17,6 +17,7 @@
     "pg": "^8.5.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
+    "react-burger-menu": "^3.0.6",
     "react-copy-to-clipboard": "^5.0.4",
     "react-delay-link": "^1.1.6",
     "react-dom": "^17.0.1",
@@ -50,6 +51,8 @@
   ],
   "heroku-run-build-script": true,
   "devServer": {
-    "allowedHosts": [".ngrok.io"]
-}
+    "allowedHosts": [
+      ".ngrok.io"
+    ]
+  }
 }

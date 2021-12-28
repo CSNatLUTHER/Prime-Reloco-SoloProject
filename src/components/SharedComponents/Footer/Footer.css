@@ -3,3 +3,12 @@ footer {
   padding: 20px;
   text-align: center;
 }
+.footerBrand{
+  height: 25px;
+}
+
+.footerName{
+  font-size: 25pt;
+  font-style: italic;
+  font-family: fantasy;
+}

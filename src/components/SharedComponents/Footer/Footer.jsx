@@ -7,7 +7,10 @@ import './Footer.css';
 // or even care what the redux state is, so it doesn't need 'connect()'
 
 function Footer() {
-  return <footer>&copy; Prime Digital Academy</footer>;
+  return <footer>
+              <img className='footerBrand' src="/images/logo.png" alt="" />
+              <span className='footerName'>RELOCO</span>
+  </footer>;
 }
 
 export default Footer;
