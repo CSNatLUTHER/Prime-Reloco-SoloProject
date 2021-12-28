@@ -14,7 +14,7 @@ function newBoxForm(props) {
   const store = useSelector((store) => store);
   const [heading, setHeading] = useState('New Box Form');
   const [newBox, setNewBox] = useState({ 
-                                    qr: store.qr_code.id, 
+                                    qr: '', 
                                     box_name: '', 
                                     box_size: '', 
                                     box_weight: '', 

@@ -20,7 +20,7 @@ function newItemForm(props) {
   const [goingInBox, setGoingInBox] = useState(false);
   const [capturePhoto, setCapturePhoto] = useState(false);
   const [newItem, setNewItem] = useState({ 
-                                  qr: store.qr_code.id, 
+                                  qr: '', 
                                   item_name: '', 
                                   put_in_box: false, 
                                   value: 0, 

@@ -29,13 +29,13 @@ function addItemToBox(props) {
   }
 
   const putItemInBox = () => {
-    if(store.qr_code.id != ''){
+    // if(store.qr_code.id != ''){
       dispatch({ type: 'PUT_ITEM_IN_BOX', payload: box });
-    }
-    else{
-      dispatch({ type: 'PUT_ITEM_IN_BOX', payload: box });
-    }
-    //updates the next plant to have a new id
+      dispatch({ type: 'UPDATE_ITEM_DESTINATION', payload: box });
+    // }
+    // else{
+    //   dispatch({ type: 'PUT_ITEM_IN_BOX', payload: box });
+    // }
   } 
 
   return (

@@ -77,8 +77,13 @@ router.get('/box_item', (req, res) => {
   .then(result => {
         console.log(result.rows[0].id);
         const newItemId = result.rows[0].id
-        const getItemQuery = `SELECT * FROM item
-                              WHERE id=${newItemId}`
+        const getItemQuery = `SELECT item.id, item.qr_id, item.name, item.put_in_box, item.value, 
+                              item.create_date, item.creator_user_id, item.last_update_date, 
+                              item.last_modified_user_id, item.event_id, item.destination_id, 
+                              item.image_path, destination.destination 
+                              FROM item
+                              JOIN destination ON item.destination_id=destination.id
+                              WHERE item.id=${newItemId}`
           pool.query(getItemQuery).then(result => {
             console.log('newItemQuery Result:', result.rows);
             res.send(result.rows);
@@ -97,8 +102,13 @@ router.put('/', (req, res) => {
   .then(result => {
         console.log(result.rows[0].id);
         const newItemId = result.rows[0].id
-        const getItemQuery = `SELECT * FROM item
-                              WHERE id=${newItemId}`
+        const getItemQuery = `SELECT item.id, item.qr_id, item.name, item.put_in_box, item.value, 
+                              item.create_date, item.creator_user_id, item.last_update_date, 
+                              item.last_modified_user_id, item.event_id, item.destination_id, 
+                              item.image_path, destination.destination 
+                              FROM item
+                              JOIN destination ON item.destination_id=destination.id
+                              WHERE item.id=${newItemId}`
           pool.query(getItemQuery).then(result => {
             console.log('newItemQuery Result:', result.rows);
             res.send(result.rows);
@@ -106,5 +116,32 @@ router.put('/', (req, res) => {
       console.log(err);
       res.sendStatus(500)
   })})})
+
+  router.put('/item_destination', (req, res) => {
+    console.log('updateItemDestination PUT req.body:',req.body);
+    const query = `UPDATE "item"
+                  SET "destination_id"=7
+                  WHERE id=${req.body.item_id}
+                  RETURNING "id";`
+    pool.query(query)
+    .then(result => {
+          console.log(result.rows[0].id);
+          const newItemId = result.rows[0].id
+          const getItemQuery = `SELECT item.id, item.qr_id, item.name, item.put_in_box, item.value, 
+                                item.create_date, item.creator_user_id, item.last_update_date, 
+                                item.last_modified_user_id, item.event_id, item.destination_id, 
+                                item.image_path, destination.destination 
+                                FROM item
+                                JOIN destination ON item.destination_id=destination.id
+                                WHERE item.id=${newItemId}`
+            pool.query(getItemQuery).then(result => {
+              console.log('newItemQuery Result:', result.rows);
+              res.send(result.rows);
+      }).catch(err => {
+        console.log(err);
+        res.sendStatus(500)
+    })})})
+
+  
 
 module.exports = router;
