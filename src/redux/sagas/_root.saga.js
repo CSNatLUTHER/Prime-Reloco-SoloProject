@@ -8,6 +8,7 @@ import eventsSaga from './events.saga';
 import eventUsersSaga from './event_users.saga';
 import boxItemsSaga from './box_items.saga';
 import photoSaga from './photo.saga';
+import contactUsSaga from './contact_us.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -27,5 +28,6 @@ export default function* rootSaga() {
     eventUsersSaga(),
     boxItemsSaga(),
     photoSaga(),
+    contactUsSaga(),
   ]);
 }

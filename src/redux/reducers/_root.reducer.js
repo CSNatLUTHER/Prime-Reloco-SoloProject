@@ -12,8 +12,9 @@ import search_results from './search_results.reducer';
 import active_box_items from './active_box_items.reducer';
 import active_event_users from './active_event_users.reducer';
 import photo_capture from './photo_capture.reducer';
-import photo from './photo.reducer'
-import active_item_box from './active_item_box.reducer'
+import photo from './photo.reducer';
+import active_item_box from './active_item_box.reducer';
+import messages from './messages.reducer';
 
 
 // rootReducer is the primary reducer for our entire project
@@ -37,7 +38,8 @@ const rootReducer = combineReducers({
   active_event_users, // will have list of all user details associated with an event
   photo_capture, // will have data of the last captured image
   photo, // will hold the url of the AWS S3 image
-  active_item_box // will hold box data of active item when needed
+  active_item_box, // will hold box data of active item when needed
+  messages // will hold all messages from contact us page
 
 });
 

@@ -97,13 +97,17 @@ function Nav() {
         About
         </Link>
 
+        <Link className="navLink" to="/contact">
+        Contact
+        </Link>
+{/* 
         <Link className="navLink" to="/contact_us">
         Contact Us
         </Link>
 
         <Link className="navLink" to="/contact_thank_you">
         Contact Thank You
-        </Link>
+        </Link> */}
       </div>
     </div>
   );

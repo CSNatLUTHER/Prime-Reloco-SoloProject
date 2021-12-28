@@ -33,6 +33,7 @@ import BoxSearchResults from '../BoxSearchResults/BoxSearchResults';
 import BoxInfo from '../BoxInfo/BoxInfo';
 import BoxContents from '../BoxContents/BoxContents';
 import BoxEdit from '../BoxEdit/BoxEdit';
+import Contact from '../Contact/Contact';
 import ContactUs from '../Contact/ContactUs/ContactUs';
 import ContactThankYou from '../Contact/ContactThankYou/ContactThankYou';
 
@@ -250,6 +251,14 @@ function App() {
             >
             
             <ContactUs/>
+          </Route>
+
+          <Route
+            exact
+            path="/contact"
+            >
+            
+            <Contact/>
           </Route>
 
           {/* CONTACT THANK YOU ROUTE */}
