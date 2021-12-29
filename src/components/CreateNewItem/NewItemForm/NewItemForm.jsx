@@ -6,6 +6,7 @@ import { user } from 'pg/lib/defaults';
 import '../NewItemForm/NewItemForm.css'
 import PhotoCapture from '../../SharedComponents/PhotoCapture/PhotoCapture';
 import DelayLink from 'react-delay-link';
+import { useHistory } from "react-router-dom";
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -74,7 +75,7 @@ function newItemForm(props) {
       })
     }
   }
-
+  const history = useHistory()
   const validateData = () => {
     if (newItem.put_in_box === false){
       if(newItem.qr != '' && newItem.item_name != '' && newItem.destination != 0){
@@ -87,6 +88,7 @@ function newItemForm(props) {
     else{
       if(newItem.item_name != '' && newItem.destination != 0){
         addNewItem()
+
       }
       else{
         alert('Must complete all required fields')
@@ -94,7 +96,7 @@ function newItemForm(props) {
     }
   }
 
-  const addNewItem =  () => {
+  const addNewItem = () => {
     
     const url = store.photo.url.split('?')[0]        
     postImageData();
@@ -113,6 +115,7 @@ function newItemForm(props) {
     dispatch({ type: 'UNSET_QR_CODE' })
     dispatch({ type: 'UNSET_PHOTO_URL'})
     dispatch({ type: 'UNSET_PHOTO_CAPTURE'})
+    const myTimeout = setTimeout(history.push('/new_item_confirmation'), 1000)
     
   }
 
@@ -161,9 +164,9 @@ function newItemForm(props) {
         }
         <br />
         <br />
-        <DelayLink delay={750} to="/new_item_confirmation">
+        {/* <DelayLink delay={750} to="/new_item_confirmation"> */}
         <button onClick={validateData}>Create New Item</button>
-        </DelayLink>
+        {/* </DelayLink> */}
         <p>newItem: {JSON.stringify(newItem)}</p>
     </div>
   );

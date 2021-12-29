@@ -6,6 +6,7 @@ import './ItemDetails.css'
 // value setup. When making a new component be sure to replace the
 // component name TemplateFunction with the name for the new component.
 function itemDetails(props) {
+  console.log('IN ITEM DETAILS>>>>>>>>>>>>>>>>>>>>>>>>>');
   // Using hooks we're creating local state for a "heading" variable with
   // a default value of 'Functional Component'
   const dispatch = useDispatch()
