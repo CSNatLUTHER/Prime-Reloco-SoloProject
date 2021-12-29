@@ -3,6 +3,7 @@ import {useSelector} from 'react-redux';
 import QRCodeScan from '../../SharedComponents/QRCodeScan/QRCodeScan';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { useHistory } from "react-router-dom";
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -48,9 +49,22 @@ function newBoxForm(props) {
     setNewBox({ ...newBox, qr: event.target.value })
   }
 
+
+  const validateData = () => {
+    if(newBox.qr != '' && newBox.box_name != '' && newBox.destination != 0 && newBox.box_size != '' && newBox.box_weight != '' ){
+      addNewBox()
+    }
+    else{
+      alert('Must complete all required fields')
+    }
+  }
+
+
+  const history = useHistory()
   const addNewBox =  () => {
     dispatch({ type: 'CREATE_BOX', payload: newBox })         
     dispatch({ type: 'UNSET_QR_CODE' })
+    history.push('/new_box_confirmation')
     
     // if(store.qr_code.id != ''){
   }  
@@ -96,9 +110,9 @@ function newBoxForm(props) {
       </div>
         <br />
         <br />
-        <Link to="/new_box_confirmation">
-        <button onClick={addNewBox}>Create New Item</button>
-        </Link>
+        {/* <Link to="/new_box_confirmation"> */}
+        <button onClick={validateData}>Create New Item</button>
+        {/* </Link> */}
         <p>newBox: {JSON.stringify(newBox)}</p>
 
     </div>
