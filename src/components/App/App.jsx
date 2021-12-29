@@ -37,8 +37,7 @@ import BoxEdit from '../BoxEdit/BoxEdit';
 import Contact from '../Contact/Contact';
 import ContactUs from '../Contact/ContactUs/ContactUs';
 import ContactThankYou from '../Contact/ContactThankYou/ContactThankYou';
-import NewNav from '../SharedComponents/Nav/NewNav';
-import Header from '../SharedComponents/Header/Header'
+import Menu from '../SharedComponents/Nav/Menu'
 
 
 
@@ -76,8 +75,7 @@ function App() {
       <ThemeProvider theme={theme}>
       <Router>
         <div className='base'>
-          <Header />
-          {/* <NewNav /> */}
+          <Menu />
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/login" />
