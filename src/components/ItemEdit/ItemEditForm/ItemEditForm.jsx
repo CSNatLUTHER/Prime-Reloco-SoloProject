@@ -3,6 +3,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import QRCodeScan from '../../SharedComponents/QRCodeScan/QRCodeScan';
 import PhotoCapture from '../../SharedComponents/PhotoCapture/PhotoCapture';
 import DelayLink from 'react-delay-link';
+import { useHistory } from "react-router-dom";
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -141,14 +142,16 @@ useEffect( () => {
     }
   }
 
-  const updateItem =  () => {
-    const url = newItem.image_url
+  const history = useHistory()
+
+  const updateItem = async () => {
+    let url = newItem.image_url
     if(store.photo.url != '/images/image.png' )
       {
         url = store.photo.url.split('?')[0] 
       }
-    postImageData();
-    dispatch({ type: 'UPDATE_ITEM', payload: { 
+    await postImageData();
+    await dispatch({ type: 'UPDATE_ITEM', payload: { 
                                       qr: newItem.qr, 
                                       item_name: newItem.item_name, 
                                       put_in_box: newItem.put_in_box, 
@@ -164,7 +167,11 @@ useEffect( () => {
     dispatch({ type: 'UNSET_QR_CODE' })
     dispatch({ type: 'UNSET_PHOTO_URL'})
     dispatch({ type: 'UNSET_PHOTO_CAPTURE'})
-    
+    setTimeout(moveToPage, 1000)
+  }
+
+  const moveToPage = () => {
+    history.push('/new_item_confirmation')
   }
 
   return (
@@ -224,9 +231,9 @@ useEffect( () => {
           <></>
         }
         <br />
-        <DelayLink delay={750} to="/new_item_confirmation">
+        {/* <DelayLink delay={750} to="/new_item_confirmation"> */}
         <button onClick={validateData}>Save Item</button>
-        </DelayLink>
+        {/* </DelayLink> */}
         <p>Local Item Info: {JSON.stringify(newItem)}</p>
         <p>Store Active_Item Info: {JSON.stringify(store.active_item)}</p>
       </div>

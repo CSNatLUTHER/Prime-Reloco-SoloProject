@@ -96,11 +96,11 @@ function newItemForm(props) {
     }
   }
 
-  const addNewItem = () => {
+  const addNewItem = async () => {
     
     const url = store.photo.url.split('?')[0]        
-    postImageData();
-    dispatch({ type: 'ADD_ITEM', payload: { 
+    await postImageData();
+    await dispatch({ type: 'ADD_ITEM', payload: { 
                                       qr: newItem.qr, 
                                       item_name: newItem.item_name, 
                                       put_in_box: newItem.put_in_box, 
@@ -115,8 +115,12 @@ function newItemForm(props) {
     dispatch({ type: 'UNSET_QR_CODE' })
     dispatch({ type: 'UNSET_PHOTO_URL'})
     dispatch({ type: 'UNSET_PHOTO_CAPTURE'})
-    const myTimeout = setTimeout(history.push('/new_item_confirmation'), 1000)
+    const myTimeout = setTimeout(moveToPage, 1000)
     
+  }
+
+  const moveToPage = () => {
+    history.push('/new_item_confirmation')
   }
 
   return (
