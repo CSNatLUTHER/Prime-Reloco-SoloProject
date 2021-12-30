@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import QrReader from 'react-qr-reader';
+import './QRCodeScan.css'
 
 
 // Basic functional component structure for React with default state
@@ -33,31 +34,14 @@ function QRCodeScan(props) {
     setScanning(false)
   }
 
-  const scanClick = () => {
-    setCodeFound({id:''})
-    setScanning(true)
-  }
-
-  const cancelScan = () => {
-    setScanning(false)
-  }
-
   return (
-    <div>
-        <button onClick={scanClick}>Scan QR Code</button>
-        {scanning==true && codeFound.id ===''?
-        <>
+    <div className='qrReader'>
         <QrReader
           delay={300}
           onError={handleError}
           onScan={handleScan}
           style={{ width: '100%' }}
           />
-          <button onClick={cancelScan}>Cancel</button></>:
-          <></>}
-        {/* <QRClass /> */}
-        <p>Code Found: {codeFound.id}</p>
-
     </div>
   );
 }

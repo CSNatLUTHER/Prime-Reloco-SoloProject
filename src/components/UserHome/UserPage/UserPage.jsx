@@ -11,6 +11,7 @@ function UserPage() {
   // kick-off many of the FETCH actions needed to set initial reducers
   useEffect( () => {
     dispatch({ type: 'FETCH_EVENTS', payload: {userid: user.id} });
+    window.scrollTo(0, 0)
   }, []);
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);

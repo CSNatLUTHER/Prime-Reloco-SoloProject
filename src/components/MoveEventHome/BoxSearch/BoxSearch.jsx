@@ -2,6 +2,13 @@ import React, { useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import QRCodeScan from '../../SharedComponents/QRCodeScan/QRCodeScan';
 import { Link } from 'react-router-dom';
+import './BoxSearch.css'
+import Button from '@mui/material/Button';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { useHistory } from 'react-router-dom';
+import TextField from '@mui/material/TextField';
+import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
+import IconButton from '@mui/material/IconButton';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -11,7 +18,8 @@ function BoxSearch(props) {
   // Using hooks we're creating local state for a "heading" variable with
   // a default value of 'Functional Component'
   const store = useSelector((store) => store);
-  const [heading, setHeading] = useState('Box Search');
+  const [heading, setHeading] = useState('BOXES');
+  const [scanning, setScanning] = useState(false);
   const [searchBox, setSearchbox] = useState({
                                           searchText:'',
                                           event:store.active_event.id,
@@ -39,26 +47,57 @@ function BoxSearch(props) {
       dispatch({ type: 'FETCH_BOXES', payload: searchBox }); 
     }
     dispatch({ type: 'UNSET_QR_CODE' })
+    history.push('/box_search_results')
   } 
 
   const handleQrChange = (event) => {
     setSearchbox({ ...searchBox, searchText: event })
+    setScanning(false)
   }
+
+  const history = useHistory()
+
+  const handleCreate = () => {
+    history.push('/create_new_box')
+    }
+  
+    const scanClick = () => {
+      setScanning(!scanning)
+    }
+
 
   return (
     <div className='component'>
-      <h2>{heading}</h2>
-      <Link to="/create_new_box">
-      <button>Create New Box</button>
-      </Link>
+      <h2 className='boxSearchHeader'>{heading}</h2>
+      <Button color="secondary" variant="contained" className='createNewboxButton' endIcon={<ArrowForwardIosIcon />} onClick={() => {setTimeout(handleCreate, 250)}}>CREATE NEW BOX</Button>
       <br />
+      <h4 className='boxSearchSubHeader'>BOX SEARCH</h4>
+      <div className='searchContainer'>
+        <div>
+          <TextField
+              id="outlined-search"
+              label="Search field"
+              type="search"
+              value={searchBox.searchText}
+              onChange={handleSearchChange}
+              className='boxSearchTextField'
+            />
+        </div>
+        <div>
+          <IconButton onClick={scanClick} size="large" color="primary">
+            <QrCodeScannerIcon className='qrIconButton'/>
+          </IconButton>
+        </div>
+      </div>
+      {scanning==true?
+      <QRCodeScan qr={handleQrChange} />:
+      <></>}
       <br />
-      <input type='text' placeholder='ex. box name or QR' value={searchBox.searchText} onChange={handleSearchChange} ></input>
-      <QRCodeScan qr={handleQrChange}/>
-      <Link to="/box_search_results">
+      <Button color="secondary" variant="contained" className='searchItemButton' endIcon={<ArrowForwardIosIcon />} onClick={() => {setTimeout(searchForBox, 250)}}>SEARCH</Button>
+      {/* <Link to="/box_search_results">
       <button onClick={searchForBox}>Search</button>
       </Link>
-      <p>{JSON.stringify(searchBox)}</p>
+      <p>{JSON.stringify(searchBox)}</p> */}
     </div>
   );
 }

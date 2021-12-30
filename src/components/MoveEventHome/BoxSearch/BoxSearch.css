@@ -1,0 +1,31 @@
+.boxSearchHeader{
+    background-color: #3f51b5ab;
+    color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.createNewboxButton{
+    width: 80%;
+    height: 50px;
+}
+
+.boxSearchSubHeader{
+    background-color: #3f51b579;
+    color: rgb(66, 66, 66);
+    padding-top: 1px;
+    padding-bottom: 1px;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    justify-content: center;
+}
+
+.boxSearchTextField{
+    width: 138%;
+}

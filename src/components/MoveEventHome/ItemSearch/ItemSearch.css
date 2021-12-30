@@ -1,0 +1,45 @@
+.itemSearchHeader{
+    background-color: #3f51b5ab;
+    color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    justify-content: center;
+}
+
+.createNewItemButton{
+    width: 80%;
+    height: 50px;
+}
+
+.itemSearchSubHeader{
+    background-color: #3f51b579;
+    color: rgb(66, 66, 66);
+    padding-top: 1px;
+    padding-bottom: 1px;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    justify-content: center;
+}
+
+.searchItemButton{
+    width:  80%;
+    height: 50px;
+}
+.itemSearchTextField{
+    width: 138%;
+}
+.searchContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    
+}
+
+.qrIconButton{
+    transform: scale(2.3);
+}
