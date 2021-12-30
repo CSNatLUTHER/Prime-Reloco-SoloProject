@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Button from '@mui/material/Button';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 function RegisterForm() {
   const [firstName, setFirstName] = useState('');
@@ -78,7 +80,8 @@ function RegisterForm() {
         </label>
       </div>
       <div>
-        <input className="btn" type="submit" name="submit" value="Register" />
+        {/* <input className="btn" type="submit" name="submit" value="Register" /> */}
+        <Button color="secondary" variant="contained" className='LogInButton' endIcon={<ArrowForwardIosIcon />} onClick={registerUser}>REGISTER</Button>
       </div>
     </form>
   );

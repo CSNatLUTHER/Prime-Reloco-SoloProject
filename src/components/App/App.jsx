@@ -71,11 +71,13 @@ function App() {
   });
 
   return (
-    <div>
+    <div className='appDiv'>
       <ThemeProvider theme={theme}>
       <Router>
         <div className='base'>
+          <div className='menuDiv'>
           <Menu />
+          </div>
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/login" />

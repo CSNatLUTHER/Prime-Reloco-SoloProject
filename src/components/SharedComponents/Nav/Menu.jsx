@@ -41,7 +41,7 @@ class HeaderClass extends React.Component {
 
   render () {
     return (
-      <div>
+      <div className='menuDiv'>
         <Menu 
           right
           isOpen={this.state.menuOpen}

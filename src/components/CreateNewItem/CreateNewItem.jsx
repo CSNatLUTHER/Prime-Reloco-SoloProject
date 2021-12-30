@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import {useSelector} from 'react-redux';
 import NewItemForm from '../CreateNewItem/NewItemForm/NewItemForm';
+import './CreateNewItem.css';
+
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -9,11 +11,12 @@ function createNewItem(props) {
   // Using hooks we're creating local state for a "heading" variable with
   // a default value of 'Functional Component'
   const store = useSelector((store) => store);
-  const [heading, setHeading] = useState('Create New Item');
+  const [heading, setHeading] = useState('CREATE NEW ITEM');
 
   return (
     <div className='component'>
-      <h2>{heading}</h2>
+      <img className='createNewItemLogo' src="/images/logo.png" alt="" />
+      <h2 className='createNewItemHeader'>{heading}</h2>
       <NewItemForm />
     </div>
   );

@@ -7,6 +7,15 @@ import '../NewItemForm/NewItemForm.css'
 import PhotoCapture from '../../SharedComponents/PhotoCapture/PhotoCapture';
 import DelayLink from 'react-delay-link';
 import { useHistory } from "react-router-dom";
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Switch from '@mui/material/Switch';
+import Button from '@mui/material/Button';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import TextField from '@mui/material/TextField';
+import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
+import IconButton from '@mui/material/IconButton';
+import MenuItem from '@mui/material/MenuItem';
+import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -20,6 +29,7 @@ function newItemForm(props) {
   const [heading, setHeading] = useState('New Item Form');
   const [goingInBox, setGoingInBox] = useState(false);
   const [capturePhoto, setCapturePhoto] = useState(false);
+  const [scanning, setScanning] = useState(false);
   const [newItem, setNewItem] = useState({ 
                                   qr: '', 
                                   item_name: '', 
@@ -46,6 +56,7 @@ function newItemForm(props) {
 
   const handleQrChange = (event) => {
     setNewItem({ ...newItem, qr: event })
+    setScanning(false)
   }
 
   const updateQrCode = (event) => {
@@ -115,7 +126,7 @@ function newItemForm(props) {
     dispatch({ type: 'UNSET_QR_CODE' })
     dispatch({ type: 'UNSET_PHOTO_URL'})
     dispatch({ type: 'UNSET_PHOTO_CAPTURE'})
-    const myTimeout = setTimeout(moveToPage, 1000)
+    setTimeout(moveToPage, 1000)
     
   }
 
@@ -123,30 +134,130 @@ function newItemForm(props) {
     history.push('/new_item_confirmation')
   }
 
+  const scanClick = () => {
+    setScanning(!scanning)
+  }
+
+  const destination = [
+    {
+      value: 0,
+      label: 'CHOOSE DESTINATION',
+    },
+    {
+      value: 1,
+      label: 'MOVE',
+    },
+    {
+      value: 2,
+      label: 'STORE',
+    },
+    {
+      value: 3,
+      label: 'SELL',
+    },
+    {
+      value: 4,
+      label: 'DONATE',
+    },
+    {
+      value: 5,
+      label: 'PURGE',
+    },
+    {
+      value: 6,
+      label: 'GOING IN BOX',
+    },
+  ];
+  
+
   return (
     <div className='component'>
-      <h2>{heading}</h2>
-      <p>Item going in box: </p>
-      <label className="switch">
-        <input type="checkbox" onClick={handleGoingInBoxChange}/>
-        <span className="slider round"></span>
-      </label>
+      {/* <h2>{heading}</h2> */}
+      {/* <form onSubmit={validateData}> */}
+      <FormControlLabel
+        sx={{
+          display: 'block',
+        }}
+        control={
+          <Switch
+            // checked={}
+            onChange={handleGoingInBoxChange}
+            name="loading"
+            color="secondary"
+          />
+        }
+        label="Going In Box"
+      />
       <br />
-      {newItem.put_in_box?
-        <p>QR Code ID:(optional)</p>:
-        <p>QR Code ID:(required)</p>
-      }
-      <input type="text" placeholder='ex. NEL10003IRE' value={newItem.qr} onChange={updateQrCode}  />
-      {/* <input type="text" placeholder='enter or use QR scan' value={store.qr_code.id} onChange={handleQrChange} /> */}
-      <QRCodeScan qr={handleQrChange}/>
-      <p>Item Name:</p><input type="text" placeholder='ex. speaker' value={newItem.item_name} onChange={handleNameChange}  />
-      <p>Item Value: $</p><input type="number" placeholder='150' onChange={handleValueChange}  />
+      <div className='searchContainer'>
+        <div>
+          <TextField
+              id="outlined-required"
+              label={newItem.put_in_box?
+                      <>QR CODE (optional)</>:
+                      <>QR CODE (required)</>
+                    }
+              type="required"
+              value={newItem.qr}
+              onChange={updateQrCode}
+              className='qrTextField'
+            />
+        </div>
+        <div>
+          <IconButton onClick={scanClick} size="large" color="primary">
+            <QrCodeScannerIcon className='qrIconButton'/>
+          </IconButton>
+        </div>
+      </div>
+      {scanning==true?
+      <QRCodeScan qr={handleQrChange} />:
+      <></>}
+      <br />
+      {/* <p>Item Name:</p><input type="text" placeholder='ex. speaker' value={newItem.item_name} onChange={handleNameChange}  /> */}
+      <TextField
+          id="outlined-required"
+          label='ITEM NAME'
+          type="required"
+          value={newItem.item_name}
+          onChange={handleNameChange}
+          className='generalTextField'
+        />
+        <br />
+        <br />
+      <TextField
+        id="outlined-number"
+        label="ITEM VALUE (Whole Dollars)"
+        type="number"
+        onChange={handleValueChange}
+        className='generalTextField'
+      />
+      {/* <p>Item Value: $</p><input type="number" placeholder='150' onChange={handleValueChange}  /> */}
       {/* Create a conditional statement that renders destination only when "going in box" is 'false' */}
-        {!goingInBox?
+      <br />
+      <br />
+      {!newItem.put_in_box?
+        <TextField
+          id="outlined-select-currency"
+          select
+          label="DESTINATION"
+          value={newItem.destination}
+          onChange={handleDestinationChange}
+          className='generalTextField'
+        >
+          {destination.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>:
+        <></>
+      }
+
+        {/* {!newItem.put_in_box?
           <div>
-            <p>Destination:</p><select name="destination" value={newItem.destination} onChange={handleDestinationChange} >
+            <p>Destination:</p><select name="destination" value={newItem.destination} onChange={handleDestinationChange} > */}
                               {/* Consider replacing this with a map of the options for the destinations table */}
-                              <option value={0} disabled>CHOOSE DESTINATION</option>
+                              {/* <option value={0} disabled>CHOOSE DESTINATION</option>
                               <option value={1}>MOVE</option>
                               <option value={2}>STORE</option>
                               <option value={3}>SELL</option>
@@ -157,21 +268,28 @@ function newItemForm(props) {
                           </select>
           </div>:
           <div></div>
-        }
+        } */}
+        
         {/* Need to Handle Adding Image and Setting URL to newItem */}
-        <p>Image:</p><button onClick={ () => {setCapturePhoto(true)}}>Add Image</button>
+        {/* <p>Image:</p><button onClick={ () => {setCapturePhoto(true)}}>Add Image</button> */}
         <br />
         <br />
         {capturePhoto?
-          <PhotoCapture/>:
-          <></>
+          <>
+          <Button color="secondary" variant="contained" className='captureImageButton' endIcon={<PhotoCameraIcon />} onClick={() => {setCapturePhoto(!capturePhoto)}}>CANCEL PHOTO</Button>
+          <br />
+          <br />
+          <PhotoCapture/>
+          </>:
+          <Button color="secondary" variant="contained" className='captureImageButton' endIcon={<PhotoCameraIcon />} onClick={() => {setCapturePhoto(!capturePhoto)}}>ADD ITEM PHOTO</Button>
         }
         <br />
         <br />
-        {/* <DelayLink delay={750} to="/new_item_confirmation"> */}
-        <button onClick={validateData}>Create New Item</button>
-        {/* </DelayLink> */}
-        <p>newItem: {JSON.stringify(newItem)}</p>
+        <br />
+        <Button color="secondary" variant="contained" className='createItemButton' endIcon={<ArrowForwardIosIcon />} onClick={validateData}>CREATE ITEM</Button>
+        {/* <button onClick={validateData}>Create New Item</button> */}
+        {/* </form> */}
+        {/* <p>newItem: {JSON.stringify(newItem)}</p> */}
     </div>
   );
 }
