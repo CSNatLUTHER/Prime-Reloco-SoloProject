@@ -4,6 +4,17 @@ import QRCodeScan from '../../SharedComponents/QRCodeScan/QRCodeScan';
 import PhotoCapture from '../../SharedComponents/PhotoCapture/PhotoCapture';
 import DelayLink from 'react-delay-link';
 import { useHistory } from "react-router-dom";
+import './ItemEditForm.css';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Switch from '@mui/material/Switch';
+import Button from '@mui/material/Button';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import TextField from '@mui/material/TextField';
+import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
+import IconButton from '@mui/material/IconButton';
+import MenuItem from '@mui/material/MenuItem';
+import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
+import EditIcon from '@mui/icons-material/Edit';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -13,10 +24,11 @@ function itemEditForm(props) {
   // Using hooks we're creating local state for a "heading" variable with
   // a default value of 'Functional Component'
   const store = useSelector((store) => store);
-  const [heading, setHeading] = useState('Item Edit Form');
+  const [heading, setHeading] = useState('EDIT ITEM');
   const [goingInBox, setGoingInBox] = useState(false);
   const [imageToDisplay, setImageToDisplay] = useState('/images/image.png')
   const [capturePhoto, setCapturePhoto] = useState(false);
+  const [scanning, setScanning] = useState(false);
   const [newItem, setNewItem] = useState({ 
                                   qr: store.active_item.qr_id, 
                                   item_name: store.active_item.name, 
@@ -48,10 +60,11 @@ useEffect( () => {
 
   const handleQrChange = (event) => {
     setNewItem({ ...newItem, qr: event })
+    setScanning(false)
   }
 
   const updateQrCode = (event) => {
-    setNewItem({ ...newItem, qr: event })
+    setNewItem({ ...newItem, qr: event.target.value })
   }
   
   const handleGoingInBoxChange = (event) => {
@@ -171,13 +184,48 @@ useEffect( () => {
   }
 
   const moveToPage = () => {
-    history.push('/new_item_confirmation')
+    history.push('/item_info')
   }
+
+  const scanClick = () => {
+    setScanning(!scanning)
+  }
+
+  const destination = [
+    {
+      value: 0,
+      label: 'CHOOSE DESTINATION',
+    },
+    {
+      value: 1,
+      label: 'MOVE',
+    },
+    {
+      value: 2,
+      label: 'STORE',
+    },
+    {
+      value: 3,
+      label: 'SELL',
+    },
+    {
+      value: 4,
+      label: 'DONATE',
+    },
+    {
+      value: 5,
+      label: 'PURGE',
+    },
+    {
+      value: 6,
+      label: 'GOING IN BOX',
+    },
+  ];
 
   return (
     <div className='component'>
-      <h2>{heading}</h2>
-      <p>Item going in box: </p>
+      <h2>EDIT '{newItem.item_name}'</h2>
+            {/* <p>Item going in box: </p>
       <label className="switch">
         <input type="checkbox" onClick={handleGoingInBoxChange}/>
         <span className="slider round"></span>
@@ -189,15 +237,15 @@ useEffect( () => {
       }
       <input type="text" placeholder='ex. NEL10003IRE' value={newItem.qr} onChange={updateQrCode}  />
       {/* <input type="text" placeholder='enter or use QR scan' value={store.qr_code.id} onChange={handleQrChange} /> */}
-      <QRCodeScan qr={handleQrChange}/>
+      {/* <QRCodeScan qr={handleQrChange}/>
       <p>Item Name:</p><input type="text" placeholder='ex. speaker' value={newItem.item_name} onChange={handleNameChange}  />
       <p>Item Value: $</p><input type="number" placeholder='150' value={newItem.value} onChange={handleValueChange}  />
       {/* Create a conditional statement that renders destination only when "going in box" is 'false' */}
-        {!goingInBox?
+        {/* {!goingInBox?
           <div>
             <p>Destination:</p><select name="destination" value={newItem.destination} onChange={handleDestinationChange} >
                               {/* Consider replacing this with a map of the options for the destinations table */}
-                              <option value={0} disabled>CHOOSE DESTINATION</option>
+                              {/* <option value={0} disabled>CHOOSE DESTINATION</option>
                               <option value={1}>MOVE</option>
                               <option value={2}>STORE</option>
                               <option value={3}>SELL</option>
@@ -207,10 +255,10 @@ useEffect( () => {
 
                           </select>
           </div>:
-          <div></div>
-        }
+          <div></div> 
+        } */}
         {/* Need to Handle Adding Image and Setting URL to newItem */}
-        <p>Image:</p>
+        {/* <p>Image:</p>
         {newItem.image_url === '/images/image.png'?
           <button onClick={ () => {setCapturePhoto(true)}}>Add Image</button>:
           <>
@@ -231,12 +279,115 @@ useEffect( () => {
           <></>
         }
         <br />
-        {/* <DelayLink delay={750} to="/new_item_confirmation"> */}
         <button onClick={validateData}>Save Item</button>
-        {/* </DelayLink> */}
         <p>Local Item Info: {JSON.stringify(newItem)}</p>
-        <p>Store Active_Item Info: {JSON.stringify(store.active_item)}</p>
+        <p>Store Active_Item Info: {JSON.stringify(store.active_item)}</p> */}
+      <FormControlLabel
+        sx={{
+          display: 'block',
+        }}
+        control={
+          <Switch
+            checked={newItem.put_in_box}
+            onChange={handleGoingInBoxChange}
+            name="loading"
+            color="secondary"
+          />
+        }
+        label="Going In Box"
+      />
+      <br />
+      <div className='itemEditFormQrScanContainer'>
+        <div>
+          <TextField
+              id="outlined-required"
+              label={newItem.put_in_box?
+                      <>QR CODE (optional)</>:
+                      <>QR CODE (required)</>
+                    }
+              type="required"
+              value={newItem.qr}
+              onChange={updateQrCode}
+              className='itemEditFormqrTextField'
+            />
+        </div>
+        <div>
+          <IconButton onClick={scanClick} size="large" color="primary">
+            <QrCodeScannerIcon className='itemEditFormqrIconButton'/>
+          </IconButton>
+        </div>
       </div>
+      {scanning==true?
+      <QRCodeScan qr={handleQrChange} />:
+      <></>}
+      <br />
+      {/* <p>Item Name:</p><input type="text" placeholder='ex. speaker' value={newItem.item_name} onChange={handleNameChange}  /> */}
+      <TextField
+          id="outlined-required"
+          label='ITEM NAME'
+          type="required"
+          value={newItem.item_name}
+          onChange={handleNameChange}
+          className='generalTextField'
+        />
+        <br />
+        <br />
+      <TextField
+        id="outlined-number"
+        label="ITEM VALUE (Whole Dollars)"
+        type="number"
+        value={newItem.value}
+        onChange={handleValueChange}
+        className='generalTextField'
+      />
+      {/* <p>Item Value: $</p><input type="number" placeholder='150' onChange={handleValueChange}  /> */}
+      {/* Create a conditional statement that renders destination only when "going in box" is 'false' */}
+      <br />
+      <br />
+      {!newItem.put_in_box?
+        <>
+          <TextField
+            id="outlined-select-currency"
+            select
+            label="DESTINATION"
+            value={newItem.destination}
+            onChange={handleDestinationChange}
+            className='generalTextField'
+          >
+            {destination.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
+          <br />
+          <br />
+        </> :
+        <></>
+      }
+        {newItem.image_url === '/images/image.png'?
+          <Button color="secondary" variant="contained" className='captureImageButton' endIcon={<PhotoCameraIcon />} onClick={() => {setCapturePhoto(!capturePhoto)}}>ADD ITEM PHOTO</Button>:
+          <>
+            {capturePhoto?
+              <>
+              <Button color="secondary" variant="contained" className='captureImageButton' endIcon={<PhotoCameraIcon />} onClick={() => {setCapturePhoto(!capturePhoto)}}>CANCEL PHOTO</Button>
+              <br />
+              <br />
+              <PhotoCapture/>
+              </>:
+              <>
+                <img className='itemEditFormPhoto' src={imageToDisplay} alt="" />
+                <br />
+                <Button color="secondary" variant="contained" className='captureImageButton' startIcon={<EditIcon />}endIcon={<PhotoCameraIcon />} onClick={() => {setCapturePhoto(!capturePhoto)}}>TAKE NEW PHOTO</Button>
+              </>
+            }
+          </>
+        }
+        <br />
+        <br />
+        <br />
+        <Button color="secondary" variant="contained" className='createItemButton' endIcon={<ArrowForwardIosIcon />} onClick={validateData}>UPDATE ITEM</Button>
+    </div>
   );
 }
 
