@@ -131,7 +131,7 @@ function newItemForm(props) {
   }
 
   const moveToPage = () => {
-    history.push('/new_item_confirmation')
+    history.push('/item_info')
   }
 
   const scanClick = () => {

@@ -1,0 +1,24 @@
+.itemInfoLogo{
+    height: 125px;
+    margin-top: 50px;
+}
+.itemInfoResultsHeader{
+    background-color: #3f51b5;
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    justify-content: center;
+}
+
+.removeItemFromBoxButton{
+    width:  80%;
+    height: 50px;
+}
+
+.createNewBoxButton{
+    width:  80%;
+    height: 50px; 
+}
