@@ -2,6 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { Link } from 'react-router-dom';
 import './ResultsItem.css'
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -67,16 +74,43 @@ function resultsItem(props) {
 
   return (
     <div className='component'>
-      {imageToDisplay === '/images/image.png'?
+      {/* {imageToDisplay === '/images/image.png'?
       <img className='iconImage' src={imageToDisplay}/>:
       <img className='itemImage' src={imageToDisplay}/>
       }
-      <h2>{heading}</h2>
+      <h2>{props.item.name}</h2>
       <p>{JSON.stringify(props.item)}</p>
       <Link to="/item_info">
       <button onClick={selectItem}>Select Item</button>
-      </Link>
+      </Link> */}
+      <Card sx={{ maxWidth: 500 }}
+        className='searchResultsItemCard'
+        style={{backgroundColor: "#88899111"}}
+      >
+        {imageToDisplay === '/images/image.png'?
+          <img className='itemResultsIconImage' src={imageToDisplay}/>:
+          <CardMedia
+          component="img"
+          height="180"
+          image={imageToDisplay}
+          alt="itemImage"
+          className='itemResultsImage'
+          />
+        }
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            {props.item.name}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            <b>QR CODE:</b> {props.item.qr_id===''? 'None Identified':props.item.qr_id} <br/>
+            <b>VALUE:</b> {props.item.value===null? 'None Identified':'$'+ props.item.value} <br/>
+            <b>DESTINATION:</b> {props.item.destination}
+          </Typography>
+        </CardContent>
+        <Button color="secondary" variant="contained" className='selectItemButton' endIcon={<ArrowForwardIosIcon />} onClick={() => {setTimeout(selectItem, 250)}}>SEARCH BOXES</Button>
+      </Card>
     </div>
+    
   );
 }
 

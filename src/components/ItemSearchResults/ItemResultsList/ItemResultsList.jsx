@@ -14,7 +14,7 @@ function itemResultsList(props) {
 
   return (
     <div className='component'>
-      <h2>{heading}</h2>
+      {/* <h2>{heading}</h2> */}
       {itemList.map(item => (<ResultsItem className="ResultsItem" item={item} key={item.id} />))}
       {/* <ResultsItem /> */}
     </div>

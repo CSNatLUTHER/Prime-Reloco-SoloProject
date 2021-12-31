@@ -70,13 +70,13 @@ function ItemSearch(props) {
       <h2 className='itemSearchHeader'>{heading}</h2>
       <Button color="secondary" variant="contained" className='createNewItemButton' endIcon={<ArrowForwardIosIcon />} onClick={() => {setTimeout(handleCreate, 250)}}>CREATE NEW ITEM</Button>
       <br />
-      <h4 className='itemSearchSubHeader'>ITEM SEARCH</h4>
+      <br />
       {/* <input  type='text' placeholder='ex. item name or QR' value={searchItem.searchText} onChange={handleSearchChange}></input> */}
       <div className='searchContainer'>
         <div>
           <TextField
               id="outlined-search"
-              label="Search field"
+              label="SEARCH ITEMS"
               type="search"
               value={searchItem.searchText}
               onChange={handleSearchChange}
@@ -95,7 +95,7 @@ function ItemSearch(props) {
       <br />
       {/* <Link to="/item_search_results"> */}
       {/* <button onClick={searchForItem}>Search</button> */}
-      <Button color="secondary" variant="contained" className='searchItemButton' endIcon={<ArrowForwardIosIcon />} onClick={() => {setTimeout(searchForItem, 250)}}>SEARCH</Button>
+      <Button color="secondary" variant="contained" className='searchItemButton' endIcon={<ArrowForwardIosIcon />} onClick={() => {setTimeout(searchForItem, 250)}}>SEARCH ITEMS</Button>
       {/* </Link> */}
       {/* <p>{JSON.stringify(searchItem)}</p> */}
     </div>

@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { useHistory } from 'react-router-dom';
 
+
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
 // component name TemplateFunction with the name for the new component.
@@ -34,10 +35,20 @@ function MoveEventHome(props) {
   history.push('/manage_event')
   }
 
+  let moveDate = new Date(event.move_date).toLocaleDateString( 'en-US',{
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    // hour: '2-digit',
+    // minute: '2-digit'
+});
+
   return (
     <div className='component'>
       <img className='moveEventHomeLogo' src="/images/brand.png" alt="" />
-      <h2 className ='moveEventHomeHeader'>{event.name}</h2>
+      <h1 className ='moveEventHomeHeader'>{event.name}</h1>
+      <p><b>MOVE OWNER:</b> {event.owner_first_name} {event.owner_last_name}</p>
+      <p><b>MOVE DATE:</b> {moveDate}</p>
       <Button color="secondary" variant="contained" className='newMoveButton' endIcon={<ArrowForwardIosIcon />} onClick={() => {setTimeout(handleManageEvent, 250)}}>MANAGE EVENT</Button>
       <ItemSearch />
       <BoxSearch />

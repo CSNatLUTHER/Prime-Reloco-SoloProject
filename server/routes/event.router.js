@@ -8,10 +8,11 @@ const router = express.Router();
 router.get('/', (req, res) => {
   console.log('fetching all events for user', req.query);
   // GET route code here
-    const query = `SELECT event.id, name, move_date, create_date, creator_user_id, share_code FROM user_event
+    const query = `SELECT first_name AS owner_first_name, last_name AS owner_last_name, event.id, name, move_date, event.create_date, creator_user_id, share_code FROM user_event
                   JOIN event ON user_event.event_id=event.id
+                  JOIN "user" ON "user".id=event.creator_user_id
                   WHERE user_event.user_id = ${req.query.userid}
-                  GROUP BY event.id
+                  GROUP BY event.id, first_name, last_name
                   ORDER BY event.create_date DESC`;
     pool.query(query)
       .then( result => {

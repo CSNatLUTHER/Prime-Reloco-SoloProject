@@ -71,12 +71,12 @@ function BoxSearch(props) {
       <h2 className='boxSearchHeader'>{heading}</h2>
       <Button color="secondary" variant="contained" className='createNewboxButton' endIcon={<ArrowForwardIosIcon />} onClick={() => {setTimeout(handleCreate, 250)}}>CREATE NEW BOX</Button>
       <br />
-      <h4 className='boxSearchSubHeader'>BOX SEARCH</h4>
+      <br />
       <div className='searchContainer'>
         <div>
           <TextField
               id="outlined-search"
-              label="Search field"
+              label="SEARCH BOXES"
               type="search"
               value={searchBox.searchText}
               onChange={handleSearchChange}
@@ -93,7 +93,7 @@ function BoxSearch(props) {
       <QRCodeScan qr={handleQrChange} />:
       <></>}
       <br />
-      <Button color="secondary" variant="contained" className='searchItemButton' endIcon={<ArrowForwardIosIcon />} onClick={() => {setTimeout(searchForBox, 250)}}>SEARCH</Button>
+      <Button color="secondary" variant="contained" className='searchItemButton' endIcon={<ArrowForwardIosIcon />} onClick={() => {setTimeout(searchForBox, 250)}}>SEARCH BOXES</Button>
       {/* <Link to="/box_search_results">
       <button onClick={searchForBox}>Search</button>
       </Link>

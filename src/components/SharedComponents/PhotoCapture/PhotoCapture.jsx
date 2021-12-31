@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import Webcam from "react-webcam";
 import './PhotoCapture.css'
+import CameraIcon from '@mui/icons-material/Camera';
+import IconButton from '@mui/material/IconButton';
+import Button from '@mui/material/Button';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -45,15 +48,20 @@ function PhotoCapture(props) {
             />
           </div>
           <br />
-          <button onClick={capture}>Capture photo</button>
+          {/* <button onClick={capture}>Capture photo</button> */}
+          <IconButton onClick={capture} color="primary" aria-label="add to shopping cart">
+            <CameraIcon className='photoCaptureButton'/>
+          </IconButton>
         </>:
           <>
             <img
               className = 'screenShot'
               src={imgSrc}
             />
-            <p className='imageData'>Image Data:{JSON.stringify(imgSrc)}</p>
-            <button onClick={() => {setShowCamera(true)}}>Retake Image</button>
+            {/* <p className='imageData'>Image Data:{JSON.stringify(imgSrc)}</p> */}
+            {/* <button onClick={() => {setShowCamera(true)}}>Retake Image</button> */}
+            <Button color="secondary" variant="contained" className='retakeImageButton' onClick={() => {setShowCamera(true)}}>RETAKE PHOTO</Button>
+
           </>
       } 
     </div>
