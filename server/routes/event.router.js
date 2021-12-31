@@ -48,8 +48,11 @@ router.get('/', (req, res) => {
         const newEventId = result.rows[0].event_id
 
         // Now handle the genre reference
-        const getEventQuery = `SELECT * FROM event
-                              WHERE id=${newEventId}`
+        const getEventQuery = `SELECT first_name AS owner_first_name, last_name AS owner_last_name, event.id, name, move_date, event.create_date, creator_user_id, share_code FROM user_event
+                              JOIN event ON user_event.event_id=event.id
+                              JOIN "user" ON "user".id=event.creator_user_id
+                              WHERE event.id=${newEventId}
+                              GROUP BY event.id, first_name, last_name;`
           // SECOND QUERY ADDS GENRE FOR THAT NEW MOVIE
           pool.query(getEventQuery).then(result => {
             //Now that both are done, send back success!

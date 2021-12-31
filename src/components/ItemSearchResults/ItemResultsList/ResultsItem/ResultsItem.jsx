@@ -9,6 +9,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { useHistory } from 'react-router-dom';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -27,8 +28,10 @@ function resultsItem(props) {
   const [heading, setHeading] = useState('Results Item');
   const [imageToDisplay, setImageToDisplay] = useState('/images/image.png')
 
+  const history = useHistory()
   const selectItem = () => {
     dispatch({type:'SET_ACTIVE_ITEM', payload:props.item})
+    history.push('/item_info')
   }
 
   const getImage = () =>{
@@ -107,7 +110,7 @@ function resultsItem(props) {
             <b>DESTINATION:</b> {props.item.destination}
           </Typography>
         </CardContent>
-        <Button color="secondary" variant="contained" className='selectItemButton' endIcon={<ArrowForwardIosIcon />} onClick={() => {setTimeout(selectItem, 250)}}>SEARCH BOXES</Button>
+        <Button color="secondary" variant="contained" className='selectItemButton' endIcon={<ArrowForwardIosIcon />} onClick={() => {setTimeout(selectItem, 250)}}>SELECT ITEM</Button>
       </Card>
     </div>
     
