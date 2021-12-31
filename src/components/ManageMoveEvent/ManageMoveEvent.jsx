@@ -57,7 +57,7 @@ function ManageMoveEvent(props) {
   return (
     <div className='component'>
        <img className='manageMoveEventHomeLogo' src="/images/brand.png" alt="" />
-      <h2 className ='manageMoveEventHomeHeader'>{store.active_event.name}</h2>
+      <h1 className ='manageMoveEventHomeHeader'>{store.active_event.name}</h1>
       <p><b>MOVE OWNER:</b> {store.active_event.owner_first_name} {store.active_event.owner_last_name}</p>
       <p><b>MOVE DATE:</b> {moveDate}</p>
       {/* <p>{JSON.stringify(store.active_event)}</p> */}
@@ -70,7 +70,10 @@ function ManageMoveEvent(props) {
       }
             <EventMemberList />
             {(store.user.id === store.active_event.creator_user_id)?
-              <Button color="error" variant="contained" className='deleteEventButton' endIcon={<DeleteForeverIcon />} onClick={() => {setTimeout(deleteConfirm, 250)}}>DELETE EVENT</Button>:
+              <>
+                <h2 className ='manageMoveEvenDeleteHeader'>DELETE EVENT</h2>
+                <Button color="error" variant="contained" className='deleteEventButton' endIcon={<DeleteForeverIcon />} onClick={() => {setTimeout(deleteConfirm, 250)}}>DELETE EVENT</Button>
+              </>:
               <></>
             }
       {/* <p>User ID:{JSON.stringify(store.user.id)}</p>
