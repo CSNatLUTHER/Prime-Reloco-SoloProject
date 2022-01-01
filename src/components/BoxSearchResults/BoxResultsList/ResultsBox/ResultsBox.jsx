@@ -23,6 +23,7 @@ function resultsBox(props) {
   const [heading, setHeading] = useState('Results Box');
 
   const history = useHistory()
+  
   const setActiveBox = () => {
     dispatch({type: 'SET_ACTIVE_BOX', payload:props.box})
     history.push('/box_info')

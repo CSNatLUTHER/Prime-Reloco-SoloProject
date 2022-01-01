@@ -1,0 +1,14 @@
+.createNewBoxLogo{
+    width: 100px;
+    margin-top: 20px;
+}
+.createNewBoxHeader{
+    background-color: #3f51b5ab;
+    color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    justify-content: center;
+}

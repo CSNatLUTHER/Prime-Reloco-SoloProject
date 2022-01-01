@@ -9,6 +9,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import Button from '@mui/material/Button';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import TextField from '@mui/material/TextField';
 import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
 import IconButton from '@mui/material/IconButton';
@@ -326,7 +327,10 @@ useEffect( () => {
         <br />
         <br />
         <br />
-        <Button color="secondary" variant="contained" className='createItemButton' endIcon={<ArrowForwardIosIcon />} onClick={validateData}>UPDATE ITEM</Button>
+        <Button color="secondary" variant="contained" className='itemEditButton' endIcon={<ArrowForwardIosIcon />} onClick={()=>{setTimeout(validateData, 250)}}>UPDATE ITEM</Button>
+        <br />
+        <br />
+        <Button color="error" variant="outlined" className='itemEditButton' endIcon={<CancelOutlinedIcon />} onClick={()=>{setTimeout(props.editItem, 250)}}>CANCEL ITEM UPDATE</Button>
     </div>
   );
 }

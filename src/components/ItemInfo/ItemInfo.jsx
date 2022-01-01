@@ -8,6 +8,7 @@ import './ItemInfo.css'
 import Button from '@mui/material/Button';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { useHistory } from 'react-router-dom';
 
 
@@ -20,6 +21,7 @@ function itemInfo(props) {
     // kick-off many of the FETCH actions needed to set initial reducers
     useEffect( () => {
       dispatch({ type: 'FETCH_ITEM_BOX', payload: {item_id: store.active_item.id} });
+      window.scroll(0,0);
     }, []);
   // Using hooks we're creating local state for a "heading" variable with
   // a default value of 'Functional Component'
@@ -42,6 +44,11 @@ function itemInfo(props) {
     dispatch({ type: 'REMOVE_FROM_BOX', payload: {item_id: store.active_item.id, box_id: store.active_item_box.id} });
   }
 
+  const viewItemBox = () => {
+    dispatch({type:'SET_ACTIVE_BOX', payload: store.active_item_box})
+    setTimeout(()=>{history.push('/box_info')},250)
+  }
+
   const history = useHistory();
 
   return (
@@ -54,17 +61,18 @@ function itemInfo(props) {
       }
       {store.active_item_box.id >0?
         <>
-        <p><b>THIS ITEM IS IN: </b>'{store.active_item_box.name}'</p>
-        <p><b>BOX QR CODE: </b>'{store.active_item_box.qr_id}'</p>
-        <Button color="error" variant="outlined" className='removeItemFromBoxButton' endIcon={<RemoveCircleOutlineIcon />} onClick={() => {setTimeout(removeFromBoxConfirm, 250)}}>REMOVE ITEM FROM BOX</Button>
-        {/* <button onClick={removeFromBox}>Remove Item From Box</button> */}
+          <p><b>THIS ITEM IS IN: </b>'{store.active_item_box.name}'</p>
+          <p><b>BOX QR CODE: </b>'{store.active_item_box.qr_id}'</p>
+          <Button color="error" variant="outlined" className='removeItemFromBoxButton' endIcon={<RemoveCircleOutlineIcon />} onClick={() => {setTimeout(removeFromBoxConfirm, 250)}}>REMOVE ITEM FROM BOX</Button>
+          <br />
+          <br />
+          <Button color="secondary" variant="contained" className='removeItemFromBoxButton' endIcon={<ArrowForwardIosIcon />} onClick={viewItemBox}>VIEW BOX</Button>
         </>:
         <>
           <AddItemToBox />
           <br />
           <br />
           <Button color="success" variant="contained" className='createNewBoxButton' endIcon={<AddCircleOutlineIcon />} onClick={() => {setTimeout(()=>{history.push('/create_new_box')}, 250)}}>CREATE NEW BOX</Button>
-          {/* <CreateNewBox /> */}
         </>
       }
       <br />

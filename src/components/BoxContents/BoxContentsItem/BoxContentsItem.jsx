@@ -73,8 +73,11 @@ function boxContentsItem(props) {
     });
   }
 
+  const history = useHistory();
+
   const selectItem = () => {
     dispatch({type:'SET_ACTIVE_ITEM', payload:props.boxContentsItem})
+    history.push('/item_info')
   }
   
 

@@ -75,9 +75,9 @@ const query = `INSERT INTO "box" ("qr_id", "name", "creator_user_id", "last_modi
 pool.query(query, [req.body.qr, req.body.box_name, req.body.creator_user_id, req.body.last_modified_user_id, req.body.event, req.body.box_size, req.body.box_weight, req.body.destination])
 .then(result => {
       console.log(result.rows[0].id);
-      const newItemId = result.rows[0].id
+      const newBoxId = result.rows[0].id
       const getItemQuery = `SELECT * FROM box
-                            WHERE id=${newItemId}`
+                            WHERE id=${newBoxId}`
         pool.query(getItemQuery).then(result => {
           console.log('newItemQuery Result:', result.rows);
           res.send(result.rows);

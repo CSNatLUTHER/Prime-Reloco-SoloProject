@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {useSelector} from 'react-redux';
 import BoxDetails from '../BoxInfo/BoxDetails/BoxDetails';
 import PutItemInBox from '../NewBoxConfirmation/PutItemInBox/PutItemInBox';
@@ -16,6 +16,10 @@ function boxInfo(props) {
   const store = useSelector((store) => store);
   const [heading, setHeading] = useState('BOX INFO');
   const [boxEdit, setBoxEdit] = useState(false);
+
+  useEffect( () => {
+    window.scroll(0, 0);
+  }, []);
 
   const editBox = () => {
     setBoxEdit(!boxEdit)

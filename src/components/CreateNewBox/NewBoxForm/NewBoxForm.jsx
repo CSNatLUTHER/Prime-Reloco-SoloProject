@@ -3,7 +3,16 @@ import {useSelector} from 'react-redux';
 import QRCodeScan from '../../SharedComponents/QRCodeScan/QRCodeScan';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom"; 
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Button from '@mui/material/Button';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import TextField from '@mui/material/TextField';
+import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
+import IconButton from '@mui/material/IconButton';
+import MenuItem from '@mui/material/MenuItem';
+import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
+import './NewBoxForm.css'
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -14,6 +23,7 @@ function newBoxForm(props) {
   // a default value of 'Functional Component'
   const store = useSelector((store) => store);
   const [heading, setHeading] = useState('New Box Form');
+  const [scanning, setScanning] = useState(false);
   const [newBox, setNewBox] = useState({ 
                                     qr: '', 
                                     box_name: '', 
@@ -43,6 +53,7 @@ function newBoxForm(props) {
 
   const handleQrChange = (event) => {
     setNewBox({ ...newBox, qr: event })
+    setScanning(false)
   }
 
   const updateQrCode = (event) => {
@@ -59,6 +70,10 @@ function newBoxForm(props) {
     }
   }
 
+  const scanClick = () => {
+    setScanning(!scanning)
+  }
+
 
   const history = useHistory()
   const addNewBox =  () => {
@@ -69,51 +84,163 @@ function newBoxForm(props) {
     // if(store.qr_code.id != ''){
   }  
 
+  const destination = [
+    {
+      value: 0,
+      label: 'CHOOSE DESTINATION',
+    },
+    {
+      value: 1,
+      label: 'MOVE',
+    },
+    {
+      value: 2,
+      label: 'STORE',
+    },
+    {
+      value: 3,
+      label: 'SELL',
+    },
+    {
+      value: 4,
+      label: 'DONATE',
+    },
+    {
+      value: 5,
+      label: 'PURGE',
+    },
+  ];
+
+  const size = [
+    {
+      value: 'SMALL',
+      label: 'SMALL',
+    },
+    {
+      value: 'MEDIUM',
+      label: 'MEDIUM',
+    },
+    {
+      value: 'LARGE',
+      label: 'LARGE',
+    },
+    {
+      value: 'WARDROBE',
+      label: 'WARDROBE',
+    },
+    {
+      value: 'CRATE',
+      label: 'CRATE',
+    },
+  ];
+
+  const weight = [
+    {
+      value: 'LIGHT',
+      label: 'LIGHT',
+    },
+    {
+      value: 'MEDIUM',
+      label: 'MEDIUM',
+    },
+    {
+      value: 'HEAVY',
+      label: 'HEAVY',
+    },
+    {
+      value: 'VERY HEAVY',
+      label: 'VERY HEAVY',
+    },
+    {
+      value: 'TEAM LIFT',
+      label: 'TEAM LIFT',
+    },
+  ];
+
+
   return (
     <div className='component'>
-      <h2>{heading}</h2>
-      <p>QR Code:</p><input type="text" placeholder='ex. NEL10001IRE' value={newBox.qr} onChange={updateQrCode}  />
-      <QRCodeScan qr={handleQrChange}/>
-      <p>Box Name:</p><input type="text" placeholder='ex. Dishes' value={newBox.box_name} onChange={handleNameChange}  /> 
-      <div>
-        <p>Box Size:</p><select name="boxSize" value={newBox.box_size} onChange={handleBoxSizeChange} >
-                          {/* Consider replacing this with a map of the options for the destinations table */}
-                          <option value={''} disabled>CHOOSE BOX SIZE</option>
-                          <option value={'SMALL'}>SMALL</option>
-                          <option value={'MEDIUM'}>MEDIUM</option>
-                          <option value={'LARGE'}>LARGE</option>
-                          <option value={'WARDROBE'}>WARDROBE</option>
-                          <option value={'CRATE'}>CRATE</option>
-                      </select>
+      {/* <h2>{heading}</h2> */}
+      <div className='searchContainer'>
+        <div>
+          <TextField
+              id="outlined-required"
+              label='QR CODE'
+              type="required"
+              value={newBox.qr}
+              onChange={updateQrCode}
+              className='newBoxFormQrTextField'
+            />
+        </div>
+        <div>
+          <IconButton onClick={scanClick} size="large" color="primary">
+            <QrCodeScannerIcon className='qrIconButton'/>
+          </IconButton>
+        </div>
       </div>
-      <div>
-        <p>Box Weight:</p><select name="destination" value={newBox.box_weight} onChange={handleBoxWeightChange} >
-                          {/* Consider replacing this with a map of the options for the destinations table */}
-                          <option value={''} disabled>CHOOSE BOX WEIGHT</option>
-                          <option value={'VERY LIGHT'}>VERY LIGHT</option>
-                          <option value={'LIGHT'}>LIGHT</option>
-                          <option value={'MEDIUM'}>MEDIUM</option>
-                          <option value={'HEAVY'}>HEAVY</option>
-                          <option value={'VERY HEAVY'}>VERY HEAVY</option>
-                      </select>
-      </div>
-      <div>
-        <p>Destination:</p><select name="destination" value={newBox.destination} onChange={handleDestinationChange} >
-                          {/* Consider replacing this with a map of the options for the destinations table */}
-                          <option value={''} disabled>CHOOSE DESTINATION</option>
-                          <option value={1}>MOVE</option>
-                          <option value={2}>STORE</option>
-                          <option value={3}>SELL</option>
-                          <option value={4}>DONATE</option>
-                          <option value={5}>PURGE</option>
-                      </select>
-      </div>
+      {scanning==true?
+      <QRCodeScan qr={handleQrChange} />:
+      <></>}
+      <br />
+      <TextField
+          id="outlined-required"
+          label='BOX NAME'
+          type="required"
+          value={newBox.box_name}
+          onChange={handleNameChange}
+          className='newBoxFormGeneralTextField'
+        />
+      <br />
+      <br />
+      <TextField
+          id="outlined-select-currency"
+          select
+          label="BOX SIZE"
+          value={newBox.box_size}
+          onChange={handleBoxSizeChange}
+          className='newBoxFormGeneralTextField'
+        >
+          {size.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+      </TextField>
+      <br />
+      <br />
+      <TextField
+          id="outlined-select-currency"
+          select
+          label="BOX WEIGHT"
+          value={newBox.box_weight}
+          onChange={handleBoxWeightChange}
+          className='newBoxFormGeneralTextField'
+        >
+          {weight.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+      </TextField>
+      <br />
+      <br />
+      <TextField
+          id="outlined-select-currency"
+          select
+          label="DESTINATION"
+          value={newBox.destination}
+          onChange={handleDestinationChange}
+          className='newBoxFormGeneralTextField'
+        >
+          {destination.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
         <br />
         <br />
-        {/* <Link to="/new_box_confirmation"> */}
-        <button onClick={validateData}>Create New Item</button>
-        {/* </Link> */}
-        <p>newBox: {JSON.stringify(newBox)}</p>
+        <Button color="secondary" variant="contained" className='newBoxFormCreateItemButton' endIcon={<ArrowForwardIosIcon />} onClick={validateData}>CREATE NEW BOX</Button>
 
     </div>
   );

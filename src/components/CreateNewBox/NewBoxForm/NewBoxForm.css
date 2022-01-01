@@ -1,0 +1,17 @@
+.newBoxFormQrTextField{
+    width: 138%;
+  }
+  
+  .newBoxFormGeneralTextField{
+    width: 80%;
+  }
+  
+  .newBoxFormCaptureImageButton{
+    width:  80%;
+    height: 50px;
+  }
+  
+  .newBoxFormCreateItemButton{
+    width:  80%;
+    height: 50px;
+  }
