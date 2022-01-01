@@ -25,10 +25,10 @@ function MoveEventHome(props) {
 
   // useEffect to call sagas and reducers and set Event Items and Boxes
   useEffect( () => {
-    dispatch({ type: 'FETCH_EVENT_USERS', payload: store.active_event.id });
+    dispatch({ type: 'FETCH_EVENT_USERS', payload: store.active_event.id })
     window.scrollTo(0, 0);
   }, []);
-  
+
   const history = useHistory()
 
   const handleManageEvent = () => {

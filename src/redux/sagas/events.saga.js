@@ -24,7 +24,7 @@ function* createEvent(data) {
                               url: '/api/event',
                               data: data.payload});
         console.log('posting newItem, returned ID:', newEvent.data);
-        yield put({ type: 'SET_ACTIVE_EVENT', payload: newEvent.data[0]} );
+        yield put({ type: 'SET_ACTIVE_EVENT', payload: newEvent.data[0]});
         } 
         catch {
         console.log('addItem error');

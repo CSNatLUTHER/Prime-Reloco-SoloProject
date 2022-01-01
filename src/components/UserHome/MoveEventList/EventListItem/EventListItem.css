@@ -1,22 +1,19 @@
 .moveEventImage{
-    width: 50%;
-    max-width: 125px;
+    width: 30%;
     margin-left: auto;
     margin-right: auto;
 }
 .eventListItem{
-    /* border: #444;
-    border-style: solid;
-    border-width: 2px; */
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 5px;
-    padding: 5px;
+    padding-bottom: 10px;
 }
 
 .EventListItemCard{
-    /* background-color: #6573c32a; */
-    padding: 5px;
+    padding-bottom: 10px;
     margin-left: auto;
     margin-right: auto;
+    border: #ffc400;
+    border-style: solid;
+    border-width: 2px;
 }

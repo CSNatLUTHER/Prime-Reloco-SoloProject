@@ -16,7 +16,7 @@ function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
   return (
-    <div className="container">
+    <div className="component">
       <img className='homeBrand' src="/images/brand.png" alt="" />
       <h4>Welcome, {user.first_name} {user.last_name}!</h4>
       <CreateMoveEvent />

@@ -51,14 +51,9 @@ function eventListItem(props) {
         style={{backgroundColor: "#6573c32a"}}
         className='EventListItemCard'
       >
-      <CardMedia
-        className='moveEventImage'
-        component="img"
-        height="125"
-        image="/images/move_event.png"
-        alt={"Event" + props.event.name}
-      />
+      {/* <img src="/images/move_event.png" className='moveEventImage'/> */}
       <CardContent>
+        <img src="/images/move_event.png" className='moveEventImage'/>
         <Typography gutterBottom variant="h5" component="div">
           {props.event.name}
         </Typography>

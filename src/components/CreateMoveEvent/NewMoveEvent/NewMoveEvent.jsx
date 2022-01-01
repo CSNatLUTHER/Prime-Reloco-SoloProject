@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import './NewMoveEvent.css';
+import TextField from '@mui/material/TextField';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import DatePicker from '@mui/lab/DatePicker';
+import Button from '@mui/material/Button';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -11,10 +18,11 @@ function NewMoveEvent(props) {
   // Using hooks we're creating local state for a "heading" variable with
   // a default value of 'Functional Component'
   const store = useSelector((store) => store);
-  const [heading, setHeading] = useState('New Move Event Form');
+  const [heading, setHeading] = useState('NEW MOVE EVENT');
+  const [dateValue, setDateValue] = React.useState(new Date());
   const [newEvent, setNewEvent] = useState({ 
                                       event_name: '', 
-                                      move_date: '',
+                                      move_date: dateValue,
                                       user_id: store.user.id, 
                                       share_code: codeCreate(8)
                                   });
@@ -23,12 +31,29 @@ function NewMoveEvent(props) {
     setNewEvent({ ...newEvent, event_name: event.target.value })
   }
 
-  const handleDateChange = (event) => {
-    setNewEvent({ ...newEvent, move_date: event.target.value })
+  const validateData = () => {
+    if(newEvent.move_date>new Date() ){
+        if(newEvent.event_name != ''){
+          addNewEvent()
+        }
+        else{
+          alert('"MOVE EVENT NAME" required to proceed.')
+        }
+    }
+    else{
+      alert('"MOVE DATE" must be in the future')
+    }
   }
+
+  const history = useHistory();
 
   const addNewEvent = () => {
     dispatch({ type: 'CREATE_EVENT', payload: newEvent });
+    setTimeout(moveToEvent, 750)
+  }
+
+  const moveToEvent = () => {
+    history.push('/move_event_home')
   }
 
   function codeCreate(length) {
@@ -43,15 +68,34 @@ function NewMoveEvent(props) {
 
   return (
     <div className='component'>
-      <h2>{heading}</h2>
-      <p>Move Event Title:</p><input type="text" placeholder='ex. NYC MOVE' onChange={handleNameChange}/>
-      <p>Move Date:</p><input type="date" onChange={handleDateChange}/>
+      <h2 className='createEventSubHeader'>{heading}</h2>
+      <TextField
+      id="eventName"
+      label='MOVE EVENT NAME'
+      type="required"
+      value={newEvent.event_name}
+      onChange={handleNameChange}
+      className='createEventGeneralTextField'
+      />
       <br />
-      <Link to="/move_event_home">
-      <button onClick={addNewEvent}>Create Move Event</button>
-      </Link>
       <br />
-      <p>{JSON.stringify(newEvent)}</p>
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <DatePicker
+          disablePast
+          label="MOVE DATE"
+          openTo="year"
+          views={['year', 'month', 'day']}
+          value={dateValue}
+          onChange={(newValue) => {
+            setDateValue(newValue);
+            setNewEvent({...newEvent, move_date:newValue})
+          }}
+          renderInput={(params) => <TextField className="createEventGeneralTextField" {...params} />}
+        />
+      </LocalizationProvider>
+      <br />
+      <br />
+      <Button color="secondary" variant="contained" className='createEventButton' endIcon={<ArrowForwardIosIcon />} onClick={ () => { setTimeout(validateData, 250) } }>CREATE NEW EVENT</Button>
     </div>
   );
 }

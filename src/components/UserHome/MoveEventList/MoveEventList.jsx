@@ -12,7 +12,7 @@ function moveEventList(props) {
   // a default value of 'Functional Component'
   const store = useSelector((store) => store);
   const events = useSelector((store) => store.events);
-  const [heading, setHeading] = useState('Move Events List');
+  const [heading, setHeading] = useState('MOVE EVENTS');
 
   return (
     <div className='component'>
