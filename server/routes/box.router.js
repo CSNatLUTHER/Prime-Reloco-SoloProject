@@ -26,7 +26,7 @@ router.get('/', (req, res) => {
 
 router.get('/box-items', (req, res) => {
   console.log('In GET box-items', req.query);
-  const query = `SELECT *  FROM box_item
+  const query = `SELECT item_id, box_id, item.create_date, box_item.create_date AS item_add_to_box_date, item.creator_user_id, box_item.creator_user_id AS added_to_box_user_id, item.event_id, qr_id, name, put_in_box, value, last_update_date, last_modified_user_id, destination, destination_id, image_path  FROM box_item
 	              JOIN item ON box_item.item_id=item.id
                 JOIN destination ON item.destination_id=destination.id
 	              WHERE box_item.box_id=${req.query.id}
