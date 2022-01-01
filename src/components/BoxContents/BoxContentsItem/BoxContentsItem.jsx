@@ -2,6 +2,14 @@ import React, { useState, useEffect } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import '../BoxContentsItem/BoxContentsItem.css'
 import { Link } from 'react-router-dom';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { useHistory } from 'react-router-dom';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -72,7 +80,7 @@ function boxContentsItem(props) {
 
   return (
     <div className='component'>
-      <h2>{heading}</h2>
+      {/* <h2>{heading}</h2>
       {imageToDisplay === '/images/image.png'?
       <img className='iconImage' src={imageToDisplay}/>:
       <img className='itemImage' src={imageToDisplay}/>
@@ -80,7 +88,33 @@ function boxContentsItem(props) {
       <p>{JSON.stringify(props)}</p>
       <Link to='/item_info'>
       <button onClick={selectItem}>Item Details</button>
-      </Link>
+      </Link> */}
+      <Card sx={{ maxWidth: 500 }}
+        className='boxContentsItemCard'
+        style={{backgroundColor: "#88899111"}}
+      >
+        {imageToDisplay === '/images/image.png'?
+          <img className='boxContentsIconImage' src={imageToDisplay}/>:
+          <CardMedia
+          component="img"
+          height="180"
+          image={imageToDisplay}
+          alt="itemImage"
+          className='boxContentsItemImage'
+          />
+        }
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            {props.boxContentsItem.name}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            <b>QR CODE:</b> {props.boxContentsItem.qr_id===''? 'None Identified':props.boxContentsItem.qr_id} <br/>
+            <b>VALUE:</b> {props.boxContentsItem.value===null? 'None Identified':'$'+ props.boxContentsItem.value} <br/>
+            <b>DESTINATION:</b> {props.boxContentsItem.destination}
+          </Typography>
+        </CardContent>
+        <Button color="secondary" variant="contained" className='boxContentsSelectItemButton' endIcon={<ArrowForwardIosIcon />} onClick={() => {setTimeout(selectItem, 250)}}>SELECT ITEM</Button>
+      </Card>
     </div>
   );
 }

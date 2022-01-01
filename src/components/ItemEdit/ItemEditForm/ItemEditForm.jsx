@@ -225,63 +225,6 @@ useEffect( () => {
   return (
     <div className='component'>
       <h2>EDIT '{newItem.item_name}'</h2>
-            {/* <p>Item going in box: </p>
-      <label className="switch">
-        <input type="checkbox" onClick={handleGoingInBoxChange}/>
-        <span className="slider round"></span>
-      </label>
-      <br />
-      {newItem.put_in_box?
-        <p>QR Code ID:(optional)</p>:
-        <p>QR Code ID:(required)</p>
-      }
-      <input type="text" placeholder='ex. NEL10003IRE' value={newItem.qr} onChange={updateQrCode}  />
-      {/* <input type="text" placeholder='enter or use QR scan' value={store.qr_code.id} onChange={handleQrChange} /> */}
-      {/* <QRCodeScan qr={handleQrChange}/>
-      <p>Item Name:</p><input type="text" placeholder='ex. speaker' value={newItem.item_name} onChange={handleNameChange}  />
-      <p>Item Value: $</p><input type="number" placeholder='150' value={newItem.value} onChange={handleValueChange}  />
-      {/* Create a conditional statement that renders destination only when "going in box" is 'false' */}
-        {/* {!goingInBox?
-          <div>
-            <p>Destination:</p><select name="destination" value={newItem.destination} onChange={handleDestinationChange} >
-                              {/* Consider replacing this with a map of the options for the destinations table */}
-                              {/* <option value={0} disabled>CHOOSE DESTINATION</option>
-                              <option value={1}>MOVE</option>
-                              <option value={2}>STORE</option>
-                              <option value={3}>SELL</option>
-                              <option value={4}>DONATE</option>
-                              <option value={5}>PURGE</option>
-                              <option value={6}>GOING IN BOX</option>
-
-                          </select>
-          </div>:
-          <div></div> 
-        } */}
-        {/* Need to Handle Adding Image and Setting URL to newItem */}
-        {/* <p>Image:</p>
-        {newItem.image_url === '/images/image.png'?
-          <button onClick={ () => {setCapturePhoto(true)}}>Add Image</button>:
-          <>
-            {capturePhoto?
-              <></>:
-              <>
-                <img src={imageToDisplay} alt="" />
-                <br />
-                <button onClick={ () => {setCapturePhoto(true)}}>Edit Image</button>
-              </>
-            }
-          </>
-        }
-        <br />
-        <br />
-        {capturePhoto?
-          <PhotoCapture/>:
-          <></>
-        }
-        <br />
-        <button onClick={validateData}>Save Item</button>
-        <p>Local Item Info: {JSON.stringify(newItem)}</p>
-        <p>Store Active_Item Info: {JSON.stringify(store.active_item)}</p> */}
       <FormControlLabel
         sx={{
           display: 'block',
@@ -321,7 +264,6 @@ useEffect( () => {
       <QRCodeScan qr={handleQrChange} />:
       <></>}
       <br />
-      {/* <p>Item Name:</p><input type="text" placeholder='ex. speaker' value={newItem.item_name} onChange={handleNameChange}  /> */}
       <TextField
           id="outlined-required"
           label='ITEM NAME'
@@ -340,8 +282,6 @@ useEffect( () => {
         onChange={handleValueChange}
         className='generalTextField'
       />
-      {/* <p>Item Value: $</p><input type="number" placeholder='150' onChange={handleValueChange}  /> */}
-      {/* Create a conditional statement that renders destination only when "going in box" is 'false' */}
       <br />
       <br />
       {!newItem.put_in_box?

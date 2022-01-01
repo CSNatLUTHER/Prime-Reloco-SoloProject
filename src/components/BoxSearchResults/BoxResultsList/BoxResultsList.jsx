@@ -14,7 +14,7 @@ function boxResultsList(props) {
 
   return (
     <div className='component'>
-      <h2>{heading}</h2>
+      {/* <h2>{heading}</h2> */}
       {/* <h4>Search Results: {JSON.stringify(boxResults)}</h4> */}
       {boxResults.map(box => (<ResultsBox className="resultsBox" box={box} key={box.id} />))}
       {/* <ResultsBox /> */}

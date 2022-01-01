@@ -1,0 +1,26 @@
+.boxResultsImage{
+    width:100%;
+    max-width: 500px;
+}
+.boxResultsIconImage{
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px;
+    width: 20%;
+}
+
+.searchResultsBoxCard{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 7px;
+    border: #ffc400;
+    border-style: solid;
+    border-width: 2px;
+    /* background-color: #88899111; */
+}
+
+.selectBoxButton{
+    width: 80%;
+    height: 50px;
+}

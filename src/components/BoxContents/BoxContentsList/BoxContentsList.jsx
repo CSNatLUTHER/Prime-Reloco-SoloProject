@@ -2,6 +2,11 @@ import React, { useState, useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import BoxContentsItem from '../BoxContentsItem/BoxContentsItem';
 import { Link } from 'react-router-dom';
+import './BoxContentsList.css';
+import Button from '@mui/material/Button';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { useHistory } from 'react-router-dom';
+
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -11,7 +16,7 @@ function boxContentsList(props) {
   // a default value of 'Functional Component'
   const store = useSelector((store) => store);
   const boxContents = useSelector(store => store.active_box_items);
-  const [heading, setHeading] = useState('Box Contents List');
+  const [heading, setHeading] = useState('BOX CONTENTS');
 
   // define dispatch
   const dispatch = useDispatch();
@@ -20,16 +25,16 @@ function boxContentsList(props) {
     dispatch({ type: 'FETCH_BOX_ITEMS', payload: {id: store.active_box.id} });
   }, []);
 
+  const history = useHistory()
+
   return (
     <div className='component'>
-      <h2>{heading}</h2>
+      <h2 className='BoxContentsListSubHeader'>{heading}</h2>
       <div>
         {boxContents.length === 0?
           <>
-            <p>No Items In Box</p>
-            <Link to='/move_event_home'>
-              <button>Find Items To Add To Box</button>
-            </Link>
+            <p><b>THIS BOX CONTAINS NO ITEMS</b></p>
+            <Button color="secondary" variant="contained" className='searchItemButton' endIcon={<ArrowForwardIosIcon />} onClick={() => {setTimeout(() =>{history.push('/move_event_home')}, 250)}}>ADD ITEMS TO BOX</Button>
           </>:
           <div>
             {boxContents.map(boxContentsItem => (<BoxContentsItem className="boxContentsItem" boxContentsItem={boxContentsItem} key={boxContentsItem.id} />))}

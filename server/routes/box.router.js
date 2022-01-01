@@ -28,6 +28,7 @@ router.get('/box-items', (req, res) => {
   console.log('In GET box-items', req.query);
   const query = `SELECT *  FROM box_item
 	              JOIN item ON box_item.item_id=item.id
+                JOIN destination ON item.destination_id=destination.id
 	              WHERE box_item.box_id=${req.query.id}
                 ORDER BY item.create_date DESC;`;
   pool.query(query)

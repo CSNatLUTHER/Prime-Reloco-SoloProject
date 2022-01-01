@@ -1,10 +1,27 @@
-.itemImage{
+.boxContentsItemImage{
     width:85%;
     max-width: 500px;
     border-radius: 5px;
 }
-.iconImage{
-    width:50%;
+.boxContentsIconImage{
+    width:30%;
+    margin-top: 7px;
     max-width: 200px;
     border-radius: 5px;
+}
+
+.boxContentsItemCard{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 7px;
+    border: #ffc400;
+    border-style: solid;
+    border-width: 2px;
+    /* background-color: #88899111; */
+}
+
+.boxContentsSelectItemButton{
+    width: 80%;
+    height: 50px;
 }
