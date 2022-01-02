@@ -14,7 +14,7 @@ function LandingPage() {
   };
 
   return (
-    <div className="container">
+    <div className="component">
       <img className='registerBrand' src="/images/brand.png" alt="" />
       <p>The moving assistance app...</p>
           <RegisterForm />

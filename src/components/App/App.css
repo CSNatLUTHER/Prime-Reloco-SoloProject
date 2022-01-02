@@ -126,9 +126,9 @@ Form Treatment
 
 .formPanel {
   box-sizing: border-box;
-  width: 400px;
-  max-width: 90%;
-  padding: 25px;
+  /* width: 400px; */
+  width: 100%;
+  /* padding: 25px; */
   margin-right: auto;
   margin-left: auto;
   /* background-color: #efefef;

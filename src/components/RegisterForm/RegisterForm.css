@@ -1,14 +1,8 @@
-.LogInButton{
-    height: 50px;
+.registerGeneralTextField{
     width: 80%;
 }
 
-.loginFormGeneralTextField{
-    width: 80%;
-  }
-
-
-.loginFormHeader{
+.registerFormHeader{
     background-color: #3f51b5;
     color: white;
     padding-top: 10px;
@@ -17,4 +11,4 @@
     margin-right: auto;
     margin-left: auto;
     justify-content: center;
-  }
+}

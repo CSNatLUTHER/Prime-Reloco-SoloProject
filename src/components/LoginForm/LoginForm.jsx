@@ -4,6 +4,7 @@ import {useSelector} from 'react-redux';
 import './LoginForm.css';
 import Button from '@mui/material/Button';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import TextField from '@mui/material/TextField';
 
 function LoginForm() {
   const [username, setUsername] = useState('');
@@ -29,39 +30,35 @@ function LoginForm() {
 
   return (
     <form className="formPanel" onSubmit={login}>
-      <h2>Login</h2>
+      <h2 className='loginFormHeader'>LOGIN</h2>
       {errors.loginMessage && (
         <h3 className="alert" role="alert">
           {errors.loginMessage}
         </h3>
       )}
       <div>
-        <label htmlFor="username">
-          Username:
-          <input
-            type="text"
-            name="username"
-            required
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
+        <TextField
+          id="username"
+          label='USERNAME'
+          type="required"
+          value={username}
+          onChange={(event) => setUsername(event.target.value)}
+          className='loginFormGeneralTextField'
           />
-        </label>
       </div>
+      <br />
       <div>
-        <label htmlFor="password">
-          Password:
-          <input
-            type="password"
-            name="password"
-            required
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
+        <TextField
+          id="password"
+          label='PASSWORD'
+          type="password"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+          className='loginFormGeneralTextField'
           />
-        </label>
       </div>
+      <br />
       <div>
-        {/* <input className="btn" type="submit" name="submit" value="Log In" />
-        <br /> */}
         <Button color="secondary" variant="contained" className='LogInButton' endIcon={<ArrowForwardIosIcon />} onClick={login}>LOG IN</Button>
       </div>
     </form>

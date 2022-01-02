@@ -1,4 +1,9 @@
-.registerBrand{
-    height: 225px;
-    margin-top: 50px;
+.registerFormBrand{
+    width: 35%;
+    margin-top: 35px;
+}
+
+.loginReturnButton{
+    width: 80%;
+    height: 50px;
 }

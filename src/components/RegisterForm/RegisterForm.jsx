@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import TextField from '@mui/material/TextField';
+import './RegisterForm.css'
 
 function RegisterForm() {
   const [firstName, setFirstName] = useState('');
@@ -27,58 +29,53 @@ function RegisterForm() {
 
   return (
     <form className="formPanel" onSubmit={registerUser}>
-      <h2>Register User</h2>
+      <h2 className='registerFormHeader'>REGISTER</h2>
       {errors.registrationMessage && (
         <h3 className="alert" role="alert">
           {errors.registrationMessage}
         </h3>
       )}
       <div>
-        <label htmlFor="firstname">
-          First Name:
-          <input
-            type="text"
-            name="firstname"
-            value={firstName}
-            required
-            onChange={(event) => setFirstName(event.target.value)}
+        <TextField
+          id="firstname"
+          label='FIRST NAME'
+          type="required"
+          value={firstName}
+          onChange={(event) => setFirstName(event.target.value)}
+          className='registerGeneralTextField'
           />
-        </label>
         <br />
-        <label htmlFor="lastname">
-          Last Name:
-          <input
-            type="text"
-            name="lastname"
-            value={lastName}
-            required
-            onChange={(event) => setLastName(event.target.value)}
-          />
-        </label>
         <br />
-        <label htmlFor="username">
-          Username:
-          <input
-            type="text"
-            name="username"
-            value={username}
-            required
-            onChange={(event) => setUsername(event.target.value)}
+        <TextField
+          id="lastname"
+          label='LAST NAME'
+          type="required"
+          value={lastName}
+          onChange={(event) => setLastName(event.target.value)}
+          className='registerGeneralTextField'
           />
-        </label>
-      </div>
-      <div>
-        <label htmlFor="password">
-          Password:
-          <input
-            type="password"
-            name="password"
-            value={password}
-            required
-            onChange={(event) => setPassword(event.target.value)}
+        <br />
+        <br />
+        <TextField
+          id="username"
+          label='USERNAME (email)'
+          type="required"
+          value={username}
+          onChange={(event) => setUsername(event.target.value)}
+          className='registerGeneralTextField'
           />
-        </label>
+        <br />
+        <br />
+        <TextField
+          id="password"
+          label='PASSWORD'
+          type="password"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+          className='registerGeneralTextField'
+          />
       </div>
+      <br />
       <div>
         {/* <input className="btn" type="submit" name="submit" value="Register" /> */}
         <Button color="secondary" variant="contained" className='LogInButton' endIcon={<ArrowForwardIosIcon />} onClick={registerUser}>REGISTER</Button>
