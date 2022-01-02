@@ -27,8 +27,11 @@ router.get('/', (req, res) => {
 router.post('/join', (req, res) => {
   console.log('joinEvent POST req.body:',req.body);
   // RETURNING "id" will give us back the id of the created movie
-  const query = `SELECT *  FROM event
-	               WHERE share_code = '${req.body.eventCode}';`
+  const query = `SELECT first_name AS owner_first_name, last_name AS owner_last_name, event.id, name, move_date, event.create_date, creator_user_id, share_code FROM user_event
+                 JOIN event ON user_event.event_id=event.id
+                 JOIN "user" ON "user".id=event.creator_user_id
+	               WHERE share_code = '${req.body.eventCode}'
+                 GROUP BY event.creator_user_id, "user".id, event.id;`
   pool.query(query)
   .then(result => {
       console.log("Returned Rows", result.rows);

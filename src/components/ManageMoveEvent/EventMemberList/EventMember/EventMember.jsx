@@ -7,6 +7,7 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
 import Typography from '@mui/material/Typography';
+import LeaveMoveEvent from '../../LeaveMoveEvent/LeaveMoveEvent';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -33,11 +34,17 @@ function EventMember(props) {
     }
   }
 
-
   const removeMember = () => {
   console.log('Remove Member', leaveDetails);
   dispatch({type:'LEAVE_EVENT', payload: leaveDetails })
   }
+
+  const leaveMemberConfirm = () => {
+    if(confirm(`Are you sure you want to leave ` + store.active_event.name + '?')){
+      alert('You have left the group!')
+    }
+  }
+  
 
   return (
     <div className='component'>
@@ -59,9 +66,14 @@ function EventMember(props) {
           {memberID === creatorID?
           'OWNER':'MEMBER'}
         </Typography>
-        {( userID === creatorID && userID != memberID )?
-              <Button color="error" variant="contained" className='removeMemberButton' endIcon={<PersonRemoveIcon />} onClick={() => {setTimeout(removeMemberConfirm, 250)}}>REMOVE MEMBER</Button>:
-              <Button color="error" variant="contained" className='removeMemberButton' endIcon={<PersonRemoveIcon />} disabled>REMOVE MEMBER</Button>    
+        {userID === creatorID && creatorID != memberID?
+            <Button color="error" variant="contained" className='removeMemberButton' endIcon={<PersonRemoveIcon />} onClick={() => {setTimeout(removeMemberConfirm, 250)}}>REMOVE MEMBER</Button>:
+            <>
+              {userID === memberID && userID != creatorID?
+                <LeaveMoveEvent className='removeMemberButton' />:
+                <Button color="error" variant="outlined" className='removeMemberButton' endIcon={<PersonRemoveIcon />} disabled>REMOVE MEMBER</Button>
+              }
+            </>    
        }
       </CardContent>
     </Card>

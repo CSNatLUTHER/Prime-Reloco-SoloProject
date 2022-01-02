@@ -14,6 +14,7 @@ function* fetchAllEvents(user) {
         }     
   };
 
+
 // CREATES NEW MOVE EVENT
 function* createEvent(data) {
   // get all movies from the DB

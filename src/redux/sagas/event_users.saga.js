@@ -25,18 +25,19 @@ function* leaveEvent(event) {
   };
 
 function* joinEvent(event) {
-  try {
+    try {
         const eventUser = yield axios({
                                   method: 'POST',
                                   url: '/api/event_user/join',
                                   data: event.payload});
         console.log('get all:', eventUser.data);
-        yield put({ type: 'SET_ACTIVE_EVENT_USERS', payload: eventUser.data });
-        } 
-        catch {
-        console.log('fetchAllEventUsers error');
-        }     
+        yield put({ type: 'SET_ACTIVE_EVENT', payload: eventUser.data })
+    } 
+    catch {
+    console.log('fetchAllEventUsers error');
+    }     
   };
+
 
 function* eventUsersSaga() {
   yield takeEvery('FETCH_EVENT_USERS', fetchAllEventUsers);

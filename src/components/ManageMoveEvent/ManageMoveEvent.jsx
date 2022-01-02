@@ -60,22 +60,15 @@ function ManageMoveEvent(props) {
       <h1 className ='manageMoveEventHomeHeader'>{store.active_event.name}</h1>
       <p><b>MOVE OWNER:</b> {store.active_event.owner_first_name} {store.active_event.owner_last_name}</p>
       <p><b>MOVE DATE:</b> {moveDate}</p>
-      {/* <p>{JSON.stringify(store.active_event)}</p> */}
-      {/* If event.owner.id === user.id, show ShareMoveEvent, otherwise show LeaveMoveEvent Write ternary operator below*/}
+      <ShareMoveEvent />
+      <EventMemberList />
       {(store.user.id === store.active_event.creator_user_id)?
-            <>
-              <ShareMoveEvent />
-            </>:
-            <LeaveMoveEvent />
+        <>
+          <h2 className ='manageMoveEvenDeleteHeader'>DELETE EVENT</h2>
+          <Button color="error" variant="contained" className='deleteEventButton' endIcon={<DeleteForeverIcon />} onClick={() => {setTimeout(deleteConfirm, 250)}}>DELETE EVENT</Button>
+        </>:
+        <></>
       }
-            <EventMemberList />
-            {(store.user.id === store.active_event.creator_user_id)?
-              <>
-                <h2 className ='manageMoveEvenDeleteHeader'>DELETE EVENT</h2>
-                <Button color="error" variant="contained" className='deleteEventButton' endIcon={<DeleteForeverIcon />} onClick={() => {setTimeout(deleteConfirm, 250)}}>DELETE EVENT</Button>
-              </>:
-              <></>
-            }
       {/* <p>User ID:{JSON.stringify(store.user.id)}</p>
       <p>Creator ID:{JSON.stringify(store.active_event.creator_user_id)}</p> */}
     </div>

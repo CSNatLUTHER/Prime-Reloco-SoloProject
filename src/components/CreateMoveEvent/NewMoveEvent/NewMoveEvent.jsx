@@ -95,7 +95,7 @@ function NewMoveEvent(props) {
       </LocalizationProvider>
       <br />
       <br />
-      <Button color="secondary" variant="contained" className='createEventButton' endIcon={<ArrowForwardIosIcon />} onClick={ () => { setTimeout(validateData, 250) } }>CREATE NEW EVENT</Button>
+      <Button color="secondary" variant="contained" className='createEventButton' endIcon={<ArrowForwardIosIcon />} onClick={ () => { setTimeout(validateData, 250) } }>CREATE MOVE EVENT</Button>
     </div>
   );
 }
