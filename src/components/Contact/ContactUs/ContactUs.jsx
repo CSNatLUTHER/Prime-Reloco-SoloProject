@@ -5,6 +5,7 @@ import './ContactUs.css';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import TextField from '@mui/material/TextField';
+import Swal from 'sweetalert2'
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -37,17 +38,34 @@ function contactUs(props) {
   const handleMessageChange = (event) => {
     setContactForm({...contactForm, message:event.target.value})
   }  
+
+  const Swal = require('sweetalert2')
+
   const validateMessage = () => {
     if(contactForm.name != '' && contactForm.subject != '' && contactForm.message != ''){
       if(contactForm.email.includes('@' && '.')){
         submitMessage()
       }
       else{
-        alert('Email address appears invalid')
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Email address appears invalid.',
+          width: '90%',
+          iconColor: '#3f51b5',
+          confirmButtonColor:'#ffc400'
+        })
       }
     }
     else{
-      alert('All fields are required to send message.');
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'All fields are required to send message.',
+        width: '90%',
+        iconColor: '#3f51b5',
+        confirmButtonColor:'#ffc400'
+      });
     }
   }
 

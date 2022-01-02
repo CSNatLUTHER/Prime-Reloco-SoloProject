@@ -11,7 +11,8 @@ import TextField from '@mui/material/TextField';
 import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
 import IconButton from '@mui/material/IconButton';
 import MenuItem from '@mui/material/MenuItem';
-import './BoxEditForm.css'
+import './BoxEditForm.css';
+import Swal from 'sweetalert2';
 
 
 // Basic functional component structure for React with default state
@@ -83,7 +84,14 @@ const validateData = () => {
     updateBox()
   }
   else{
-    alert('Must complete all required fields')
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Must complete all required fields',
+      width: '90%',
+      iconColor: '#3f51b5',
+      confirmButtonColor:'#ffc400'
+    })
   }
 }
 

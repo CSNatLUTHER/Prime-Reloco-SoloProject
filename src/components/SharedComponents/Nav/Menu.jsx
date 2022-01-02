@@ -61,17 +61,24 @@ class HeaderClass extends React.Component {
           {/* If a user is logged in, show these links */}
           {this.props.store.user.id && (
             <>
-              <Link onClick={() => this.closeMenu()} className="navLink" to="/user">Home</Link>
+              <Link onClick={() => this.closeMenu()} className="navLink" to="/user">HOME</Link>
               <br />
-              <Link onClick={() => this.closeMenu()} className="menu-item" className="navLink"  to="/move_event_home">Move Event Home</Link>
-              <br />
-              <Link onClick={() => this.closeMenu()} className="menu-item" className="navLink" to="/move_event_home">Search</Link>
+             
+            </>
+          )}
+          {this.props.store.active_event.id && (
+            <>
+             <Link onClick={() => this.closeMenu()} className="menu-item" className="navLink"  to="/move_event_home">EVENT PAGE</Link>
+            <br />
+            <Link onClick={() => this.closeMenu()} className="menu-item" className="navLink" to="/move_event_home">SEARCH</Link>
+            <br />
+            <Link onClick={() => this.closeMenu()} className="menu-item" className="navLink" to="/move_event_home">NEW BOX/ITEM</Link>
             </>
           )}
           <Link onClick={() => this.closeMenu()} className="menu-item" className="navLink" to="/about">
-              About
+              ABOUT
               </Link>
-          <Link onClick={() => this.closeMenu()} className="menu-item" className="navLink" to="/contact">Contact</Link>
+          <Link onClick={() => this.closeMenu()} className="menu-item" className="navLink" to="/contact">CONTACT</Link>
           {this.props.store.user.id && (
           <Link onClick={() => this.closeMenu()} className="menu-item" className="navLink" to="/home">
             <LogOutButton className="navLink" />

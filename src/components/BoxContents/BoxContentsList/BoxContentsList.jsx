@@ -37,7 +37,7 @@ function boxContentsList(props) {
             <Button color="secondary" variant="contained" className='searchItemButton' endIcon={<ArrowForwardIosIcon />} onClick={() => {setTimeout(() =>{history.push('/move_event_home')}, 250)}}>ADD ITEMS TO BOX</Button>
           </>:
           <div>
-            {boxContents.map(boxContentsItem => (<BoxContentsItem className="boxContentsItem" boxContentsItem={boxContentsItem} key={boxContentsItem.item_id} />))}
+            {boxContents.map(boxContentsItem => (<BoxContentsItem className="boxContentsItem" boxContentsItem={boxContentsItem} key={boxContentsItem.id} />))}
           </div>
         }
       </div>

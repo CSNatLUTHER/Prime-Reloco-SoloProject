@@ -8,6 +8,7 @@ import './ManageMoveEvent.css';
 import Button from '@mui/material/Button';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useHistory } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -34,16 +35,48 @@ function ManageMoveEvent(props) {
       history.push('/user')
   }
 
-  const deleteConfirm = () => {  
-    if(confirm('Are you sure you want to delete '+ store.active_event.name + '? This action cannot be undone!')){
-      deleteConfirmItemsAndBoxes()
-    }
+  const deleteConfirm = () => { 
+    Swal.fire({
+      title: 'Are you sure you want to delete '+ store.active_event.name + '?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      width: '90%',
+      iconColor: '#3f51b5',
+      showCancelButton: true,
+      confirmButtonColor: '#3f51b5',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteConfirmItemsAndBoxes()
+      }
+    })
   }
 
-  const deleteConfirmItemsAndBoxes = () => {  
-    if(confirm('Are you sure you want to delete '+ store.active_event.name + '? This will also delete all assocated items and boxes for this event for you and all move event collaborators!')){
-      deleteEvent()
-    }
+  const deleteConfirmItemsAndBoxes = () => { 
+    Swal.fire({
+      title: 'Are you REALLY sure you want to delete '+ store.active_event.name + '?',
+      text: "This will also delete ALL items and boxes associated with this event!",
+      icon: 'question',
+      width: '90%',
+      iconColor: '#3f51b5',
+      showCancelButton: true,
+      confirmButtonColor: '#3f51b5',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title:'Deleted!',
+          text: store.active_event.name +' has been deleted.',
+          icon:'success',
+          width: '90%',
+          iconColor: '#3f51b5',
+          confirmButtonColor:'#ffc400'
+        })
+        deleteEvent()
+      }
+    })
   }
 
   let moveDate = new Date(store.active_event.move_date).toLocaleDateString( 'en-US',{

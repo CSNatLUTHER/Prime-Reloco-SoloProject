@@ -15,23 +15,23 @@ function QRCodeScan(props) {
   const store = useSelector((store) => store);
   const [heading, setHeading] = useState('QR Code Scan');
   const [scanning, setScanning] = useState(false);
-  const [codeFound, setCodeFound] = useState({
-                                        id: ''
-                                      })
+  // const [codeFound, setCodeFound] = useState({
+  //                                       id: ''
+  //                                     })
 
   const handleScan = (data) => {
     if (data) {
-      setCodeFound({
-        id: data
-      })
-      setScanning(false)
-      props.qr(data)
-      dispatch({type:'SET_QR_CODE', payload:{id:data}})
+      // setCodeFound({
+      //   id: data
+      // })
+      // setScanning(false)
+      setTimeout(() => {props.qr(data)}, 500)
+      // dispatch({type:'SET_QR_CODE', payload:{id:data}})
     }
   }
   const handleError = err => {
     console.error(err)
-    setScanning(false)
+    // setScanning(false)
   }
 
   return (

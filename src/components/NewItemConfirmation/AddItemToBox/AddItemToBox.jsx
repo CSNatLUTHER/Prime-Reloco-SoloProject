@@ -10,6 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { useHistory } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -19,7 +20,6 @@ function addItemToBox(props) {
   // Using hooks we're creating local state for a "heading" variable with
   // a default value of 'Functional Component'
   const store = useSelector((store) => store);
-  console.log('Active Item:', store.active_item.id);
   const [heading, setHeading] = useState('ADD ITEM TO BOX');
   const [scanning, setScanning] = useState(false);
   const [box, setBox] = useState({
@@ -39,15 +39,26 @@ function addItemToBox(props) {
 
   const history = useHistory()
 
+  const validateData = () => {
+    if(box.boxQr != ''){
+      putItemInBox()
+    }
+    else{
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'QR code appears invalid',
+        width: '90%',
+        iconColor: '#3f51b5',
+        confirmButtonColor:'#ffc400'
+      })
+    }
+  }
+
   const putItemInBox = () => {
-    // if(store.qr_code.id != ''){
-      dispatch({ type: 'PUT_ITEM_IN_BOX', payload: box });
+      dispatch({ type: 'PUT_ITEM_IN_BOX', payload: box })
       dispatch({ type: 'UPDATE_ITEM_DESTINATION', payload: box });
-      setTimeout(()=>{history.push('./box_info')}, 500)
-    // }
-    // else{
-    //   dispatch({ type: 'PUT_ITEM_IN_BOX', payload: box });
-    // }
+      setTimeout(()=>{history.push('./box_info')}, 1000)
   } 
   const scanClick = () => {
     setScanning(!scanning)
@@ -77,7 +88,7 @@ function addItemToBox(props) {
       <QRCodeScan qr={receiveQrCode} />:
       <></>}
       <br />
-      <Button color="secondary" variant="contained" className='addItemToBoxButton' endIcon={<ArrowForwardIosIcon />} onClick={() => {setTimeout(putItemInBox, 250)}}>ADD ITEM TO BOX</Button>
+      <Button color="secondary" variant="contained" className='addItemToBoxButton' endIcon={<ArrowForwardIosIcon />} onClick={() => {setTimeout(validateData, 250)}}>ADD ITEM TO BOX</Button>
       {/* <p>QR Code ID:</p><input type="text" placeholder='enter code or use QR scan' value={box.boxQr} onChange={handleQrChange} /><QRCodeScan qr={receiveQrCode} />
       <br />
       <br />

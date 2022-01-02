@@ -6,6 +6,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { useHistory } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -36,7 +37,15 @@ function JoinMoveEvent(props) {
       joinEvent()
     }
     else{
-      alert('Entry does not appear to be a valid code.')
+      // alert('Entry does not appear to be a valid code.')
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Entry does not appear to be a valid code.',
+        width: '90%',
+        iconColor: '#3f51b5',
+        confirmButtonColor:'#ffc400'
+      })
     }
   }
   

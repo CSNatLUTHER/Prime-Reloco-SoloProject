@@ -8,6 +8,7 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DatePicker from '@mui/lab/DatePicker';
 import Button from '@mui/material/Button';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import Swal from 'sweetalert2';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -31,17 +32,34 @@ function NewMoveEvent(props) {
     setNewEvent({ ...newEvent, event_name: event.target.value })
   }
 
+
   const validateData = () => {
     if(newEvent.move_date>new Date() ){
         if(newEvent.event_name != ''){
           addNewEvent()
         }
         else{
-          alert('"MOVE EVENT NAME" required to proceed.')
+          // alert('"MOVE EVENT NAME" required to proceed.');
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: '"MOVE EVENT NAME" required to proceed.',
+            width: '90%',
+            iconColor: '#3f51b5',
+            confirmButtonColor:'#ffc400'
+          })
         }
     }
     else{
-      alert('"MOVE DATE" must be in the future')
+      // alert('"MOVE DATE" must be in the future');
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: '"MOVE DATE" must be in the future',
+        width: '90%',
+        iconColor: '#3f51b5',
+        confirmButtonColor:'#ffc400'
+      })
     }
   }
 

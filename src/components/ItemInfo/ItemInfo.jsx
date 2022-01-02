@@ -10,6 +10,7 @@ import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { useHistory } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 
 // Basic functional component structure for React with default state
@@ -34,9 +35,31 @@ function itemInfo(props) {
   }
 
   const removeFromBoxConfirm = () => {
-    if(confirm('Are you sure you want to remove ' + store.active_item.name + ' from ' + store.active_item_box.name + '?')){
-      removeFromBox()
-    }
+    Swal.fire({
+      title: 'Are you sure you want to remove ' + store.active_item.name + ' from ' + store.active_item_box.name + '?',
+      text: "You will need to re-add the item to the box to undo this action.",
+      icon: 'question',
+      width: '90%',
+      iconColor: '#3f51b5',
+      showCancelButton: true,
+      confirmButtonColor: '#3f51b5',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title:'You have successfully removed ' + store.active_item.name + ' from ' + store.active_item_box.name + '.',
+          icon:'success',
+          width: '90%',
+          iconColor: '#3f51b5',
+          confirmButtonColor:'#ffc400'
+        })
+        removeFromBox()
+      }
+    })
+    // if(confirm('Are you sure you want to remove ' + store.active_item.name + ' from ' + store.active_item_box.name + '?')){
+    //   removeFromBox()
+    // }
   }
 
   const removeFromBox = () => {

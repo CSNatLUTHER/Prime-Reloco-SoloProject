@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import QRCodeScan from '../../SharedComponents/QRCodeScan/QRCodeScan';
 import PhotoCapture from '../../SharedComponents/PhotoCapture/PhotoCapture';
-import DelayLink from 'react-delay-link';
 import { useHistory } from "react-router-dom";
 import './ItemEditForm.css';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -16,6 +15,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuItem from '@mui/material/MenuItem';
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 import EditIcon from '@mui/icons-material/Edit';
+import Swal from 'sweetalert2';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -143,7 +143,14 @@ useEffect( () => {
         updateItem()
       }
       else{
-        alert('Must complete all required fields')
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Must complete all required fields',
+          width: '90%',
+          iconColor: '#3f51b5',
+          confirmButtonColor:'#ffc400'
+        })
       }
     }
     else{
@@ -151,7 +158,14 @@ useEffect( () => {
         updateItem()
       }
       else{
-        alert('Must complete all required fields')
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Must complete all required fields',
+          width: '90%',
+          iconColor: '#3f51b5',
+          confirmButtonColor:'#ffc400'
+        })
       }
     }
   }

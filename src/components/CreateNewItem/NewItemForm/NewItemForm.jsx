@@ -16,6 +16,7 @@ import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
 import IconButton from '@mui/material/IconButton';
 import MenuItem from '@mui/material/MenuItem';
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
+import Swal from 'sweetalert2';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -87,13 +88,21 @@ function newItemForm(props) {
     }
   }
   const history = useHistory()
+
   const validateData = () => {
     if (newItem.put_in_box === false){
       if(newItem.qr != '' && newItem.item_name != '' && newItem.destination != 0){
         addNewItem()
       }
       else{
-        alert('Must complete all required fields')
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Must complete all required fields',
+          width: '90%',
+          iconColor: '#3f51b5',
+          confirmButtonColor:'#ffc400'
+        })
       }
     }
     else{
@@ -102,7 +111,14 @@ function newItemForm(props) {
 
       }
       else{
-        alert('Must complete all required fields')
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Must complete all required fields',
+          width: '90%',
+          iconColor: '#3f51b5',
+          confirmButtonColor:'#ffc400'
+        })
       }
     }
   }

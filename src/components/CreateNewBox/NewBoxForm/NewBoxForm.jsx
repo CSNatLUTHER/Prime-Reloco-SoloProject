@@ -1,22 +1,17 @@
 import React, { useState } from 'react';
 import {useSelector} from 'react-redux';
 import QRCodeScan from '../../SharedComponents/QRCodeScan/QRCodeScan';
-import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom"; 
-import FormControlLabel from '@mui/material/FormControlLabel';
 import Button from '@mui/material/Button';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import TextField from '@mui/material/TextField';
 import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
 import IconButton from '@mui/material/IconButton';
 import MenuItem from '@mui/material/MenuItem';
-import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
-import './NewBoxForm.css'
+import './NewBoxForm.css';
+import Swal from 'sweetalert2';
 
-// Basic functional component structure for React with default state
-// value setup. When making a new component be sure to replace the
-// component name TemplateFunction with the name for the new component.
 function newBoxForm(props) {
   const dispatch = useDispatch()
   // Using hooks we're creating local state for a "heading" variable with
@@ -66,7 +61,14 @@ function newBoxForm(props) {
       addNewBox()
     }
     else{
-      alert('Must complete all required fields')
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Must complete all required fields',
+        width: '90%',
+        iconColor: '#3f51b5',
+        confirmButtonColor:'#ffc400'
+      })
     }
   }
 

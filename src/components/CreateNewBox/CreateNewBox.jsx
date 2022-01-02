@@ -4,6 +4,7 @@ import NewBoxForm from '../CreateNewBox/NewBoxForm/NewBoxForm';
 import './CreateNewBox.css';
 
 
+
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
 // component name TemplateFunction with the name for the new component.

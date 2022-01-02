@@ -118,6 +118,7 @@ function boxContentsItem(props) {
         </CardContent>
         <Button color="secondary" variant="contained" className='boxContentsSelectItemButton' endIcon={<ArrowForwardIosIcon />} onClick={() => {setTimeout(selectItem, 250)}}>SELECT ITEM</Button>
       </Card>
+      {/* <p>{JSON.stringify(props)}</p> */}
     </div>
   );
 }
