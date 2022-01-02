@@ -2,9 +2,21 @@
     max-width: 500px;
     margin-left: auto;
     margin-right: auto;
+    text-align: left;
+    /* border: black;
+    border-style: solid;
+    border-radius: 6px;
+    border-width: 3px; */
+    padding: 5px;
+    margin-top: 25px;
 }
 
 .brand {
     width: 35%;
     margin-top: 50px;
+}
+
+.aboutUsButton{
+    width: 80%;
+    height: 50px;
 }

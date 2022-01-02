@@ -1,0 +1,17 @@
+.contactUsFormLogo{
+    width: 35%;
+    margin-top: 35px;
+}
+
+.contactGeneralTextField{
+    width: 80%;
+}
+
+.contactMessageTextField{
+    width: 80%;
+}
+
+.sendMessageButton{
+    width: 80%;
+    height: 50px;
+}

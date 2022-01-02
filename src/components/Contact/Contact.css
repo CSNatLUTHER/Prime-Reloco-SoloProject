@@ -1,8 +1,9 @@
-.registerGeneralTextField{
-    width: 80%;
+.contactBrand{
+    width: 35%;
+    margin-top: 35px;
 }
 
-.registerFormHeader{
+.contactHeader{
     background-color: #3f51b5;
     color: white;
     padding-top: 10px;
@@ -11,9 +12,4 @@
     margin-right: auto;
     margin-left: auto;
     justify-content: center;
-}
-
-.registerFormButton{
-    width: 80%;
-    height: 50px;
 }

@@ -78,7 +78,7 @@ function RegisterForm() {
       <br />
       <div>
         {/* <input className="btn" type="submit" name="submit" value="Register" /> */}
-        <Button color="secondary" variant="contained" className='LogInButton' endIcon={<ArrowForwardIosIcon />} onClick={registerUser}>REGISTER</Button>
+        <Button color="secondary" variant="contained" className='registerFormButton' endIcon={<ArrowForwardIosIcon />} onClick={registerUser}>REGISTER</Button>
       </div>
     </form>
   );

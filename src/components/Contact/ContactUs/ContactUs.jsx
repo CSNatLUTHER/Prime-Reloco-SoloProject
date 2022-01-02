@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
+import './ContactUs.css';
+import Button from '@mui/material/Button';
+import SendIcon from '@mui/icons-material/Send';
+import TextField from '@mui/material/TextField';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -33,6 +37,19 @@ function contactUs(props) {
   const handleMessageChange = (event) => {
     setContactForm({...contactForm, message:event.target.value})
   }  
+  const validateMessage = () => {
+    if(contactForm.name != '' && contactForm.subject != '' && contactForm.message != ''){
+      if(contactForm.email.includes('@' && '.')){
+        submitMessage()
+      }
+      else{
+        alert('Email address appears invalid')
+      }
+    }
+    else{
+      alert('All fields are required to send message.');
+    }
+  }
 
   const submitMessage = () => {
     console.log('Message Submitted with:', contactForm);
@@ -42,15 +59,50 @@ function contactUs(props) {
 
   return (
     <div className='component'>
-      <h2>{heading}</h2>
-      <p>Name:</p><input type="text" placeholder='ex. Jane Doe' value={contactForm.name} onChange={handleNameChange}/>
-      <p>Email:</p><input type="text" placeholder='ex. email@domain.com' value={contactForm.email} onChange={handleEmailChange}/>
-      <p>Subject:</p><input type="text" placeholder='ex. Password Help' value={contactForm.subject} onChange={handleSubjectChange}/>
-      <p>Message:</p><textarea cols="30" rows="10" placeholder='ex. Your message here...' value={contactForm.message} onChange={handleMessageChange}/>
+      <TextField
+          id="contactName"
+          label='NAME'
+          type="required"
+          value={contactForm.name}
+          onChange={handleNameChange}
+          className='contactGeneralTextField'
+          />
+          <br />
+          <br />
+      <TextField
+          id="contactEmail"
+          label='EMAIL'
+          type="required"
+          value={contactForm.email}
+          onChange={handleEmailChange}
+          className='contactGeneralTextField'
+          />
+          <br />
+          <br />
+      <TextField
+          id="contactSubject"
+          label='SUBJECT'
+          type="required"
+          value={contactForm.subject}
+          onChange={handleSubjectChange}
+          className='contactGeneralTextField'
+          />
+          <br />
+          <br />
+      <TextField
+          multiline
+          id="contactSubject"
+          label='MESSAGE'
+          type="required"
+          rows={4}
+          value={contactForm.message}
+          inputProps={{ maxLength: 1000 }}
+          onChange={handleMessageChange}
+          className='contactMessageTextField'
+          />
       <br />
       <br />
-      <button onClick={submitMessage}>Submit Message</button>
-      <p>contactForm: {JSON.stringify(contactForm)}</p>
+      <Button color="secondary" variant="contained" className='sendMessageButton' endIcon={<SendIcon />} onClick={() => {setTimeout(validateMessage, 250)}}>SEND MESSAGE</Button>
 
     </div>
   );

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {useSelector} from 'react-redux';
 import ContactUs from './ContactUs/ContactUs';
 import ContactThankYou from './ContactThankYou/ContactThankYou';
+import './Contact.css';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -19,7 +20,8 @@ function contactUs(props) {
 
   return (
     <div className='component'>
-      <h2>{heading}</h2>
+      <img className='contactBrand' src="/images/brand.png"/>
+      <h2 className='contactHeader'>{heading}</h2>
       {thankYou?
         <ContactThankYou setThankYou={updateThankYou} />:
         <ContactUs setThankYou={updateThankYou}/>
