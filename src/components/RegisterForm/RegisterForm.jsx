@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import TextField from '@mui/material/TextField';
 import './RegisterForm.css'
+import Swal from 'sweetalert2'
 
 function RegisterForm() {
   const [firstName, setFirstName] = useState('');
@@ -12,6 +13,35 @@ function RegisterForm() {
   const [password, setPassword] = useState('');
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
+
+  const validateData = () => {
+    if(firstName != '' && lastName != '' && password != ''){
+      if(username.includes('@' && '.')){
+        registerUser()
+      }
+      else{
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Username (email address) appears invalid.',
+          width: '90%',
+          iconColor: '#3f51b5',
+          confirmButtonColor:'#ffc400'
+        })
+      }
+    }
+    else{
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'All fields are required to send message.',
+        width: '90%',
+        iconColor: '#3f51b5',
+        confirmButtonColor:'#ffc400'
+      });
+    }
+  }
+
 
   const registerUser = (event) => {
     event.preventDefault();
@@ -78,7 +108,7 @@ function RegisterForm() {
       <br />
       <div>
         {/* <input className="btn" type="submit" name="submit" value="Register" /> */}
-        <Button color="secondary" variant="contained" className='registerFormButton' endIcon={<ArrowForwardIosIcon />} onClick={registerUser}>REGISTER</Button>
+        <Button color="secondary" variant="contained" className='registerFormButton' endIcon={<ArrowForwardIosIcon />} onClick={validateData}>REGISTER</Button>
       </div>
     </form>
   );

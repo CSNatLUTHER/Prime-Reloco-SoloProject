@@ -47,13 +47,15 @@ class HeaderClass extends React.Component {
           onStateChange={(state) => this.handleStateChange(state)}
         >
           <img className='navLogo' src="/images/logo.png" alt="" />
+          <br />
+          <br />
           {/* If no user is logged in, show these links */}
           {this.props.store.user.id != null?
             // If there's no user, show login/registration links
             <></>:
             <>
               <Link onClick={() => this.closeMenu()} className="menu-item" className="navLink"  to="/login">
-                Login / Register
+                LOGIN/REGISTER
               </Link>
             </>
           }
