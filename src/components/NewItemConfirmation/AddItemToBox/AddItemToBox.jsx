@@ -26,7 +26,11 @@ function addItemToBox(props) {
                           item_id:store.active_item.id,
                           boxQr:'',
                           user: store.user.id,
-                          event: store.active_event.id});
+                          event: store.active_event.id,
+                          done: () => {
+                            history.push('/box_info')
+                          }
+                        });
 
   const handleQrChange = (event) => {
     setBox({ ...box, boxQr: event.target.value })
@@ -55,10 +59,10 @@ function addItemToBox(props) {
     }
   }
 
-  const putItemInBox = () => {
+  const putItemInBox = async () => {
       dispatch({ type: 'PUT_ITEM_IN_BOX', payload: box })
       dispatch({ type: 'UPDATE_ITEM_DESTINATION', payload: box });
-      setTimeout(()=>{history.push('./box_info')}, 1000)
+      // setTimeout(()=>{history.push('./box_info')}, 1000)
   } 
   const scanClick = () => {
     setScanning(!scanning)

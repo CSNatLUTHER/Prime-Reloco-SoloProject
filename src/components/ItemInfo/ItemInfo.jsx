@@ -66,6 +66,7 @@ function itemInfo(props) {
   const removeFromBox = () => {
     console.log('In removeFromBox');
     dispatch({ type: 'REMOVE_FROM_BOX', payload: {item_id: store.active_item.id, box_id: store.active_item_box.id} });
+    dispatch({ type: 'RESET_ITEM_DESTINATION', payload: store.active_item });
   }
 
   const deleteItemConfirmation = () => {

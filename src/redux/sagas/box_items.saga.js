@@ -22,6 +22,7 @@ console.log('In putItemInBox', item.payload );
                           data: item.payload});
     console.log('back from put Item in Box with:', putInBox.data);
     yield put({ type: 'SET_ACTIVE_BOX', payload: putInBox.data});
+    item.payload.done()
     } 
     catch {
     console.log('addItem error');
