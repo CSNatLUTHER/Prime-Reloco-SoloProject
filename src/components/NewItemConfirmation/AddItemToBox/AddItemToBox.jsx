@@ -12,9 +12,6 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { useHistory } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
-// Basic functional component structure for React with default state
-// value setup. When making a new component be sure to replace the
-// component name TemplateFunction with the name for the new component.
 function addItemToBox(props) {
   const dispatch = useDispatch()
   // Using hooks we're creating local state for a "heading" variable with
@@ -62,7 +59,6 @@ function addItemToBox(props) {
   const putItemInBox = async () => {
       dispatch({ type: 'PUT_ITEM_IN_BOX', payload: box })
       dispatch({ type: 'UPDATE_ITEM_DESTINATION', payload: box });
-      // setTimeout(()=>{history.push('./box_info')}, 1000)
   } 
   const scanClick = () => {
     setScanning(!scanning)
@@ -74,7 +70,7 @@ function addItemToBox(props) {
       <div className='addItemToBoxContainer'>
         <div>
           <TextField
-              id="outlined-search"
+              id="addItemQrScanOutlined-search"
               label="SCAN BOX QR CODE"
               type="search"
               value={box.boxQr}
@@ -93,13 +89,6 @@ function addItemToBox(props) {
       <></>}
       <br />
       <Button color="secondary" variant="contained" className='addItemToBoxButton' endIcon={<ArrowForwardIosIcon />} onClick={() => {setTimeout(validateData, 250)}}>ADD ITEM TO BOX</Button>
-      {/* <p>QR Code ID:</p><input type="text" placeholder='enter code or use QR scan' value={box.boxQr} onChange={handleQrChange} /><QRCodeScan qr={receiveQrCode} />
-      <br />
-      <br />
-      <DelayLink delay={500} to="/box_info">
-        <button onClick={putItemInBox}>Add To Box</button>
-      </DelayLink>
-      <p>{JSON.stringify(box)}</p> */}
     </div>
   );
 }

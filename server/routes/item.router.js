@@ -37,6 +37,7 @@ router.get('/search', (req, res) => {
                    JOIN destination ON item.destination_id=destination.id
                    WHERE (item.name ILIKE '%${req.query.searchText}%' AND item.event_id=${req.query.event})
                    OR (item.qr_id ILIKE '%${req.query.searchText}%' AND item.event_id=${req.query.event})
+                   OR (destination.destination ILIKE '%${req.query.searchText}%' AND item.event_id=${req.query.event})
                    ORDER BY "create_date" DESC;`
     pool.query(query)
     .then( result => {

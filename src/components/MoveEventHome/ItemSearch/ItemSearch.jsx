@@ -35,14 +35,6 @@ function ItemSearch(props) {
     if(searchItem.searchText != ''){
       dispatch({ type: 'SEARCH_FOR_ITEM', payload: searchItem });
     }
-    // else if(store.qr_code.id != ''){
-    //   dispatch({ type: 'SEARCH_FOR_ITEM',
-    //              payload: {
-    //                 searchText:store.qr_code.id,
-    //                 event:store.active_event.id,
-    //                 user: store.user.id}
-    //             });
-    // }
     else{
       dispatch({ type: 'FETCH_ITEMS', payload: searchItem }); 
     }
@@ -75,7 +67,7 @@ function ItemSearch(props) {
       <div className='searchContainer'>
         <div>
           <TextField
-              id="outlined-search"
+              id="itemOutlined-search"
               label="SEARCH ITEMS"
               type="search"
               value={searchItem.searchText}
