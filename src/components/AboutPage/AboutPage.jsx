@@ -3,9 +3,14 @@ import './AboutPage.css';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Button from '@mui/material/Button';
 import { useHistory } from 'react-router-dom';
+import { useEffect } from 'react';
 
 
 function AboutPage() {
+
+  useEffect(()=>{
+    window.scroll(0,0)
+  },[])
 
   const history = useHistory()
 
@@ -13,6 +18,9 @@ function AboutPage() {
     history.push('/user')
   }
 
+  useEffect(()=>{
+    window.scroll(0,0)
+  },[])
 
   return (
     <div className="container">

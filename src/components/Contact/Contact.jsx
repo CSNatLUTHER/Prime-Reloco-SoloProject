@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {useSelector} from 'react-redux';
 import ContactUs from './ContactUs/ContactUs';
 import ContactThankYou from './ContactThankYou/ContactThankYou';
@@ -13,6 +13,10 @@ function contactUs(props) {
   const store = useSelector((store) => store);
   const [heading, setHeading] = useState('Contact Us');
   const [thankYou, setThankYou] = useState(false);
+
+  useEffect(()=>{
+    window.scroll(0,0)
+  },[])
 
   const updateThankYou = () => {
     setThankYou(true)
