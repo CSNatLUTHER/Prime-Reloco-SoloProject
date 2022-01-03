@@ -14,42 +14,59 @@ function* fetchAllItems(event) {
         }     
   };
 
-  // FUNCTION TO GET ITEM SEARCH RESULTS
-  function* searchItems(info) {
-    console.log('In searchItems', info.payload);
-    try {  
-      const search = yield axios.get('/api/item/search',{params:info.payload})
-      console.log('searched items, found:', search.data);
-      yield put({ type: 'SET_ITEMS', payload: search.data});
+// FUNCTION TO GET ITEM SEARCH RESULTS
+function* searchItems(info) {
+  console.log('In searchItems', info.payload);
+  try {  
+    const search = yield axios.get('/api/item/search',{params:info.payload})
+    console.log('searched items, found:', search.data);
+    yield put({ type: 'SET_ITEMS', payload: search.data});
+    } 
+    catch {
+    console.log('searchItem error');
+    }     
+  };
+
+// FUNCTION TO GET ITEM SEARCH RESULTS
+function* fetchItemBox(item) {
+  console.log('In fetchItemBox', item.payload);
+  try {  
+    const search = yield axios.get('/api/item/box_item',{params: item.payload})
+    console.log('searched box_item, found:', search.data);
+    if(search.data.length === 0){
+      yield put({ type: 'SET_ITEM_BOX', payload: {}})
+    }else {
+      yield put({ type: 'SET_ITEM_BOX', payload: search.data[0]})}
+  } 
+  catch (err) {
+  console.log('fetchItemBox error', err);
+  }     
+    };
+
+// CREATES NEW ITEM FOR A MOVE EVENT
+function* addItem(data) {
+// get all movies from the DB
+console.log('In addItem Saga', data);
+try {  
+      const newItem = yield axios({
+                            method: 'POST',
+                            url: '/api/item',
+                            data: data.payload});
+      console.log('posting newItem, returned ID:', newItem.data);
+      yield put({ type: 'SET_ACTIVE_ITEM', payload: newItem.data[0]});
       } 
       catch {
-      console.log('searchItem error');
+      console.log('addItem error');
       }     
-    };
-
-  // FUNCTION TO GET ITEM SEARCH RESULTS
-  function* fetchItemBox(item) {
-    console.log('In fetchItemBox', item.payload);
-    try {  
-      const search = yield axios.get('/api/item/box_item',{params: item.payload})
-      console.log('searched box_item, found:', search.data);
-      if(search.data.length === 0){
-        yield put({ type: 'SET_ITEM_BOX', payload: {}})
-      }else {
-        yield put({ type: 'SET_ITEM_BOX', payload: search.data[0]})}
-    } 
-    catch (err) {
-    console.log('fetchItemBox error', err);
-    }     
-    };
+};
 
   // CREATES NEW ITEM FOR A MOVE EVENT
-  function* addItem(data) {
+function* updateItem(data) {
   // get all movies from the DB
-  console.log('In addItem Saga', data);
+  console.log('In updateItem Saga', data);
   try {  
         const newItem = yield axios({
-                              method: 'POST',
+                              method: 'PUT',
                               url: '/api/item',
                               data: data.payload});
         console.log('posting newItem, returned ID:', newItem.data);
@@ -60,37 +77,33 @@ function* fetchAllItems(event) {
         }     
   };
 
-    // CREATES NEW ITEM FOR A MOVE EVENT
-  function* updateItem(data) {
-    // get all movies from the DB
-    console.log('In updateItem Saga', data);
-    try {  
-          const newItem = yield axios({
-                                method: 'PUT',
-                                url: '/api/item',
-                                data: data.payload});
-          console.log('posting newItem, returned ID:', newItem.data);
-          yield put({ type: 'SET_ACTIVE_ITEM', payload: newItem.data[0]});
-          } 
-          catch {
-          console.log('addItem error');
-          }     
-    };
-  function* updateItemDestination(data) {
-    // get all movies from the DB
-    console.log('In updateItem Saga', data);
-    try {  
-          const newItem = yield axios({
-                                method: 'PUT',
-                                url: '/api/item/item_destination',
-                                data: data.payload});
-          console.log('posting newItem, returned ID:', newItem.data);
-          yield put({ type: 'SET_ACTIVE_ITEM', payload: newItem.data[0]});
-          } 
-          catch {
-          console.log('addItem error');
-          }     
-    };
+function* updateItemDestination(data) {
+  // get all movies from the DB
+  console.log('In updateItem Saga', data);
+  try {  
+        const newItem = yield axios({
+                              method: 'PUT',
+                              url: '/api/item/item_destination',
+                              data: data.payload});
+        console.log('posting newItem, returned ID:', newItem.data);
+        yield put({ type: 'SET_ACTIVE_ITEM', payload: newItem.data[0]});
+        } 
+        catch {
+        console.log('addItem error');
+        }     
+  };
+
+function* deleteItem(info) {
+  console.log('In deleteItem', info.payload);
+  try {  
+    const item = yield axios.delete('/api/item',{params:info.payload})
+    console.log('searched items, found:', item.data);
+    yield put({ type: 'UNSET_ACTIVE_ITEM'});
+    } 
+    catch (err) {
+    console.log('deleteItem error', err);
+    }     
+  };
 
 function* itemsSaga() {
   yield takeEvery('FETCH_ITEMS', fetchAllItems);
@@ -99,6 +112,7 @@ function* itemsSaga() {
   yield takeEvery('FETCH_ITEM_BOX', fetchItemBox);
   yield takeEvery('UPDATE_ITEM', updateItem);
   yield takeEvery('UPDATE_ITEM_DESTINATION', updateItemDestination);
+  yield takeEvery('DELETE_ITEM', deleteItem);
   
 }
 

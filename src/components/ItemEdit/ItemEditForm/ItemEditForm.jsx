@@ -237,6 +237,10 @@ useEffect( () => {
     },
   ];
 
+  const handleAddItemPhoto = () => {
+    setNewItem({...newItem, image_url:''})
+  }
+
   return (
     <div className='component'>
       <h2>EDIT '{newItem.item_name}'</h2>
@@ -321,11 +325,21 @@ useEffect( () => {
         <></>
       }
         {newItem.image_url === '/images/image.png'?
-          <Button color="secondary" variant="contained" className='captureImageButton' endIcon={<PhotoCameraIcon />} onClick={() => {setCapturePhoto(!capturePhoto)}}>ADD ITEM PHOTO</Button>:
           <>
             {capturePhoto?
               <>
-              <Button color="secondary" variant="contained" className='captureImageButton' endIcon={<PhotoCameraIcon />} onClick={() => {setCapturePhoto(!capturePhoto)}}>CANCEL PHOTO</Button>
+                <Button color="secondary" variant="contained" className='captureImageButton' endIcon={<PhotoCameraIcon />} onClick={() => {setCapturePhoto(false)}}>CANCEL PHOTO</Button>
+                <br />
+                <br />
+                <PhotoCapture/>
+              </>:
+              <Button color="secondary" variant="contained" className='captureImageButton' endIcon={<PhotoCameraIcon />} onClick={() => {setCapturePhoto(true)}}>ADD ITEM PHOTO</Button>
+            }
+          </>:
+          <>
+            {capturePhoto?
+              <>
+              <Button color="secondary" variant="contained" className='captureImageButton' endIcon={<PhotoCameraIcon />} onClick={() => {setCapturePhoto(false)}}>CANCEL PHOTO</Button>
               <br />
               <br />
               <PhotoCapture/>
@@ -333,7 +347,7 @@ useEffect( () => {
               <>
                 <img className='itemEditFormPhoto' src={imageToDisplay} alt="" />
                 <br />
-                <Button color="secondary" variant="contained" className='captureImageButton' startIcon={<EditIcon />}endIcon={<PhotoCameraIcon />} onClick={() => {setCapturePhoto(!capturePhoto)}}>TAKE NEW PHOTO</Button>
+                <Button color="secondary" variant="contained" className='captureImageButton' startIcon={<EditIcon />}endIcon={<PhotoCameraIcon />} onClick={() => {setCapturePhoto(true)}}>TAKE NEW PHOTO</Button>
               </>
             }
           </>

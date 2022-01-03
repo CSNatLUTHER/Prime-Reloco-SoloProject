@@ -146,6 +146,23 @@ router.put('/', (req, res) => {
         res.sendStatus(500)
     })})})
 
+router.delete('/', (req, res) => {
+  console.log('In deleteItem router with:',req.query);
+  const query = `DELETE FROM box_item
+                  WHERE item_id = ${req.query.id}
+                  RETURNING item_id;`
+  pool.query(query)
+  .then(result => {
+        // console.log(result.rows[0].id);
+        // const newItemId = result.rows[0].id
+        const getItemQuery = `DELETE FROM item
+                              WHERE item.id = ${req.query.id};`
+          pool.query(getItemQuery).then(result => {
+            res.sendStatus(200);
+    }).catch(err => {
+      console.log('deleteItem error',err);
+      res.sendStatus(500)
+  })})})
   
 
 module.exports = router;

@@ -87,7 +87,7 @@ function newItemForm(props) {
       })
     }
   }
-  const history = useHistory()
+  
 
   const validateData = () => {
     if (newItem.put_in_box === false){
@@ -123,11 +123,13 @@ function newItemForm(props) {
     }
   }
 
-  const addNewItem = async () => {
+  const history = useHistory()
+
+  const addNewItem =  () => {
     
     const url = store.photo.url.split('?')[0]        
-    await postImageData();
-    await dispatch({ type: 'ADD_ITEM', payload: { 
+    postImageData();
+    dispatch({ type: 'ADD_ITEM', payload: { 
                                       qr: newItem.qr, 
                                       item_name: newItem.item_name, 
                                       put_in_box: newItem.put_in_box, 
@@ -142,12 +144,8 @@ function newItemForm(props) {
     dispatch({ type: 'UNSET_QR_CODE' })
     dispatch({ type: 'UNSET_PHOTO_URL'})
     dispatch({ type: 'UNSET_PHOTO_CAPTURE'})
-    setTimeout(moveToPage, 1000)
+    setTimeout(()=>{history.push('/item_info')}, 1000)
     
-  }
-
-  const moveToPage = () => {
-    history.push('/item_info')
   }
 
   const scanClick = () => {
@@ -188,8 +186,6 @@ function newItemForm(props) {
 
   return (
     <div className='component'>
-      {/* <h2>{heading}</h2> */}
-      {/* <form onSubmit={validateData}> */}
       <FormControlLabel
         sx={{
           display: 'block',
@@ -229,7 +225,6 @@ function newItemForm(props) {
       <QRCodeScan qr={handleQrChange} />:
       <></>}
       <br />
-      {/* <p>Item Name:</p><input type="text" placeholder='ex. speaker' value={newItem.item_name} onChange={handleNameChange}  /> */}
       <TextField
           id="outlined-required"
           label='ITEM NAME'
@@ -247,8 +242,6 @@ function newItemForm(props) {
         onChange={handleValueChange}
         className='generalTextField'
       />
-      {/* <p>Item Value: $</p><input type="number" placeholder='150' onChange={handleValueChange}  /> */}
-      {/* Create a conditional statement that renders destination only when "going in box" is 'false' */}
       <br />
       <br />
       {!newItem.put_in_box?
@@ -268,26 +261,6 @@ function newItemForm(props) {
         </TextField>:
         <></>
       }
-
-        {/* {!newItem.put_in_box?
-          <div>
-            <p>Destination:</p><select name="destination" value={newItem.destination} onChange={handleDestinationChange} > */}
-                              {/* Consider replacing this with a map of the options for the destinations table */}
-                              {/* <option value={0} disabled>CHOOSE DESTINATION</option>
-                              <option value={1}>MOVE</option>
-                              <option value={2}>STORE</option>
-                              <option value={3}>SELL</option>
-                              <option value={4}>DONATE</option>
-                              <option value={5}>PURGE</option>
-                              <option value={6}>GOING IN BOX</option>
-
-                          </select>
-          </div>:
-          <div></div>
-        } */}
-        
-        {/* Need to Handle Adding Image and Setting URL to newItem */}
-        {/* <p>Image:</p><button onClick={ () => {setCapturePhoto(true)}}>Add Image</button> */}
         <br />
         <br />
         {capturePhoto?
@@ -303,9 +276,6 @@ function newItemForm(props) {
         <br />
         <br />
         <Button color="secondary" variant="contained" className='createItemButton' endIcon={<ArrowForwardIosIcon />} onClick={validateData}>CREATE ITEM</Button>
-        {/* <button onClick={validateData}>Create New Item</button> */}
-        {/* </form> */}
-        {/* <p>newItem: {JSON.stringify(newItem)}</p> */}
     </div>
   );
 }

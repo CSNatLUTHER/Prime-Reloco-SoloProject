@@ -11,6 +11,8 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { useHistory } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 
 
 // Basic functional component structure for React with default state
@@ -29,9 +31,11 @@ function itemInfo(props) {
   const store = useSelector((store) => store);
   const [heading, setHeading] = useState('ITEM INFO');
   const [itemEdit, setItemEdit] = useState(false);
+  const [moreOptions, setMoreOptions] = useState(false);
 
   const editItem = () => {
     setItemEdit(!itemEdit)
+    window.scroll(0,0)
   }
 
   const removeFromBoxConfirm = () => {
@@ -44,7 +48,7 @@ function itemInfo(props) {
       showCancelButton: true,
       confirmButtonColor: '#3f51b5',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: 'Yes, remove it!'
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire({
@@ -57,15 +61,44 @@ function itemInfo(props) {
         removeFromBox()
       }
     })
-    // if(confirm('Are you sure you want to remove ' + store.active_item.name + ' from ' + store.active_item_box.name + '?')){
-    //   removeFromBox()
-    // }
   }
 
   const removeFromBox = () => {
     console.log('In removeFromBox');
     dispatch({ type: 'REMOVE_FROM_BOX', payload: {item_id: store.active_item.id, box_id: store.active_item_box.id} });
   }
+
+  const deleteItemConfirmation = () => {
+    Swal.fire({
+      title: 'Are you sure you want to delete ' + store.active_item.name + '?',
+      text: "It will remove the item from its associated box (if applicable) and delete the item. This action cannot be undone!",
+      icon: 'question',
+      width: '90%',
+      iconColor: '#3f51b5',
+      showCancelButton: true,
+      confirmButtonColor: '#3f51b5',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title:'You have successfully deleted ' + store.active_item.name + '.',
+          icon:'success',
+          width: '90%',
+          iconColor: '#3f51b5',
+          confirmButtonColor:'#ffc400'
+        })
+        deleteItem()
+      }
+    })
+  }
+
+  const deleteItem = () => {
+    console.log('TEST MESSAGE - ITEM DELETED');
+    dispatch({type:'DELETE_ITEM', payload: store.active_item})
+    setTimeout(()=>{history.push('/move_event_home')},250)
+  }
+
 
   const viewItemBox = () => {
     dispatch({type:'SET_ACTIVE_BOX', payload: store.active_item_box})
@@ -79,7 +112,24 @@ function itemInfo(props) {
       <img className='itemInfoLogo' src="/images/brand.png" alt="" />
       <h2 className ='itemInfoResultsHeader'>{heading}</h2>
       {itemEdit?
-      <ItemEditForm editItem={editItem}/>:
+        <>
+          <ItemEditForm editItem={editItem}/>
+          <br />
+          {moreOptions?
+            <>
+              <br />
+              <Button color="secondary" variant="contained" className='removeItemFromBoxButton' startIcon={<ExpandLessIcon />} endIcon={<ExpandLessIcon />} onClick={()=>{setMoreOptions(!moreOptions)}}>LESS OPTIONS</Button>
+              <br />
+              <br />
+              <Button color="error" variant="contained" className='removeItemFromBoxButton' endIcon={<RemoveCircleOutlineIcon />} onClick={() => {setTimeout(deleteItemConfirmation, 250)}}>DELETE ITEM</Button>
+            </>:
+            <>
+              <br />
+              <Button color="secondary" variant="contained" className='removeItemFromBoxButton' startIcon={<ExpandMoreIcon />} endIcon={<ExpandMoreIcon />} onClick={()=>{setMoreOptions(!moreOptions)}}>MORE OPTIONS</Button>
+              <br />
+            </>
+          }
+      </>:
       <ItemDetails  editItem={editItem}/>
       }
       {store.active_item_box.id >0?
@@ -98,8 +148,6 @@ function itemInfo(props) {
           <Button color="success" variant="contained" className='createNewBoxButton' endIcon={<AddCircleOutlineIcon />} onClick={() => {setTimeout(()=>{history.push('/create_new_box')}, 250)}}>CREATE NEW BOX</Button>
         </>
       }
-      <br />
-      <br />
     </div>
   );
 }
