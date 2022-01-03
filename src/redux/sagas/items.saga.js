@@ -45,37 +45,41 @@ function* fetchItemBox(item) {
 
 // CREATES NEW ITEM FOR A MOVE EVENT
 function* addItem(data) {
-// get all movies from the DB
-console.log('In addItem Saga', data);
-try {  
-      const newItem = yield axios({
-                            method: 'POST',
-                            url: '/api/item',
-                            data: data.payload});
-      console.log('posting newItem, returned ID:', newItem.data);
-      yield put({ type: 'SET_ACTIVE_ITEM', payload: newItem.data[0]});
-      } 
-      catch {
-      console.log('addItem error');
-      }     
+  // get all movies from the DB
+  console.log('In addItem Saga', data);
+  try {
+    const newItem = yield axios({
+      method: 'POST',
+      url: '/api/item',
+      data: data.payload
+    });
+    console.log('posting newItem, returned ID:', newItem.data);
+    yield put({ type: 'SET_ACTIVE_ITEM', payload: newItem.data[0] });
+    data.payload.done();
+  }
+  catch (err) {
+    console.log('addItem error', err);
+  }
 };
 
   // CREATES NEW ITEM FOR A MOVE EVENT
 function* updateItem(data) {
   // get all movies from the DB
   console.log('In updateItem Saga', data);
-  try {  
-        const newItem = yield axios({
-                              method: 'PUT',
-                              url: '/api/item',
-                              data: data.payload});
-        console.log('posting newItem, returned ID:', newItem.data);
-        yield put({ type: 'SET_ACTIVE_ITEM', payload: newItem.data[0]});
-        } 
-        catch {
-        console.log('addItem error');
-        }     
-  };
+  try {
+    const newItem = yield axios({
+      method: 'PUT',
+      url: '/api/item',
+      data: data.payload
+    });
+    console.log('posting newItem, returned ID:', newItem.data);
+    yield put({ type: 'SET_ACTIVE_ITEM', payload: newItem.data[0] });
+    data.payload.done();
+  }
+  catch {
+    console.log('addItem error');
+  }
+};
 
 function* updateItemDestination(data) {
   // get all movies from the DB

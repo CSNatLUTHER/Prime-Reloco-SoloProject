@@ -1,9 +1,8 @@
 import { put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
-//FUNCTION TO GET ALL ITEMS FOR user
+//FUNCTION TO GET ALL ITEMS FOR USER
 function* fetchAllBoxes(user) {
-  // get all movies from the DB
   console.log('In get all boxes', user.payload);
   try {
     const boxes = yield axios.get('/api/box', {params: user.payload } );
@@ -15,6 +14,7 @@ function* fetchAllBoxes(user) {
     }     
   };
 
+// FUNCTION TO SEARCH EXISTING BOXES
 function* searchBoxes(info) {
   console.log('In searchBoxes', info.payload);
   try {  
@@ -27,8 +27,9 @@ function* searchBoxes(info) {
     }     
   };
 
+
+// FUNCTION TO CREATE A NEW BOX
 function* createBox(data) {
-  // get all movies from the DB
   console.log('In addBox Saga', data);
         try {  
         const newBox = yield axios({
@@ -37,28 +38,32 @@ function* createBox(data) {
                               data: data.payload});
         console.log('posting newBox, returned data:', newBox.data);
         yield put({ type: 'SET_ACTIVE_BOX', payload: newBox.data[0]});
+        data.payload.done();
         } 
         catch (err) {
         console.log('addBox error', err);
         }     
   };
 
+// FUNCTION TO UPDATE AN EXISTING BOX  
 function* updateBox(data) {
-  // get all movies from the DB
   console.log('In addBox Saga', data);
-        try {  
-        const newBox = yield axios({
-                              method: 'PUT',
-                              url: '/api/box',
-                              data: data.payload});
-        console.log('posting newBox, returned data:', newBox.data);
-        yield put({ type: 'SET_ACTIVE_BOX', payload: newBox.data[0]});
-        } 
-        catch (err) {
-        console.log('addBox error', err);
-        }     
-  };
+  try {
+    const newBox = yield axios({
+      method: 'PUT',
+      url: '/api/box',
+      data: data.payload
+    });
+    console.log('posting newBox, returned data:', newBox.data);
+    yield put({ type: 'SET_ACTIVE_BOX', payload: newBox.data[0] });
+    data.payload.done();
+  }
+  catch (err) {
+    console.log('addBox error', err);
+  }
+};
 
+//CONSOLIDATES ALL SAGA FUNCTIONS FOR ROOT SAGA
 function* boxesSaga() {
   yield takeEvery('FETCH_BOXES', fetchAllBoxes);
   yield takeEvery('SEARCH_FOR_BOX', searchBoxes);
@@ -66,4 +71,5 @@ function* boxesSaga() {
   yield takeEvery('UPDATE_BOX', updateBox);
 }
 
+// EXPORTS TO BE IMPORTED INTO ROOT SAGA
 export default boxesSaga;

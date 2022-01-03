@@ -25,59 +25,61 @@ function boxEditForm(props) {
   const store = useSelector((store) => store);
   const [heading, setHeading] = useState('Box Edit Form');
   const [scanning, setScanning] = useState(false);
-  const [editBox, setEditBox] = useState({ 
-                                      id: store.active_box.id,
-                                      qr: store.active_box.qr_id, 
-                                      box_name: store.active_box.name, 
-                                      box_size: store.active_box.size, 
-                                      box_weight: store.active_box.weight, 
-                                      destination: store.active_box.destination_id, 
-                                      creator_user_id:store.active_box.creator_user_id,
-                                      event:store.active_box.event_id,
-                                      last_modified_user_id: store.user.id,
-                                    });
+  const [editBox, setEditBox] = useState({
+    id: store.active_box.id,
+    qr: store.active_box.qr_id,
+    box_name: store.active_box.name,
+    box_size: store.active_box.size,
+    box_weight: store.active_box.weight,
+    destination: store.active_box.destination_id,
+    creator_user_id: store.active_box.creator_user_id,
+    event: store.active_box.event_id,
+    last_modified_user_id: store.user.id,
+    done: () => {
+      history.push('/box_info')
+    }
+  });
 
 const handleNameChange = (event) => {
   setEditBox({ ...editBox, box_name: event.target.value })
-}
+};
 
 const handleBoxSizeChange = (event) => {
   setEditBox({ ...editBox, box_size: event.target.value })
-}
+};
 
 const handleBoxWeightChange = (event) => {
   setEditBox({ ...editBox, box_weight: event.target.value })
-}
+};
 
 const handleDestinationChange = (event) => {
   setEditBox({ ...editBox, destination: event.target.value })
-}
+};
 
 const handleQrChange = (event) => {
   setEditBox({ ...editBox, qr: event })
   setScanning(false)
-}
+};
 
 const updateQrChange = (event) => {
   setEditBox({...editBox, qr: event.target.value})
-}
+};
 
-const history = useHistory()
+const history = useHistory();
 
 const updateBox = () => {
   props.editBox()
   dispatch({ type: 'UPDATE_BOX', payload: editBox })         
-  dispatch({ type: 'UNSET_QR_CODE' })
-  history.push('./box_info')
-}
+  // dispatch({ type: 'UNSET_QR_CODE' })
+};
 
 const scanClick = () => {
   setScanning(!scanning)
-}
+};
 
 const cancelUpdateBox = () => {
   props.editBox()
-}
+};
 
 const validateData = () => {
   if(editBox.qr != '' && editBox.box_name != '' && editBox.destination != 0 && editBox.box_size != '' && editBox.box_weight != '' ){
@@ -93,7 +95,7 @@ const validateData = () => {
       confirmButtonColor:'#ffc400'
     })
   }
-}
+};
 
 const destination = [
   {

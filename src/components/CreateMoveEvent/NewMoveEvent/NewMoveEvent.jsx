@@ -25,7 +25,10 @@ function NewMoveEvent(props) {
                                       event_name: '', 
                                       move_date: dateValue,
                                       user_id: store.user.id, 
-                                      share_code: codeCreate(8)
+                                      share_code: codeCreate(8),
+                                      done: () => {
+                                        history.push('/move_event_home')
+                                      }
                                   });
 
   const handleNameChange = (event) => {
@@ -70,9 +73,9 @@ function NewMoveEvent(props) {
     setTimeout(moveToEvent, 750)
   }
 
-  const moveToEvent = () => {
-    history.push('/move_event_home')
-  }
+  // const moveToEvent = () => {
+  //   history.push('/move_event_home')
+  // }
 
   function codeCreate(length) {
     var result           = '';

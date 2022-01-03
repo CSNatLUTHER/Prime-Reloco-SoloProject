@@ -20,7 +20,10 @@ function JoinMoveEvent(props) {
   const [heading, setHeading] = useState('JOIN MOVE EVENT');
   const [joinCode, setJoinCode] = useState({
                                             user: store.user.id,
-                                            eventCode: ''
+                                            eventCode: '',
+                                            done: () => {
+                                              history.push('/move_event_home')
+                                            }
                                            });
 
   const handleCodeChange = (event) => {
@@ -53,12 +56,12 @@ function JoinMoveEvent(props) {
 
   const joinEvent = () => {
     dispatch({type: 'JOIN_EVENT', payload: joinCode })
-    setTimeout(moveToEvent, 750)
+    // setTimeout(moveToEvent, 750)
   }
 
-  const moveToEvent = () => {
-    history.push('/move_event_home')
-  }
+  // const moveToEvent = () => {
+  //   history.push('/move_event_home')
+  // }
 
 
   return (

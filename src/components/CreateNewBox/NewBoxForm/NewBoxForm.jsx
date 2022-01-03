@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 import QRCodeScan from '../../SharedComponents/QRCodeScan/QRCodeScan';
 import { useDispatch } from 'react-redux';
-import { useHistory } from "react-router-dom"; 
+import { useHistory } from "react-router-dom";
 import Button from '@mui/material/Button';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import TextField from '@mui/material/TextField';
@@ -19,17 +19,20 @@ function newBoxForm(props) {
   const store = useSelector((store) => store);
   const [heading, setHeading] = useState('New Box Form');
   const [scanning, setScanning] = useState(false);
-  const [newBox, setNewBox] = useState({ 
-                                    qr: '', 
-                                    box_name: '', 
-                                    box_size: '', 
-                                    box_weight: '', 
-                                    destination: '', 
-                                    creator_user_id:store.user.id,
-                                    event:store.active_event.id,
-                                    last_modified_user_id: store.user.id,
-                                });
-  
+  const [newBox, setNewBox] = useState({
+    qr: '',
+    box_name: '',
+    box_size: '',
+    box_weight: '',
+    destination: '',
+    creator_user_id: store.user.id,
+    event: store.active_event.id,
+    last_modified_user_id: store.user.id,
+    done: () => {
+      history.push('/box_info')
+    }
+  });
+
   const handleNameChange = (event) => {
     setNewBox({ ...newBox, box_name: event.target.value })
   }
@@ -57,17 +60,17 @@ function newBoxForm(props) {
 
 
   const validateData = () => {
-    if(newBox.qr != '' && newBox.box_name != '' && newBox.destination != 0 && newBox.box_size != '' && newBox.box_weight != '' ){
+    if (newBox.qr != '' && newBox.box_name != '' && newBox.destination != 0 && newBox.box_size != '' && newBox.box_weight != '') {
       addNewBox()
     }
-    else{
+    else {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
         text: 'Must complete all required fields',
         width: '90%',
         iconColor: '#3f51b5',
-        confirmButtonColor:'#ffc400'
+        confirmButtonColor: '#ffc400'
       })
     }
   }
@@ -78,13 +81,13 @@ function newBoxForm(props) {
 
 
   const history = useHistory()
-  const addNewBox =  () => {
-    dispatch({ type: 'CREATE_BOX', payload: newBox })         
-    dispatch({ type: 'UNSET_QR_CODE' })
-    history.push('/new_box_confirmation')
-    
+  const addNewBox = () => {
+    dispatch({ type: 'CREATE_BOX', payload: newBox })
+    dispatch({ type: 'UNSET_QR_CODE'});
+    // history.push('/new_box_confirmation')
+
     // if(store.qr_code.id != ''){
-  }  
+  }
 
   const destination = [
     {
@@ -166,83 +169,83 @@ function newBoxForm(props) {
       <div className='searchContainer'>
         <div>
           <TextField
-              id="outlined-required"
-              label='QR CODE'
-              type="required"
-              value={newBox.qr}
-              onChange={updateQrCode}
-              className='newBoxFormQrTextField'
-            />
+            id="outlined-required"
+            label='QR CODE'
+            type="required"
+            value={newBox.qr}
+            onChange={updateQrCode}
+            className='newBoxFormQrTextField'
+          />
         </div>
         <div>
           <IconButton onClick={scanClick} size="large" color="primary">
-            <QrCodeScannerIcon className='qrIconButton'/>
+            <QrCodeScannerIcon className='qrIconButton' />
           </IconButton>
         </div>
       </div>
-      {scanning==true?
-      <QRCodeScan qr={handleQrChange} />:
-      <></>}
+      {scanning == true ?
+        <QRCodeScan qr={handleQrChange} /> :
+        <></>}
       <br />
       <TextField
-          id="outlined-required"
-          label='BOX NAME'
-          type="required"
-          value={newBox.box_name}
-          onChange={handleNameChange}
-          className='newBoxFormGeneralTextField'
-        />
+        id="outlined-required"
+        label='BOX NAME'
+        type="required"
+        value={newBox.box_name}
+        onChange={handleNameChange}
+        className='newBoxFormGeneralTextField'
+      />
       <br />
       <br />
       <TextField
-          id="outlined-select-currency"
-          select
-          label="BOX SIZE"
-          value={newBox.box_size}
-          onChange={handleBoxSizeChange}
-          className='newBoxFormGeneralTextField'
-        >
-          {size.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
+        id="outlined-select-currency"
+        select
+        label="BOX SIZE"
+        value={newBox.box_size}
+        onChange={handleBoxSizeChange}
+        className='newBoxFormGeneralTextField'
+      >
+        {size.map((option) => (
+          <MenuItem key={option.value} value={option.value}>
+            {option.label}
+          </MenuItem>
+        ))}
       </TextField>
       <br />
       <br />
       <TextField
-          id="outlined-select-currency"
-          select
-          label="BOX WEIGHT"
-          value={newBox.box_weight}
-          onChange={handleBoxWeightChange}
-          className='newBoxFormGeneralTextField'
-        >
-          {weight.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
+        id="outlined-select-currency"
+        select
+        label="BOX WEIGHT"
+        value={newBox.box_weight}
+        onChange={handleBoxWeightChange}
+        className='newBoxFormGeneralTextField'
+      >
+        {weight.map((option) => (
+          <MenuItem key={option.value} value={option.value}>
+            {option.label}
+          </MenuItem>
+        ))}
       </TextField>
       <br />
       <br />
       <TextField
-          id="outlined-select-currency"
-          select
-          label="DESTINATION"
-          value={newBox.destination}
-          onChange={handleDestinationChange}
-          className='newBoxFormGeneralTextField'
-        >
-          {destination.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-        <br />
-        <br />
-        <Button color="secondary" variant="contained" className='newBoxFormCreateItemButton' endIcon={<ArrowForwardIosIcon />} onClick={validateData}>CREATE NEW BOX</Button>
+        id="outlined-select-currency"
+        select
+        label="DESTINATION"
+        value={newBox.destination}
+        onChange={handleDestinationChange}
+        className='newBoxFormGeneralTextField'
+      >
+        {destination.map((option) => (
+          <MenuItem key={option.value} value={option.value}>
+            {option.label}
+          </MenuItem>
+        ))}
+      </TextField>
+      <br />
+      <br />
+      <Button color="secondary" variant="contained" className='newBoxFormCreateItemButton' endIcon={<ArrowForwardIosIcon />} onClick={validateData}>CREATE NEW BOX</Button>
 
     </div>
   );

@@ -3,7 +3,6 @@ import axios from 'axios';
 
 //FUNCTION TO GET ALL EVENTS FOR user
 function* fetchAllEvents(user) {
-  // get all movies from the DB
   try {
         const events = yield axios.get('/api/event', {params: user.payload });
         console.log('get all event for user:', events.data);
@@ -17,7 +16,6 @@ function* fetchAllEvents(user) {
 
 // CREATES NEW MOVE EVENT
 function* createEvent(data) {
-  // get all movies from the DB
   console.log('In createEvent Saga', data);
   try {  
         const newEvent = yield axios({
@@ -26,6 +24,7 @@ function* createEvent(data) {
                               data: data.payload});
         console.log('posting newItem, returned ID:', newEvent.data);
         yield put({ type: 'SET_ACTIVE_EVENT', payload: newEvent.data[0]});
+        data.payload.done();
         } 
         catch {
         console.log('addItem error');
@@ -34,7 +33,6 @@ function* createEvent(data) {
 
 //FUNCTION TO DELETE EVENT
 function* deleteEvent(event) {
-  // get all movies from the DB
   try {
         const events = yield axios.delete('/api/event', {params: event.payload });
         console.log('Deleting Event', events.data);

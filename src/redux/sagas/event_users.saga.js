@@ -1,7 +1,7 @@
 import { put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
-//FUNCTION TO GET ALL ITEMS FOR user
+//FUNCTION TO GET ALL USER FOR ACTIVE EVENT
 function* fetchAllEventUsers(event) {
   try {
         const eventUser = yield axios.get('/api/event_user', {params: {id: event.payload}});
@@ -13,6 +13,7 @@ function* fetchAllEventUsers(event) {
         }     
   };
 
+// FUNCTION FOR USER TO LEAVE A MOVE EVENT  
 function* leaveEvent(event) {
   try {
         const eventUser = yield axios.delete('/api/event_user', {params: event.payload});
@@ -24,6 +25,7 @@ function* leaveEvent(event) {
         }     
   };
 
+// FUNCTION FOR USER TO JOIN A MOVE EVENT   
 function* joinEvent(event) {
     try {
         const eventUser = yield axios({
@@ -31,7 +33,8 @@ function* joinEvent(event) {
                                   url: '/api/event_user/join',
                                   data: event.payload});
         console.log('get all:', eventUser.data);
-        yield put({ type: 'SET_ACTIVE_EVENT', payload: eventUser.data })
+        yield put({ type: 'SET_ACTIVE_EVENT', payload: eventUser.data });
+        event.payload.done();
     } 
     catch {
     console.log('fetchAllEventUsers error');

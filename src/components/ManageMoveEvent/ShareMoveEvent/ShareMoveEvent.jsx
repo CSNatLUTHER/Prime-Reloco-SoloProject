@@ -4,6 +4,7 @@ import {CopyToClipboard} from 'react-copy-to-clipboard';
 import './ShareMoveEvent.css';
 import Button from '@mui/material/Button';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import Swal from 'sweetalert2';
 
 
 // Basic functional component structure for React with default state
@@ -16,7 +17,14 @@ function ShareMoveEvent(props) {
   const [heading, setHeading] = useState('SHARE MOVE EVENT');
 
   const shareCode = () => {
-    alert('Event Code: ' + store.active_event.share_code +  '\n\nAn invitation has been copied to you clipboard! \nYou can now text or email it to a collaborator')
+    Swal.fire({
+      icon: 'info',
+      title: 'Copied!',
+      html: `<div><p><b>Event Code: </b>${store.active_event.share_code}</p><p>An invitation has been copied to your clipboard!</p><p>You can now text or email it to a collaborator</p></div>`,
+      width: '90%',
+      iconColor: '#3f51b5',
+      confirmButtonColor:'#ffc400'
+    });
   }
 
   return (

@@ -73,18 +73,18 @@ function newItemForm(props) {
     }
   }
   
-  const postImageData = () => {
+  const postImageData = async () => {
     if(store.photo.url != '/images/image.png'){
       // console.log('store.photo.url was not default', store.photo.url);
       const url = store.photo.url;
       // setNewItem({ ...newItem, image_url: url.split('?')[0] })
-      fetch(url,{
+      return await fetch(url,{
         method: 'PUT',
         headers: {
           'Content-Type' : 'jpeg'
         },
         body: store.photo_capture.data
-      })
+      });
     }
   }
   
@@ -123,29 +123,37 @@ function newItemForm(props) {
     }
   }
 
-  const history = useHistory()
+  const history = useHistory();
 
-  const addNewItem =  () => {
-    
-    const url = store.photo.url.split('?')[0]        
-    postImageData();
-    dispatch({ type: 'ADD_ITEM', payload: { 
-                                      qr: newItem.qr, 
-                                      item_name: newItem.item_name, 
-                                      put_in_box: newItem.put_in_box, 
-                                      value: newItem.value, 
-                                      destination: newItem.destination, 
-                                      creator_user_id:store.user.id,
-                                      event:store.active_event.id,
-                                      last_modified_user_id: store.user.id,
-                                      image_url: url,
-                                      } 
-              }),         
-    dispatch({ type: 'UNSET_QR_CODE' })
-    dispatch({ type: 'UNSET_PHOTO_URL'})
-    dispatch({ type: 'UNSET_PHOTO_CAPTURE'})
-    setTimeout(()=>{history.push('/item_info')}, 1000)
-    
+  const addNewItem =  async () => {
+    try{
+      const url = store.photo.url.split('?')[0];        
+      const result = await postImageData();
+      console.log(result);
+      dispatch({
+        type: 'ADD_ITEM',
+        payload: {
+          qr: newItem.qr,
+          item_name: newItem.item_name,
+          put_in_box: newItem.put_in_box,
+          value: newItem.value,
+          destination: newItem.destination,
+          creator_user_id: store.user.id,
+          event: store.active_event.id,
+          last_modified_user_id: store.user.id,
+          image_url: url,
+          done: () => {
+            history.push('/item_info');
+          }
+        }
+      });         
+      dispatch({ type: 'UNSET_QR_CODE' });
+      dispatch({ type: 'UNSET_PHOTO_URL'});
+      dispatch({ type: 'UNSET_PHOTO_CAPTURE'});
+      // setTimeout(()=>{history.push('/item_info')}, 1000);
+    } catch (err) {
+      console.error('addNewItem Error:', err);
+    }
   }
 
   const scanClick = () => {

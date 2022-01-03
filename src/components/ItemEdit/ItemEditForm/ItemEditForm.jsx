@@ -77,12 +77,12 @@ useEffect( () => {
     }
   }
   
-  const postImageData = () => {
+  const postImageData = async () => {
     if(store.photo.url != '/images/image.png'){
       // console.log('store.photo.url was not default', store.photo.url);
       const url = store.photo.url;
       // setNewItem({ ...newItem, image_url: url.split('?')[0] })
-      fetch(url,{
+      return await fetch(url,{
         method: 'PUT',
         headers: {
           'Content-Type' : 'jpeg'
@@ -94,7 +94,6 @@ useEffect( () => {
 
   const getImage = () =>{
     const url = store.active_item.image_path
-    console.log("----------->Image Path Being Used:", url );
     if (store.active_item.image_path != '/images/image.png'){
       fetch(url)
       .then(response => response.body)
@@ -174,33 +173,38 @@ useEffect( () => {
 
   const updateItem = async () => {
     let url = newItem.image_url
-    if(store.photo.url != '/images/image.png' )
-      {
-        url = store.photo.url.split('?')[0] 
+    if (store.photo.url != '/images/image.png') {
+      url = store.photo.url.split('?')[0]
+    }
+    const result = await postImageData();
+    console.log(result);
+    dispatch({
+      type: 'UPDATE_ITEM', 
+      payload: {
+        qr: newItem.qr,
+        item_name: newItem.item_name,
+        put_in_box: newItem.put_in_box,
+        value: newItem.value,
+        destination: newItem.destination,
+        creator_user_id: store.user.id,
+        event: store.active_event.id,
+        last_modified_user_id: store.user.id,
+        image_url: url,
+        id: newItem.id,
+        done: () => {
+          history.push('/item_info');
+        }
       }
-    await postImageData();
-    await dispatch({ type: 'UPDATE_ITEM', payload: { 
-                                      qr: newItem.qr, 
-                                      item_name: newItem.item_name, 
-                                      put_in_box: newItem.put_in_box, 
-                                      value: newItem.value, 
-                                      destination: newItem.destination, 
-                                      creator_user_id:store.user.id,
-                                      event:store.active_event.id,
-                                      last_modified_user_id: store.user.id,
-                                      image_url: url,
-                                      id: newItem.id
-                                      } 
-              }),         
-    dispatch({ type: 'UNSET_QR_CODE' })
-    dispatch({ type: 'UNSET_PHOTO_URL'})
-    dispatch({ type: 'UNSET_PHOTO_CAPTURE'})
-    setTimeout(moveToPage, 1000)
+    }),
+      dispatch({ type: 'UNSET_QR_CODE' })
+    dispatch({ type: 'UNSET_PHOTO_URL' })
+    dispatch({ type: 'UNSET_PHOTO_CAPTURE' })
+    // setTimeout(moveToPage, 1000)
   }
 
-  const moveToPage = () => {
-    history.push('/item_info')
-  }
+  // const moveToPage = () => {
+  //   history.push('/item_info')
+  // }
 
   const scanClick = () => {
     setScanning(!scanning)
