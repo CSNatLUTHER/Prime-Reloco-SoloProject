@@ -32,6 +32,7 @@ function ManageMoveEvent(props) {
             user_id:store.user.id
           }
     })
+    dispatch({type:'UNSET_ACTIVE_EVENT'})
       history.push('/user')
   }
 

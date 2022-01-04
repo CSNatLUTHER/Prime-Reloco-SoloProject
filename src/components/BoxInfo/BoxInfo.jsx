@@ -79,7 +79,7 @@ function boxInfo(props) {
               <Button color="secondary" variant="contained" className='removeItemFromBoxButton' startIcon={<ExpandLessIcon />} endIcon={<ExpandLessIcon />} onClick={() => { setMoreOptions(!moreOptions) }}>LESS OPTIONS</Button>
               <br />
               <br />
-              <Button color="error" variant="contained" className='removeItemFromBoxButton' endIcon={<RemoveCircleOutlineIcon />} onClick={() => { setTimeout(deleteBoxConfirmation, 250) }}>DELETE ITEM</Button>
+              <Button color="error" variant="contained" className='removeItemFromBoxButton' endIcon={<RemoveCircleOutlineIcon />} onClick={() => { setTimeout(deleteBoxConfirmation, 250) }}>DELETE BOX</Button>
             </> :
             <>
               <br />
