@@ -5,6 +5,7 @@ import './LeaveMoveEvent.css';
 import Button from '@mui/material/Button';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import { useHistory } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -20,10 +21,32 @@ function LeaveMoveEvent(props) {
                                             user_id: store.user.id
                                             });
 
-  const leaveEventConfirm = () => {  
-    if(confirm('Are you sure you want to leave '+ store.active_event.name + '? You will be able to join again with the appropriate event code.')){
-      leaveEvent()
-    }
+  const leaveEventConfirm = () => { 
+    Swal.fire({
+      title: 'Are you sure you want to leave '+ store.active_event.name + '?',
+      text: "To undo this action, you will need to rejoin the move event through the event 'Share Code'.",
+      icon: 'question',
+      width: '90%',
+      iconColor: '#3f51b5',
+      showCancelButton: true,
+      confirmButtonColor: '#3f51b5',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Remove me!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: 'You have successfully left ' + store.active_event.name + '.',
+          icon: 'success',
+          width: '90%',
+          iconColor: '#3f51b5',
+          confirmButtonColor: '#ffc400'
+        })
+        leaveEvent()
+      }
+    })
+    // if(confirm('Are you sure you want to leave '+ store.active_event.name + '? You will be able to join again with the appropriate event code.')){
+    //   leaveEvent()
+    // }
   }                                        
 
   const history = useHistory()
@@ -33,14 +56,10 @@ function LeaveMoveEvent(props) {
     dispatch({type:'LEAVE_EVENT', payload: leaveDetails })
     history.push('/user')
   }
+
   return (
     <div className='component'>
-      {/* <h2 className='leaveMoveEventHeader'>{heading}</h2> */}
-      {/* <Link to='/user'> */}
-      {/* <button onClick={leaveEvent}>Leave Event</button> */}
       <Button color="secondary" variant="contained" className='leaveMoveEventButton' endIcon={<ExitToAppIcon />} onClick={() => {setTimeout(leaveEventConfirm, 250)}}>LEAVE EVENT</Button>
-      {/* </Link> */}
-      {/* <p>Leave Details:{JSON.stringify(leaveDetails)}</p> */}
     </div>
   );
 }
