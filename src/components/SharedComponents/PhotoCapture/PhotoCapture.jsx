@@ -24,8 +24,8 @@ function PhotoCapture(props) {
   
   const videoConstraints = {
     facingMode: "environment",
-    width: { min: 640, ideal: 1920, max: 1920 },
-    height: { min: 400, ideal: 1080 },
+    // width: { min: 640, ideal: 1920, max: 1920 },
+    // height: { min: 400, ideal: 1080 },
     aspectRatio: 1.777777778,
     frameRate: { max: 30 }
   };
@@ -39,21 +39,19 @@ function PhotoCapture(props) {
   }, [webcamRef, setImgSrc]);
 
   return (
-    <div>
+    <div className='cameraDiv'>
       {showCamera?
         <>
-        <div className = 'screenShot'>
+        <div className = 'screenShotDiv'>
             <Webcam
               audio={false}
               ref={webcamRef}
-              height={720}
-              width={1280}
               className = 'screenShot'
               screenshotFormat="image/jpeg"
               videoConstraints={videoConstraints}
             />
           </div>
-          <br />
+          {/* <br /> */}
           {/* <button onClick={capture}>Capture photo</button> */}
           <IconButton onClick={capture} color="primary" aria-label="add to shopping cart">
             <CameraIcon className='photoCaptureButton'/>
