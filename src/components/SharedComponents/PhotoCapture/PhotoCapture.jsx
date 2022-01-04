@@ -24,8 +24,8 @@ function PhotoCapture(props) {
   
   const videoConstraints = {
     facingMode: "environment",
-    width: 1280,
-    height: 720,
+    width: 1920,
+    height: 1080,
   };
 
   const capture = React.useCallback(() => {
@@ -44,6 +44,8 @@ function PhotoCapture(props) {
             <Webcam
               audio={false}
               ref={webcamRef}
+              height={720}
+              width={1280}
               className = 'screenShot'
               screenshotFormat="image/jpeg"
               videoConstraints={videoConstraints}
