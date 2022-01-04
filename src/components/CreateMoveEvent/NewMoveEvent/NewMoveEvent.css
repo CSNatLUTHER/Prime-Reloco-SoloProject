@@ -3,18 +3,18 @@
   }
   
   
-  .createEventButton{
-    width:  80%;
-    height: 50px;
-  }
+.createEventButton{
+  width:  80%;
+  height: 50px;
+}
 
-  .createEventSubHeader{
-    background-color: #3f51b579;
-    color: rgb(66, 66, 66);
-    padding-top: 1px;
-    padding-bottom: 1px;
-    width: 100%;
-    margin-right: auto;
-    margin-left: auto;
-    justify-content: center;
+.createEventSubHeader{
+  background-color: #3f51b579;
+  color: rgb(66, 66, 66);
+  padding-top: 1px;
+  padding-bottom: 1px;
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  justify-content: center;
 }

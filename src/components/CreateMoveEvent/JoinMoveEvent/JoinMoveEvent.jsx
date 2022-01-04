@@ -40,7 +40,7 @@ function JoinMoveEvent(props) {
       joinEvent()
     }
     else{
-      // alert('Entry does not appear to be a valid code.')
+
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
@@ -56,12 +56,7 @@ function JoinMoveEvent(props) {
 
   const joinEvent = () => {
     dispatch({type: 'JOIN_EVENT', payload: joinCode })
-    // setTimeout(moveToEvent, 750)
   }
-
-  // const moveToEvent = () => {
-  //   history.push('/move_event_home')
-  // }
 
 
   return (
@@ -75,15 +70,9 @@ function JoinMoveEvent(props) {
       onChange={handleCodeChange}
       className='joinEventGeneralTextField'
       />
-      {/* <p>Enter Move Event Code:</p>
-      <input onChange={handleCodeChange} type="text" placeholder='ex. QUTYRPEBE'/> */}
       <br />
       <br />
       <Button color="secondary" variant="contained" className='joinEventButton' endIcon={<ArrowForwardIosIcon />} onClick={validateData}>JOIN MOVE EVENT</Button>
-      {/* <Link to="/move_event_home">
-      <button onClick={joinEvent}>Join Move Event</button>
-      </Link>
-      <p>{JSON.stringify(joinCode)}</p> */}
     </div>
   );
 }

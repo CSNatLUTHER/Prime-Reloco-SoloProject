@@ -70,12 +70,7 @@ function NewMoveEvent(props) {
 
   const addNewEvent = () => {
     dispatch({ type: 'CREATE_EVENT', payload: newEvent });
-    setTimeout(moveToEvent, 750)
   }
-
-  // const moveToEvent = () => {
-  //   history.push('/move_event_home')
-  // }
 
   function codeCreate(length) {
     var result           = '';
