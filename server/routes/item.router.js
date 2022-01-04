@@ -181,11 +181,9 @@ router.delete('/', (req, res) => {
                   RETURNING item_id;`
   pool.query(query)
   .then(result => {
-        // console.log(result.rows[0].id);
-        // const newItemId = result.rows[0].id
-        const getItemQuery = `DELETE FROM item
-                              WHERE item.id = ${req.query.id};`
-          pool.query(getItemQuery).then(result => {
+        const query = `DELETE FROM item
+                        WHERE item.id = ${req.query.id};`
+          pool.query(query).then(result => {
             res.sendStatus(200);
     }).catch(err => {
       console.log('deleteItem error',err);

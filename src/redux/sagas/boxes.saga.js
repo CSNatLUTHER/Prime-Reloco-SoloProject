@@ -63,12 +63,25 @@ function* updateBox(data) {
   }
 };
 
+// THIS FUNCTION WILL DELETE AN ITEM FROM THE DATABASE (AND REMOVE IT FROM ASSOCIATED BOXES)    
+function* deleteBox(info) {
+  console.log('In deleteBox', info.payload);
+  try {
+    const item = yield axios.delete('/api/box', { params: info.payload })
+    yield put({ type: 'UNSET_ACTIVE_BOX' });
+  }
+  catch (err) {
+    console.log('deleteBox error', err);
+  }
+};
+
 //CONSOLIDATES ALL SAGA FUNCTIONS FOR ROOT SAGA
 function* boxesSaga() {
   yield takeEvery('FETCH_BOXES', fetchAllBoxes);
   yield takeEvery('SEARCH_FOR_BOX', searchBoxes);
   yield takeEvery('CREATE_BOX', createBox);
   yield takeEvery('UPDATE_BOX', updateBox);
+  yield takeEvery('DELETE_BOX', deleteBox);
 }
 
 // EXPORTS TO BE IMPORTED INTO ROOT SAGA

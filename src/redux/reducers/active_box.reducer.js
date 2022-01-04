@@ -2,6 +2,8 @@ const activeBoxReducer = (state = {}, action) => {
   switch (action.type) {
     case 'SET_ACTIVE_BOX':
       return action.payload;
+    case 'UNSET_ACTIVE_BOX':
+      return {};
     default:
       return state;
   }

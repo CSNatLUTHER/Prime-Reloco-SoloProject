@@ -81,6 +81,7 @@ function* updateItem(data) {
   }
 };
 
+// THIS FUNCTION WILL UPDATE THE DESTAION TO "IN BOX" - SHOULD BE RUN IN PARALLEL OF ADDING ITEM TO BOX 
 function* updateItemDestination(data) {
   console.log('In updateItemDestination Saga', data);
   try {  
@@ -96,6 +97,7 @@ function* updateItemDestination(data) {
         }     
   };
 
+ // THIS FUNCTION WILL UPDATE THE DESTAION TO "GOING IN BOX" - SHOULD BE RUN IN PARALLEL OF REMOVING ITEM FROM BOX  
   function* resetItemDestination(data) {
     console.log('In resetItemDestination Saga', data);
     try {  
@@ -111,17 +113,17 @@ function* updateItemDestination(data) {
           }     
     };
 
+// THIS FUNCTION WILL DELETE AN ITEM FROM THE DATABASE (AND REMOVE IT FROM ASSOCIATED BOXES)    
 function* deleteItem(info) {
   console.log('In deleteItem', info.payload);
-  try {  
-    const item = yield axios.delete('/api/item',{params:info.payload})
-    console.log('searched items, found:', item.data);
-    yield put({ type: 'UNSET_ACTIVE_ITEM'});
-    } 
-    catch (err) {
+  try {
+    const item = yield axios.delete('/api/item', { params: info.payload })
+    yield put({ type: 'UNSET_ACTIVE_ITEM' });
+  }
+  catch (err) {
     console.log('deleteItem error', err);
-    }     
-  };
+  }
+};
 
 function* itemsSaga() {
   yield takeEvery('FETCH_ITEMS', fetchAllItems);

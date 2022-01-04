@@ -139,6 +139,24 @@ router.delete('/remove_from_box', (req, res) => {
       console.log(err);
       res.sendStatus(500)
   })});
+
+router.delete('/', (req, res) => {
+  console.log('In deleteBox router with:', req.query);
+  const query = `DELETE FROM box_item
+                  WHERE box_id = ${req.query.id}
+                  RETURNING box_id;`
+  pool.query(query)
+    .then(result => {
+      const query = `DELETE FROM box
+                      WHERE box.id = ${req.query.id};`
+      pool.query(query).then(result => {
+        res.sendStatus(200);
+      }).catch(err => {
+        console.log('deleteBox error', err);
+        res.sendStatus(500)
+      })
+    })
+})
   
 
 

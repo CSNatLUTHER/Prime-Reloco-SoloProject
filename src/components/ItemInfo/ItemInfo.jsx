@@ -69,33 +69,33 @@ function itemInfo(props) {
     dispatch({ type: 'RESET_ITEM_DESTINATION', payload: store.active_item });
   }
 
-  const deleteItemConfirmation = () => {
-    Swal.fire({
-      title: 'Are you sure you want to delete ' + store.active_item.name + '?',
-      text: "It will remove the item from its associated box (if applicable) and delete the item. This action cannot be undone!",
-      icon: 'question',
-      width: '90%',
-      iconColor: '#3f51b5',
-      showCancelButton: true,
-      confirmButtonColor: '#3f51b5',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire({
-          title:'You have successfully deleted ' + store.active_item.name + '.',
-          icon:'success',
-          width: '90%',
-          iconColor: '#3f51b5',
-          confirmButtonColor:'#ffc400'
-        })
-        deleteItem()
-      }
-    })
-  }
+const deleteItemConfirmation = () => {
+  Swal.fire({
+    title: 'Are you sure you want to delete ' + store.active_item.name + '?',
+    text: "It will remove the item from its associated box (if applicable) and delete the item. This action cannot be undone!",
+    icon: 'question',
+    width: '90%',
+    iconColor: '#3f51b5',
+    showCancelButton: true,
+    confirmButtonColor: '#3f51b5',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: 'You have successfully deleted ' + store.active_item.name + '.',
+        icon: 'success',
+        width: '90%',
+        iconColor: '#3f51b5',
+        confirmButtonColor: '#ffc400'
+      })
+      deleteItem()
+    }
+  })
+}
 
   const deleteItem = () => {
-    console.log('TEST MESSAGE - ITEM DELETED');
+    // console.log('TEST MESSAGE - ITEM DELETED');
     dispatch({type:'DELETE_ITEM', payload: store.active_item})
     setTimeout(()=>{history.push('/move_event_home')},250)
   }
