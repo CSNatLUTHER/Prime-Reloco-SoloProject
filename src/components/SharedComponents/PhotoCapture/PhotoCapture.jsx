@@ -23,7 +23,9 @@ function PhotoCapture(props) {
   const [showCamera, setShowCamera] = useState(true);
   
   const videoConstraints = {
-    facingMode: "environment"
+    facingMode: "environment",
+    width: 1280,
+    height: 720,
   };
 
   const capture = React.useCallback(() => {
