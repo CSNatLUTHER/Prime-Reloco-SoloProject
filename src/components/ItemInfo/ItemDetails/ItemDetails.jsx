@@ -86,7 +86,7 @@ function itemDetails(props) {
           <img className='itemInfoIconImage' src={imageToDisplay}/>:
           <CardMedia
           component="img"
-          height="180"
+          height="220"
           image={imageToDisplay}
           alt="itemImage"
           className='itemInfoImage'

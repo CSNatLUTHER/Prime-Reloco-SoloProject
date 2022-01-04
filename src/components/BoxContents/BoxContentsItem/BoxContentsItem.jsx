@@ -100,7 +100,7 @@ function boxContentsItem(props) {
           <img className='boxContentsIconImage' src={imageToDisplay}/>:
           <CardMedia
           component="img"
-          height="180"
+          height="220"
           image={imageToDisplay}
           alt="itemImage"
           className='boxContentsItemImage'
