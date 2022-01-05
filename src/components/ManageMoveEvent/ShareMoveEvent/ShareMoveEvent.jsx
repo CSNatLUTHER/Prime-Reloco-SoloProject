@@ -31,11 +31,9 @@ function ShareMoveEvent(props) {
     <div className='component'>
       <h2 className='shareMoveEventHeader'>{heading}</h2>
       <p><b>MOVE EVENT SHARE CODE: <br /><br />{store.active_event.share_code} </b></p>
-      <CopyToClipboard text={`${store.user.first_name} ${store.user.last_name} is inviting you to join their moving event on RELOCO. Please join: ${store.active_event.name} with event code: ${store.active_event.share_code}`}>
-      {/* <button onClick={shareCode} >Share Move Event Code</button> */}
+      <CopyToClipboard text={`${store.user.first_name} ${store.user.last_name} is inviting you to join their moving event on RELOCO. \nPlease join: ${store.active_event.name} with event code: ${store.active_event.share_code}\nhttps://reloco.herokuapp.com`}>
       <Button color="secondary" variant="contained" className='searchItemButton' endIcon={<ContentCopyIcon />} onClick={() => {setTimeout(shareCode, 250)}}>COPY CODE</Button>
       </CopyToClipboard>
-      {/* <p>Move Event Code:{JSON.stringify(store.active_event.share_code)}</p> */}
     </div>
   );
 }
