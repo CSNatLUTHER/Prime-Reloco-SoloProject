@@ -5,6 +5,7 @@ import './PhotoCapture.css'
 import CameraIcon from '@mui/icons-material/Camera';
 import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
+import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -51,20 +52,18 @@ function PhotoCapture(props) {
               videoConstraints={videoConstraints}
             />
           </div>
-          {/* <br /> */}
           {/* <button onClick={capture}>Capture photo</button> */}
-          <IconButton onClick={capture} color="primary" aria-label="add to shopping cart">
+          <Button color="secondary" variant="contained" className='photCaptureLaunchButton' endIcon={<PhotoCameraIcon className='photoCaptureIcon' />} onClick={capture}></Button>
+          {/* <IconButton onClick={capture} color="primary" aria-label="add to shopping cart">
             <CameraIcon className='photoCaptureButton'/>
-          </IconButton>
+          </IconButton> */}
         </>:
           <>
             <img
               className = 'screenShot'
               src={imgSrc}
             />
-            {/* <p className='imageData'>Image Data:{JSON.stringify(imgSrc)}</p> */}
-            {/* <button onClick={() => {setShowCamera(true)}}>Retake Image</button> */}
-            <Button color="secondary" variant="contained" className='retakeImageButton' onClick={() => {setShowCamera(true)}}>RETAKE PHOTO</Button>
+            <Button color="secondary" variant="contained" className='photoCaptureRetakeImageButton' onClick={() => {setShowCamera(true)}}>RETAKE PHOTO</Button>
 
           </>
       } 
