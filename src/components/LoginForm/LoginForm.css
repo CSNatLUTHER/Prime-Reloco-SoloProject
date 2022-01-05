@@ -1,10 +1,12 @@
 .LogInButton{
     height: 50px;
     width: 80%;
+    max-width: 500px;
 }
 
 .loginFormGeneralTextField{
     width: 80%;
+    max-width: 500px;
   }
 
 

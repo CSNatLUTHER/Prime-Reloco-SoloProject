@@ -6,8 +6,9 @@
     border: #ffc400;
     border-style: solid;
     border-width: 2px;
+    max-width: 500px;
 }
 
 .removeMemberButton{
-    width: 70%;
+    width: 80%;
 }

@@ -7,6 +7,7 @@
 
 .itemEditFormqrTextField{
     width: 138%;
+    margin-right: 7px;
 }
 
 .itemEditFormqrIconButton{
@@ -21,9 +22,11 @@
     border-radius: 8px;
     border-style: solid;
     border-width: 3px;
+    max-width: 500px;
 }
 
 .itemEditButton{
     width: 80%;
     height: 50px;
+    max-width: 500px;
 }

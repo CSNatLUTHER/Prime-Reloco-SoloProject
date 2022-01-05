@@ -75,7 +75,7 @@ function BoxSearch(props) {
       <div className='searchContainer'>
         <div>
           <TextField
-              id="boxOutlined-search"
+              id="boxOutlined-boxSearch"
               label="SEARCH BOXES"
               type="search"
               value={searchBox.searchText}

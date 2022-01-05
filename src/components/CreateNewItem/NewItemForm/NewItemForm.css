@@ -1,17 +1,20 @@
 .qrTextField{
-  width: 138%;
+  width:100%;
 }
 
 .generalTextField{
   width: 80%;
+  max-width: 500px;
 }
 
 .captureImageButton{
   width:  80%;
   height: 50px;
+  max-width: 500px;
 }
 
 .createItemButton{
   width:  80%;
   height: 50px;
+  max-width: 500px;
 }

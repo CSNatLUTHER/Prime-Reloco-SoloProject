@@ -1,11 +1,13 @@
 .createEventGeneralTextField{
     width: 80%;
+    max-width: 500px;
   }
   
   
 .createEventButton{
   width:  80%;
   height: 50px;
+  max-width: 500px;
 }
 
 .createEventSubHeader{

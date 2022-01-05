@@ -1,17 +1,20 @@
 .newBoxFormQrTextField{
-    width: 138%;
+    width: 100%;
   }
   
   .newBoxFormGeneralTextField{
     width: 80%;
+    max-width: 500px;
   }
   
   .newBoxFormCaptureImageButton{
     width:  80%;
     height: 50px;
+    max-width: 500px;
   }
   
   .newBoxFormCreateItemButton{
     width:  80%;
     height: 50px;
+    max-width: 500px;
   }

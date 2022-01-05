@@ -1,5 +1,6 @@
 .registerGeneralTextField{
     width: 80%;
+    max-width: 500px;
 }
 
 .registerFormHeader{
@@ -16,4 +17,5 @@
 .registerFormButton{
     width: 80%;
     height: 50px;
+    max-width: 500px;
 }

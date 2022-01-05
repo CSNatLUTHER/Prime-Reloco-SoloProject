@@ -17,6 +17,7 @@
     border: #ffc400;
     border-style: solid;
     border-width: 2px;
+    max-width: 500px;
     /* background-color: #88899111; */
 }
 

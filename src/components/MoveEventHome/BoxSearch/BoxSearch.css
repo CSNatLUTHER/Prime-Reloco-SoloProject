@@ -13,6 +13,7 @@
 .createNewboxButton{
     width: 80%;
     height: 50px;
+    max-width: 500px;
 }
 
 .boxSearchSubHeader{
@@ -28,4 +29,5 @@
 
 .boxSearchTextField{
     width: 138%;
+    margin-right: 7px;
 }

@@ -5,13 +5,16 @@
 
 .contactGeneralTextField{
     width: 80%;
+    max-width: 500px;
 }
 
 .contactMessageTextField{
     width: 80%;
+    max-width: 500px;
 }
 
 .sendMessageButton{
     width: 80%;
     height: 50px;
+    max-width: 500px;
 }

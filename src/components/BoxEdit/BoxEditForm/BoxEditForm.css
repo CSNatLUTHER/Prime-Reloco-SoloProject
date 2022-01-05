@@ -1,5 +1,6 @@
 .editBoxFormQrTextField{
     width: 138%;
+    margin-right: 7px;
   }
   
   .editBoxFormGeneralTextField{
@@ -9,6 +10,7 @@
   .editBoxFormCaptureImageButton{
     width:  80%;
     height: 50px;
+    max-width: 500px;
   }
   
   .editBoxFormCreateItemButton{
