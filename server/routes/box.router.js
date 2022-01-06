@@ -77,8 +77,12 @@ pool.query(query, [req.body.qr, req.body.box_name, req.body.creator_user_id, req
 .then(result => {
       console.log(result.rows[0].id);
       const newBoxId = result.rows[0].id
-      const getItemQuery = `SELECT * FROM box
-                            WHERE id=${newBoxId}`
+      const getItemQuery = `SELECT box.id, box.qr_id, box.name, box.create_date, 
+                            box.creator_user_id, box.last_update_date, box.last_modified_user_id, 
+                            box.event_id, box.size, box.weight, box.destination_id, destination.destination 
+                            FROM box
+                            JOIN destination ON box.destination_id=destination.id
+                            WHERE box.id=${newBoxId}`
         pool.query(getItemQuery).then(result => {
           console.log('newItemQuery Result:', result.rows);
           res.send(result.rows);
@@ -122,8 +126,12 @@ router.put('/', (req, res) => {
   .then(result => {
         console.log(result.rows[0].id);
         const newItemId = result.rows[0].id
-        const getItemQuery = `SELECT * FROM box
-                              WHERE id=${newItemId}`
+        const getItemQuery = `SELECT box.id, box.qr_id, box.name, box.create_date, 
+                              box.creator_user_id, box.last_update_date, box.last_modified_user_id, 
+                              box.event_id, box.size, box.weight, box.destination_id, destination.destination 
+                              FROM box
+                              JOIN destination ON box.destination_id=destination.id
+                              WHERE box.id=${newItemId}`
           pool.query(getItemQuery).then(result => {
             console.log('newItemQuery Result:', result.rows);
             res.send(result.rows);
