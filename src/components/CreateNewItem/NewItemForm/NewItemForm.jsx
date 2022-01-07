@@ -210,7 +210,7 @@ function newItemForm(props) {
       />
       <br />
       <div className='searchContainer'>
-        <div>
+        <div className='qrTextFieldDiv'>
           <TextField
               id="outlined-required"
               label={newItem.put_in_box?
@@ -223,7 +223,7 @@ function newItemForm(props) {
               className='qrTextField'
             />
         </div>
-        <div>
+        <div className='qrIconButtonDiv'>
           <IconButton onClick={scanClick} size="large" color="primary">
             <QrCodeScannerIcon className='qrIconButton'/>
           </IconButton>

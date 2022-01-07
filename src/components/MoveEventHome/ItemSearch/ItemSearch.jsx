@@ -65,7 +65,7 @@ function ItemSearch(props) {
       <br />
       {/* <input  type='text' placeholder='ex. item name or QR' value={searchItem.searchText} onChange={handleSearchChange}></input> */}
       <div className='searchContainer'>
-        <div>
+        <div className='itemSearchTextFieldDiv'>
           <TextField
               id="itemOutlined-search"
               label="SEARCH ITEMS"
@@ -75,9 +75,11 @@ function ItemSearch(props) {
               className='itemSearchTextField'
             />
         </div>
-        <div>
+        <div className='qrIconButtonDiv'>
           <IconButton onClick={scanClick} size="large" color="primary">
-            <QrCodeScannerIcon className='qrIconButton'/>
+            <QrCodeScannerIcon 
+            className='qrIconButton'
+            />
           </IconButton>
         </div>
       </div>

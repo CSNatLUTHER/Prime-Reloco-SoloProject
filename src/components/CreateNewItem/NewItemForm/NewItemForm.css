@@ -1,5 +1,9 @@
+.qrTextFieldDiv{
+  flex-grow: 11;
+}
+
 .qrTextField{
-  width:138%;
+  width:100%;
 }
 
 .generalTextField{

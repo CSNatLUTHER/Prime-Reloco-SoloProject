@@ -17,6 +17,7 @@
 .deleteEventButton{
     width:  80%;
     height: 50px;
+    max-width: 500px;
 }
 
 .manageMoveEvenDeleteHeader{

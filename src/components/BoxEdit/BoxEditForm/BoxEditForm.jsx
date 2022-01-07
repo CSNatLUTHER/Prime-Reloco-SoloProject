@@ -176,7 +176,7 @@ return (
 <div className='component'>
       {/* <h2>{heading}</h2> */}
       <div className='searchContainer'>
-        <div>
+        <div className='editBoxFormQrTextFieldDiv'>
           <TextField
               id="outlined-required"
               label='QR CODE'
@@ -186,7 +186,7 @@ return (
               className='editBoxFormQrTextField'
             />
         </div>
-        <div>
+        <div className='qrIconButtonDiv'>
           <IconButton onClick={scanClick} size="large" color="primary">
             <QrCodeScannerIcon className='qrIconButton'/>
           </IconButton>

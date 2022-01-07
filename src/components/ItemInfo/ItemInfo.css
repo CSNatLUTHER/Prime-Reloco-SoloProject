@@ -16,9 +16,11 @@
 .removeItemFromBoxButton{
     width:  80%;
     height: 50px;
+    max-width: 500px;
 }
 
 .createNewBoxButton{
     width:  80%;
-    height: 50px; 
+    height: 50px;
+    max-width: 500px;
 }

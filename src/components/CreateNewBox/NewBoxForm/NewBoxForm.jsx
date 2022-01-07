@@ -167,7 +167,7 @@ function newBoxForm(props) {
     <div className='component'>
       {/* <h2>{heading}</h2> */}
       <div className='searchContainer'>
-        <div>
+        <div className='newBoxFormQrTextFieldDiv'>
           <TextField
             id="outlined-required"
             label='QR CODE'
@@ -177,7 +177,7 @@ function newBoxForm(props) {
             className='newBoxFormQrTextField'
           />
         </div>
-        <div>
+        <div className='qrIconButtonDiv'>
           <IconButton onClick={scanClick} size="large" color="primary">
             <QrCodeScannerIcon className='qrIconButton' />
           </IconButton>

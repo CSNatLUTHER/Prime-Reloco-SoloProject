@@ -73,7 +73,7 @@ function BoxSearch(props) {
       <br />
       <br />
       <div className='searchContainer'>
-        <div>
+        <div className='boxSearchTextFieldDiv'>
           <TextField
               id="boxOutlined-boxSearch"
               label="SEARCH BOXES"
@@ -83,7 +83,7 @@ function BoxSearch(props) {
               className='boxSearchTextField'
             />
         </div>
-        <div>
+        <div className='qrIconButtonDiv'>
           <IconButton onClick={scanClick} size="large" color="primary">
             <QrCodeScannerIcon className='qrIconButton'/>
           </IconButton>

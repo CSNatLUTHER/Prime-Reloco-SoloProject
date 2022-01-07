@@ -31,10 +31,7 @@
     height: 50px;
     max-width: 500px;
 }
-.itemSearchTextField{
-    width: 138%;
-    margin-right: 7px;
-}
+
 .searchContainer{
     display: flex;
     flex-direction: row;
@@ -44,6 +41,20 @@
     margin-left: auto;
     margin-right: auto;
     width: 80%;    
+}
+
+.itemSearchTextFieldDiv{
+    flex-grow: 11;
+
+}
+
+.itemSearchTextField{
+    width: 100%;
+}
+
+
+.qrIconButtonDiv{
+    flex-grow: 1;
 }
 
 .qrIconButton{

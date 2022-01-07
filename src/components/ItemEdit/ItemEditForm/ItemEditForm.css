@@ -2,12 +2,19 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    justify-content: space-around;
+    justify-content: space-between;
+    width: 80%;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.itemEditFormqrTextField{
-    width: 138%;
-    margin-right: 7px;
+.itemEditFormQrTextFieldDiv{
+    flex-grow: 11;
+}
+
+.itemEditFormQrTextField{
+    width: 100%;
 }
 
 .itemEditFormqrIconButton{

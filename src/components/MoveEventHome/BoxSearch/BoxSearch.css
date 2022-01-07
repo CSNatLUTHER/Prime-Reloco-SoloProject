@@ -27,7 +27,10 @@
     justify-content: center;
 }
 
+.boxSearchTextFieldDiv{
+    flex-grow: 11;
+}
+
 .boxSearchTextField{
-    width: 138%;
-    margin-right: 7px;
+    width: 100%;
 }

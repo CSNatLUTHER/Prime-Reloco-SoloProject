@@ -1,21 +1,24 @@
+.newBoxFormQrTextFieldDiv{
+  flex-grow: 11;
+}
+
 .newBoxFormQrTextField{
-    width: 138%;
-    margin-right: 7px;
-  }
-  
-  .newBoxFormGeneralTextField{
-    width: 80%;
-    max-width: 500px;
-  }
-  
-  .newBoxFormCaptureImageButton{
-    width:  80%;
-    height: 50px;
-    max-width: 500px;
-  }
-  
-  .newBoxFormCreateItemButton{
-    width:  80%;
-    height: 50px;
-    max-width: 500px;
-  }
+  width: 100%;
+}
+
+.newBoxFormGeneralTextField{
+  width: 80%;
+  max-width: 500px;
+}
+
+.newBoxFormCaptureImageButton{
+  width:  80%;
+  height: 50px;
+  max-width: 500px;
+}
+
+.newBoxFormCreateItemButton{
+  width:  80%;
+  height: 50px;
+  max-width: 500px;
+}

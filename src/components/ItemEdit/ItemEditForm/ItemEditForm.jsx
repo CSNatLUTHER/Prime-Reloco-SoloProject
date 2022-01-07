@@ -263,8 +263,8 @@ useEffect( () => {
         label="Going In Box"
       />
       <br />
-      <div className='itemEditFormQrScanContainer'>
-        <div>
+      <div className='searchContainer'>
+        <div className='itemEditFormQrTextFieldDiv'>
           <TextField
               id="outlined-required"
               label={newItem.put_in_box?
@@ -274,12 +274,12 @@ useEffect( () => {
               type="required"
               value={newItem.qr}
               onChange={updateQrCode}
-              className='itemEditFormqrTextField'
+              className='itemEditFormQrTextField'
             />
         </div>
-        <div>
+        <div className='qrIconButtonDiv'>
           <IconButton onClick={scanClick} size="large" color="primary">
-            <QrCodeScannerIcon className='itemEditFormqrIconButton'/>
+            <QrCodeScannerIcon className='qrIconButton'/>
           </IconButton>
         </div>
       </div>

@@ -2,9 +2,7 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-/**
- * GET route template
- */
+// GET ALL BOXES ASSOCIATED WITH A MOVE EVENT
 router.get('/', (req, res) => {
   console.log(req.query);
   const query = `SELECT box.id, box.qr_id, box.name, box.create_date, 
@@ -24,6 +22,8 @@ router.get('/', (req, res) => {
     })
 });
 
+
+// GET ALL ITEMS ASSOCIATED WITH A BOX
 router.get('/box-items', (req, res) => {
   console.log('In GET box-items', req.query);
   const query = `SELECT item_id AS id, box_id, item.create_date, box_item.create_date AS item_add_to_box_date, item.creator_user_id, box_item.creator_user_id AS added_to_box_user_id, item.event_id, qr_id, name, put_in_box, value, last_update_date, last_modified_user_id, destination, destination_id, image_path  FROM box_item
@@ -39,12 +39,12 @@ router.get('/box-items', (req, res) => {
       console.log('ERROR: GET active_box_contents', err);
       res.sendStatus(500)
     })
-  // GET route code here
 });
 
+
+// RETURN SEARCH RESULTS FOR A BOX
 router.get('/search', (req, res) => {
   console.log('in search with:', req.query);
-  // GET route code here
     const query = `SELECT box.id, box.qr_id, box.name, box.create_date, 
                    box.creator_user_id, box.last_update_date, box.last_modified_user_id, 
                    box.event_id, box.size, box.weight, box.destination_id, destination.destination 
@@ -63,10 +63,8 @@ router.get('/search', (req, res) => {
     res.sendStatus(500)
     })
 });
-/**
- * POST route template
- */
 
+// POST A NEW BOX TO THE DATA BASE AND RETURN BOX RECORD DATA
 router.post('/', (req, res) => {
 console.log('POST req.body:',req.body);
 
@@ -91,6 +89,7 @@ pool.query(query, [req.body.qr, req.body.box_name, req.body.creator_user_id, req
     res.sendStatus(500)
 })})})
 
+// ASSOCIATE AN ITEM WITH A BOX (PUT ITEM IN BOX)
 router.post('/add_to_box', (req, res) => {
   console.log('POST req.body:',req.body);
 
@@ -115,6 +114,7 @@ router.post('/add_to_box', (req, res) => {
       res.sendStatus(500)
   })});
 
+// UPDATE A BOX WITH EDITS
 router.put('/', (req, res) => {
   console.log('In PUT BOX with req.body:',req.body);
   
@@ -140,6 +140,7 @@ router.put('/', (req, res) => {
       res.sendStatus(500)
   })})})
 
+// REMOVE ASSOCIATED ITEMS FROM THE BOX (DELETE BOX_ITEM RECORD)
 router.delete('/remove_from_box', (req, res) => {
   console.log('In DELETE "remove_from_box" req.body:',req.body);
   const query = `DELETE FROM box_item
@@ -152,6 +153,7 @@ router.delete('/remove_from_box', (req, res) => {
       res.sendStatus(500)
   })});
 
+  //REMOVE BOX FROM DATABASE AND REMOVE LINKS TO ASSOCIATED ITEMS
 router.delete('/', (req, res) => {
   console.log('In deleteBox router with:', req.query);
   const query = `DELETE FROM box_item

@@ -67,8 +67,8 @@ function addItemToBox(props) {
   return (
     <div className='component'>
       <h2 className='addItemToBoxHeader'>{heading}</h2>
-      <div className='addItemToBoxContainer'>
-        <div>
+      <div className='searchContainer'>
+        <div className='addItemToBoxTextFieldDiv'>
           <TextField
               id="addItemQrScanOutlined-search"
               label="SCAN BOX QR CODE"
@@ -78,9 +78,9 @@ function addItemToBox(props) {
               className='addItemToBoxTextField'
             />
         </div>
-        <div>
+        <div className='qrIconButtonDiv'>
           <IconButton onClick={scanClick} size="large" color="primary">
-            <QrCodeScannerIcon className='addItemtoBoxQrIconButton'/>
+            <QrCodeScannerIcon className='qrIconButton'/>
           </IconButton>
         </div>
       </div>

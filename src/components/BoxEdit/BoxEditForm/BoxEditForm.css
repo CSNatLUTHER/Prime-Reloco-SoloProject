@@ -1,19 +1,24 @@
+.editBoxFormQrTextFieldDiv{
+  flex-grow: 11;
+}
+
 .editBoxFormQrTextField{
-    width: 138%;
-    margin-right: 7px;
-  }
-  
-  .editBoxFormGeneralTextField{
-    width: 80%;
-  }
-  
-  .editBoxFormCaptureImageButton{
-    width:  80%;
-    height: 50px;
-    max-width: 500px;
-  }
-  
-  .editBoxFormCreateItemButton{
-    width:  80%;
-    height: 50px;
-  }
+  width: 100%;
+}
+
+.editBoxFormGeneralTextField{
+  width: 80%;
+  max-width: 500px;
+}
+
+.editBoxFormCaptureImageButton{
+  width:  80%;
+  height: 50px;
+  max-width: 500px;
+}
+
+.editBoxFormCreateItemButton{
+  width:  80%;
+  height: 50px;
+  max-width: 500px;
+}
