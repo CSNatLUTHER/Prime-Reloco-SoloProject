@@ -9,7 +9,9 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import Button from '@mui/material/Button';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import DownloadIcon from '@mui/icons-material/Download';
+import { CSVLink } from "react-csv";
+import './MoveEventReport.css';
 
 
 function MoveEventReport(props) {
@@ -45,6 +47,21 @@ function MoveEventReport(props) {
     const handleChangeRowsPerPage = (event) => {
       setRowsPerPage(+event.target.value);
       setPage(0);
+    };
+
+    const headers = [
+      { label: "Record ID", key: "id" },
+      { label: "Item Name", key: "name" },
+      { label: "QR Code", key: "qr_id" },
+      { label: "Destination", key: "destination" },
+      { label: "Value", key: "value" },
+    ];
+     
+     
+    const csvReport = {
+      data: store.items,
+      headers: headers,
+      filename: store.active_event.name + ' Report.csv'
     };
 
   return (
@@ -106,7 +123,9 @@ function MoveEventReport(props) {
         />
       </Paper>
       <br />
-      <Button color="secondary" variant="contained" className='searchItemButton' endIcon={<ArrowForwardIosIcon />}>DOWNLOAD REPORT</Button>
+      <CSVLink {...csvReport} className='downloadCSVLink'>
+        <Button color="secondary" variant="contained" className='downloadReportButton' endIcon={<DownloadIcon />}>DOWNLOAD REPORT</Button>
+      </CSVLink>
     </div>
   );
 }

@@ -1,0 +1,9 @@
+.downloadReportButton{
+    width: 80%;
+    height: 50px;
+    max-width: 500px;
+}
+
+.downloadCSVLink{
+    text-decoration: none;
+}
