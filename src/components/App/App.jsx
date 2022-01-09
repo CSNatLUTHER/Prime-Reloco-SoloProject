@@ -37,7 +37,8 @@ import BoxEdit from '../BoxEdit/BoxEdit';
 import Contact from '../Contact/Contact';
 import ContactUs from '../Contact/ContactUs/ContactUs';
 import ContactThankYou from '../Contact/ContactThankYou/ContactThankYou';
-import Menu from '../SharedComponents/Nav/Menu'
+import MoveEventReport from '../MoveEventReport/MoveEvent Report';
+import Menu from '../SharedComponents/Nav/Menu';
 
 
 
@@ -110,6 +111,15 @@ function App() {
               path="/info"
             >
               <InfoPage />
+            </ProtectedRoute>
+
+            {/* EVENT REPORT */}
+            <ProtectedRoute
+              // show a list of all items on for a move event
+              exact
+              path="/report"
+            >
+              <MoveEventReport />
             </ProtectedRoute>
 
             {/* CREATE MOVE EVENT ROUTE */}

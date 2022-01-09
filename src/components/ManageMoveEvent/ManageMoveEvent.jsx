@@ -9,6 +9,7 @@ import Button from '@mui/material/Button';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useHistory } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import SummarizeIcon from '@mui/icons-material/Summarize';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -22,6 +23,10 @@ function ManageMoveEvent(props) {
   const [heading, setHeading] = useState('Manage Move Event');
 
   const history = useHistory()
+
+  const eventReport = () => {
+    history.push('/report')
+  }
 
   const deleteEvent = () => {
     console.log('In deleteEvent!');
@@ -94,6 +99,8 @@ function ManageMoveEvent(props) {
       <h1 className ='manageMoveEventHomeHeader'>{store.active_event.name}</h1>
       <p><b>MOVE OWNER:</b> {store.active_event.owner_first_name} {store.active_event.owner_last_name}</p>
       <p><b>MOVE DATE:</b> {moveDate}</p>
+      <Button color="secondary" variant="contained" className='moveEventReportButton' endIcon={<SummarizeIcon />} onClick={() => {setTimeout(eventReport, 250)}}>EVENT REPORT</Button>
+
       <ShareMoveEvent />
       <EventMemberList />
       {(store.user.id === store.active_event.creator_user_id)?

@@ -20,6 +20,14 @@
     max-width: 500px;
 }
 
+.moveEventReportButton{
+    width:  80%;
+    height: 50px;
+    max-width: 500px;
+}
+
+
+
 .manageMoveEvenDeleteHeader{
     background-color: #3f51b579;
     color: rgb(66, 66, 66);

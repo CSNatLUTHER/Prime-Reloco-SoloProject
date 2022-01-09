@@ -2,7 +2,7 @@ import { put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
 
-//FUNCTION TO GET ALL ITEMS FOR user
+//FUNCTION TO GET ALL ITEMS FOR EVENT
 function* fetchAllItems(event) {
   try {
         const items = yield axios.get('/api/item', {params: event.payload});
