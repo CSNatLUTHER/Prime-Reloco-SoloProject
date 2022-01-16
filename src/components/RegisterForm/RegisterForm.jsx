@@ -44,7 +44,7 @@ function RegisterForm() {
 
 
   const registerUser = (event) => {
-    event.preventDefault();
+    // event.preventDefault();
 
     dispatch({
       type: 'REGISTER',
