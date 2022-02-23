@@ -17,7 +17,6 @@ import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 import EditIcon from '@mui/icons-material/Edit';
 import Swal from 'sweetalert2';
 import InputAdornment from '@mui/material/InputAdornment';
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
