@@ -17,6 +17,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuItem from '@mui/material/MenuItem';
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 import Swal from 'sweetalert2';
+import InputAdornment from '@mui/material/InputAdornment';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -246,6 +247,9 @@ function newItemForm(props) {
       <TextField
         id="outlined-number"
         label="ITEM VALUE (Whole Dollars)"
+        InputProps={{
+          startAdornment: <InputAdornment position="start">$</InputAdornment>,
+        }}
         type="number"
         onChange={handleValueChange}
         className='generalTextField'
